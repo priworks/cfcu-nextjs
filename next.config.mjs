@@ -67,7 +67,17 @@ const config = {
         destination: '/posts/topic/:slug',
         permanent: true,
       },
-      ...sanitySortedRedirects || [],
+      ...(sanitySortedRedirects || []),
+      {
+        source: '/blog/:path*',
+        destination: '/posts',
+        permanent: true,
+      },
+      {
+        source: '/press/:path*',
+        destination: '/posts',
+        permanent: true,
+      },
     ]
   },
 }

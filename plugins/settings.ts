@@ -16,6 +16,7 @@ import { PageHierarchyView } from '@/components/Sanity/PageHierarchyView'
 import { TreeView } from '@phosphor-icons/react'
 import redirects from '@/schemas/singletons/redirects'
 import { CustomDocumentView } from '@/plugins/subpageOrder'
+import RedirectSearchView from '@/components/Sanity/RedirectSearchView'
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
     name: 'settings',
@@ -256,7 +257,13 @@ export const settingsStructure = (
           .id(redirects.name)
           .schemaType(redirects.name)
           .documentId(redirects.name)
-          .views([S.view.form()]),
+          .views([
+            S.view.form(),
+            S.view
+              .component(RedirectSearchView)
+              .title('Search')
+              .id('redirectSearch'),
+          ]),
       )
 
     const defaultListItems = S.documentTypeListItems().filter(
