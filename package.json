@@ -28,7 +28,7 @@
     "@sanity/image-url": "1.0.2",
     "@sanity/orderable-document-list": "^1.2.2",
     "@sanity/overlays": "2.3.7",
-    "@sanity/preview-url-secret": "1.5.3",
+    "@sanity/preview-url-secret": "2.1.16",
     "@sanity/vision": "3.26.0",
     "@sanity/webhook": "^4.0.4",
     "@types/mapbox-gl": "^3.4.1",
