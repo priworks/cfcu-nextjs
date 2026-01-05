@@ -100,5 +100,9 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "resolutions": {
+    "jsdom": "27.3.0",
+    "parse5": "7.2.1"
   }
 }
