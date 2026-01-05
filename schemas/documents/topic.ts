@@ -1,5 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { TagSimple } from '@phosphor-icons/react'
+import { isValidSanitySlug } from '@/lib/utils'
 
 //TODO: change description on this compoonent when it comes time.
 export default defineType({
@@ -33,14 +34,18 @@ export default defineType({
         },
       },
       validation: (Rule) =>
-        Rule.required().custom((slug, context) => {
+        Rule.required().custom((slug) => {
           if (typeof slug === 'undefined') {
             return true // Allow undefined values
           }
-          if (slug.current && !slug.current.startsWith('posts/topic/')) {
+
+          const slugValue = slug.current
+
+          if (slugValue && !slugValue.startsWith('posts/topic/')) {
             return 'Slug must start with "posts/topic/"'
           }
-          return true
+
+          return isValidSanitySlug(slugValue)
         }),
       description:
         'The slug stucture for this topic will be /posts/topic/[slug]',

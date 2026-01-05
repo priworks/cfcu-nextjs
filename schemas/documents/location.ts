@@ -5,6 +5,7 @@ import {
   orderRankOrdering,
 } from '@sanity/orderable-document-list'
 import { modules } from 'schemas/schemaTypes/modules'
+import { isValidSanitySlug } from '@/lib/utils'
 
 export default defineType({
   name: 'location',
@@ -45,14 +46,18 @@ export default defineType({
         },
       },
       validation: (Rule) =>
-        Rule.required().custom((slug, context) => {
+        Rule.required().custom((slug) => {
           if (typeof slug === 'undefined') {
             return true // Allow undefined values
           }
-          if (slug.current && !slug.current.startsWith('locations/')) {
+
+          const slugValue = slug.current
+
+          if (slugValue && !slugValue.startsWith('locations/')) {
             return 'Slug must start with "locations/"'
           }
-          return true
+
+          return isValidSanitySlug(slugValue)
         }),
     }),
     orderRankField({ type: 'location' }),

@@ -4,6 +4,7 @@ import { modules } from 'schemas/schemaTypes/modules'
 import { useClient } from 'sanity'
 import { createClient } from 'next-sanity'
 import { getClient } from '@/lib/sanity.client'
+import { isValidSanitySlug } from '@/lib/utils'
 
 export default defineType({
   name: 'subPage',
@@ -53,7 +54,7 @@ export default defineType({
         },
       },
       validation: (Rule) =>
-        Rule.required().custom((slug, context) => {
+        Rule.required().custom((slug) => {
           if (typeof slug === 'undefined') {
             return true // Allow undefined values
           }
@@ -68,13 +69,7 @@ export default defineType({
             return 'Slug must not start with "/"'
           }
 
-          // Check if the slug is valid (lowercase letters, numbers, and hyphens only)
-          const validSlugRegex =
-            /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/
-          if (!validSlugRegex.test(slugValue)) {
-            return 'Slug must contain only lowercase letters, numbers, and hyphens, and cannot start or end with a hyphen. It also should not end with a slash'
-          }
-          return true
+          return isValidSanitySlug(slugValue)
         }),
     }),
     // defineField({
