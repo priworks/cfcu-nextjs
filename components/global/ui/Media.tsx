@@ -37,18 +37,18 @@ function getMobileMedia(media: Media) {
 
   // Fallback to primary media
   return {
-    type: stegaClean(media.mediaType),
-    image: media.image,
-    video: media.video,
+    type: stegaClean(media?.mediaType),
+    image: media?.image,
+    video: media?.video,
   }
 }
 
 // Helper to determine what media to show on desktop
 function getDesktopMedia(media: Media) {
   return {
-    type: stegaClean(media.mediaType),
-    image: media.image,
-    video: media.video,
+    type: stegaClean(media?.mediaType),
+    image: media?.image,
+    video: media?.video,
   }
 }
 
