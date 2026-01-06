@@ -118,6 +118,7 @@ const SubPageHero = ({
             width={500}
             height={108}
             className={clsx('w-[212px]', 'lg:w-[244.71px]')}
+            priority
           />
         </Link>
 
