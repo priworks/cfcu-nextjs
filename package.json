@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@focus-reactive/sanity-plugin-inline-svg-input": "^1.1.0",
-    "@gsap/shockingly": "^3.12.5",
     "@mapbox/search-js-react": "^1.0.0-beta.24",
     "@phosphor-icons/react": "^2.1.7",
     "@portabletext/react": "3.0.11",
@@ -100,5 +99,9 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "resolutions": {
+    "jsdom": "27.3.0",
+    "parse5": "7.2.1"
   }
 }
