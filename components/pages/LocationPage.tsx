@@ -225,7 +225,9 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               quality={100}
               fill
               priority
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
               )}

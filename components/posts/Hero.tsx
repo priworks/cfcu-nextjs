@@ -261,7 +261,9 @@ const Hero = ({ post }: { post: PostPageType }) => {
               .url()}
             alt=""
             fill
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-300 ease-linear',
             )}

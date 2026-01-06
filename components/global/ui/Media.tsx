@@ -55,7 +55,9 @@ export default function MediaComponent({
             height={1080}
             quality={100}
             priority={priority}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full hidden',
               'opacity-0 transition-all duration-300 ease-in-out-cubic ',
@@ -71,7 +73,9 @@ export default function MediaComponent({
             height={isCtaContent ? 1948 : 1080}
             quality={100}
             priority={priority}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full ',
               'opacity-0 transition-all duration-300 ease-in-out-cubic ',
@@ -95,7 +99,9 @@ export default function MediaComponent({
           height={1080}
           quality={100}
           priority={priority}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) =>
+            (event.target as HTMLImageElement).classList.remove('opacity-0')
+          }
           className={clsx(
             'object-cover w-full h-full',
             'opacity-0 transition-all duration-300 ease-in-out-cubic',

@@ -42,7 +42,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
             )}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
           />
         </div>
       </Link>
@@ -77,7 +79,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

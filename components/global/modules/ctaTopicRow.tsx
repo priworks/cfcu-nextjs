@@ -79,7 +79,9 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               alt={data?.image.alt as string}
               width={1000}
               height={1000}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-all  duration-300 ease-in-out-cubic',
               )}

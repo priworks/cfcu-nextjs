@@ -27,7 +27,9 @@ export const WysiwygComponentsWithoutPadding = {
             quality={100}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-contain opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}
@@ -53,7 +55,9 @@ export const WysiwygComponentsWithoutPadding = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
               )}
@@ -80,7 +84,9 @@ export const WysiwygComponentsWithoutPadding = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
               )}
@@ -109,7 +115,9 @@ export const WysiwygComponentsWithoutPadding = {
             alt={String(value.alt)}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}
@@ -577,7 +585,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
               )}
@@ -605,7 +615,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
               )}
@@ -632,7 +644,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
               )}
@@ -658,7 +672,9 @@ export const WysiwygComponents = {
             alt={String(value.alt)}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}

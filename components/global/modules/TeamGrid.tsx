@@ -93,7 +93,9 @@ function TeamCard({ data }: { data: GroupMember }) {
           className={clsx(
             'object-cover w-full h-full opacity-0 transition-all duration-300 ease-in-out-cubic',
           )}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) =>
+            (event.target as HTMLImageElement).classList.remove('opacity-0')
+          }
         />
       </div>
       <h5 className={clsx('w-h5-desktop text-lavender mt-[16px] text-center')}>

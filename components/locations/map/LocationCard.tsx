@@ -80,7 +80,9 @@ export default function LocationCard({
             alt={data?.thumbnailImage?.alt as string}
             fill
             quality={100}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
             )}
@@ -118,7 +120,9 @@ export default function LocationCard({
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText
