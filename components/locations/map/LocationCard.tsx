@@ -159,7 +159,7 @@ export default function LocationCard({
       >
         <Button
           label={'More Info'}
-          className={clsx('!bg-lavender !text-white')}
+          className={clsx('!bg-lavender text-white!')}
         />
       </Link>
     </article>

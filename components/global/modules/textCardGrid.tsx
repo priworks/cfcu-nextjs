@@ -61,7 +61,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
       ref={ref}
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:grid-cols-12 lg:grid lg:gap-x-[24px] lg:px-[48px] lg:pt-[95px] lg:pb-[187px] lg:relative lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:grid-cols-12 lg:grid lg:gap-x-[24px] lg:px-[48px] lg:pt-[95px] lg:pb-[187px] lg:relative lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <article
@@ -167,7 +167,7 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
         <PageLink data={card?.pageLink}>
           <Button
             label={card?.pageLink?.title}
-            className={clsx('!bg-lavender !text-white')}
+            className={clsx('!bg-lavender text-white!')}
           />
         </PageLink>
       )}

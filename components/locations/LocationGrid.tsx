@@ -15,7 +15,7 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
     <section
       className={clsx(
         'flex flex-col w-full px-[24px] mt-[48px] gap-y-[48px] pb-[75px]',
-        'lg:grid lg:grid-cols-3 lg:max-w-[1800px] xl:px-[0px] lg:gap-x-[30px] lg:mx-auto lg:gap-y-[77px]  lg:mt-[125px] lg:mb-[136px] lg:px-[48px]',
+        'lg:grid lg:grid-cols-3 lg:max-w-[1800px] xl:px-0 lg:gap-x-[30px] lg:mx-auto lg:gap-y-[77px]  lg:mt-[125px] lg:mb-[136px] lg:px-[48px]',
       )}
     >
       {data?.map((location, index) => (
@@ -115,7 +115,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
       <Link href={data?.slug.current} className={clsx('block mt-[25px]')}>
         <Button
           label={'More Info'}
-          className={clsx('!bg-lavender !text-white')}
+          className={clsx('!bg-lavender text-white!')}
         />
       </Link>
     </article>

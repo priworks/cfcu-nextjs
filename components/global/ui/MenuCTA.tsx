@@ -66,7 +66,7 @@ const MenuCTA = ({
       }}
       className={clsx(
         `mt-[75px] pt-[42px] pb-[58px] px-[21px] font-codec-pro mx-[26px] flex flex-col items-center `,
-        'lg:mt-[0px] lg:mx-[0px] lg:px-[51px] lg:py-[74px]',
+        'lg:mt-0 lg:mx-0 lg:px-[51px] lg:py-[74px]',
       )}
     >
       <h3

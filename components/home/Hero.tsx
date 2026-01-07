@@ -62,18 +62,18 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     <section
       ref={heroRef}
       className={clsx(
-        'min-h-[600px] h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
+        'min-h-[600px] h-svh bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
         'lg:px-[18px] lg:py-[16px] lg:min-h-[800px]',
       )}
     >
-      <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+      <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
         <Image
           src={'/icons/LogoFull.png'}
           alt={'Community Financial Logo'}
           width={500}
           height={108}
           className={clsx(
-            'w-[212px] leading-[47px] absolute top-[24px] left-[25px] z-[8]',
+            'w-[212px] leading-[47px] absolute top-[24px] left-[25px] z-8',
             'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
           )}
           priority
@@ -82,7 +82,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
       <div
         ref={gradientRef}
         className={clsx(
-          'heroGradient absolute inset-x-[10px] inset-y-[12px] z-[2] rounded-[10px]',
+          'heroGradient absolute inset-x-[10px] inset-y-[12px] z-2 rounded-[10px]',
           'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
         )}
       />
@@ -102,8 +102,8 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
       {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
         <button
           className={clsx(
-            'absolute !right-[16px] !bottom-[16px] !top-[unset] !left-[unset] z-[10] !w-fit !h-fit',
-            'lg:!right-[36px] lg:!bottom-[36px] ',
+            'absolute right-[16px]! bottom-[16px]! top-[unset]! left-[unset]! z-10 w-fit! h-fit!',
+            'lg:right-[36px]! lg:bottom-[36px]! ',
           )}
           onClick={() => setIsPlaying((prev) => !prev)}
         >
@@ -112,13 +112,13 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
       )}
       <div
         className={clsx(
-          'lg:px-[30px] lg:flex lg:justify-between lg:relative lg:z-[3] lg:items-end lg:pb-[46px]',
+          'lg:px-[30px] lg:flex lg:justify-between lg:relative lg:z-3 lg:items-end lg:pb-[46px]',
         )}
       >
         <article
           className={clsx(
-            'pb-[58px] relative z-[3] max-w-[841px] px-[14px]',
-            'lg:pl-[0px] lg:pb-[0px]',
+            'pb-[58px] relative z-3 max-w-[841px] px-[14px]',
+            'lg:pl-0 lg:pb-0',
           )}
         >
           <h1
@@ -159,7 +159,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         <article
           className={clsx(
             'text-white font-codec-news hidden opacity-0 tertItem',
-            'lg:flex lg:flex-col lg:gap-y-[12px] lg:pl-[16px] border-l-[1px] border-l-orange ',
+            'lg:flex lg:flex-col lg:gap-y-[12px] lg:pl-[16px] border-l border-l-orange ',
           )}
         >
           <div className={clsx('max-w-[300px] text-[18px] leading-[26px] ')}>

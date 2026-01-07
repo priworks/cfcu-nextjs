@@ -12,7 +12,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
     <section
       className={clsx(
         'px-[24px]  py-[66px]',
-        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       {data?.subtitle && (

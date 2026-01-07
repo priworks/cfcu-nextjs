@@ -71,7 +71,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
       ref={ref}
       className={clsx(
         'pt-[112px] px-[24px] pb-[86px]',
-        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[69px]',
+        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:pb-[69px]',
       )}
     >
       <div className={clsx('flex flex-col items-center')}>
@@ -165,7 +165,7 @@ const PostCard = ({
             'flex flex-col',
             isFeatured
               ? 'gap-y-[8px] mt-[24px] lg:max-w-[582px]  lg:gap-y-[13px] lg:mt-[31px]'
-              : 'mt-[16px] max-w-[92%] gap-y-[10px]  lg:gap-y-[0px] lg:mt-[25px]',
+              : 'mt-[16px] max-w-[92%] gap-y-[10px]  lg:gap-y-0 lg:mt-[25px]',
           )}
         >
           <h4

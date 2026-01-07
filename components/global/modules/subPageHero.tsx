@@ -89,7 +89,7 @@ const SubPageHero = ({
               {data?.needsGradient && (
                 <div
                   className={clsx(
-                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'heroGradient absolute inset-0 z-2 rounded-[10px]',
                     'lg:rounded-[20px]',
                   )}
                 />
@@ -107,11 +107,11 @@ const SubPageHero = ({
 
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between',
+          'flex relative z-2 px-[24px] pt-[24px] flex-col h-full justify-between',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
@@ -135,7 +135,7 @@ const SubPageHero = ({
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px]  py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200 text-left',
+                  'flex gap-x-[6px]  py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:opacity-80! transition-opacity duration-200 text-left',
                 )}
               >
                 <svg
@@ -163,7 +163,7 @@ const SubPageHero = ({
           <h1
             className={clsx(
               'w-h1 text-white',
-              'lg:page-title-desktop lg:!leading-[85px] unbalance',
+              'lg:page-title-desktop lg:leading-[85px]! unbalance',
             )}
           >
             <SplitTextDynamic
@@ -189,8 +189,8 @@ const SubPageHero = ({
             {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
               <button
                 className={clsx(
-                  'z-[10] !w-fit !h-fit',
-                  'lg:!right-[36px] lg:!bottom-[36px] lg:absolute ',
+                  'z-10 w-fit! h-fit!',
+                  'lg:right-[36px]! lg:bottom-[36px]! lg:absolute ',
                 )}
                 onClick={() => setIsPlaying((prev) => !prev)}
               >

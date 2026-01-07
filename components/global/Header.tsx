@@ -87,17 +87,17 @@ const Header = () => {
             : {}
         }
         className={clsx(
-          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 translate-y-[24px] lg:translate-y-[48px] opacity-0',
-          'lg:right-[48px] lg:top-[0] ',
-          alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
+          'fixed top-0 right-[24px] z-13 transition-transform ease-in duration-300 translate-y-[24px] lg:translate-y-[48px] opacity-0',
+          'lg:right-[48px] lg:top-0 ',
+          alertIsOpen && 'lg:top-0  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
-            '!translate-y-[24px] lg:!translate-y-[48px]',
+            'translate-y-[24px]! lg:translate-y-[48px]!',
         )}
       >
         <div
           className={clsx(
             'w-fit',
-            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold  lg:border-[1px] lg:border-white/[0.08]',
+            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold  lg:border lg:border-white/8',
           )}
         >
           <div>
@@ -127,8 +127,8 @@ const Header = () => {
               }
             }}
             className={clsx(
-              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group border-[1px] border-white/[0.08]',
-              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px] lg:border-[0px]',
+              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group border border-white/8',
+              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px] lg:border-0',
               menuButtonOpen
                 ? 'bg-orange lg:bg-white lg:hover:bg-lightGrey lg:hover:text-black'
                 : 'bg-orange lg:hover:bg-white',
@@ -140,7 +140,7 @@ const Header = () => {
                   'flex flex-col transition-all duration-300 ease-in-out-cubic text-lavender',
                   menuButtonOpen
                     ? 'translate-y-[-24px] group-hover:text-black'
-                    : 'translate-y-[0px]',
+                    : 'translate-y-0',
                 )}
               >
                 <span
@@ -168,7 +168,7 @@ const Header = () => {
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   menuButtonOpen
-                    ? 'rotate-45 translate-y-[0px]'
+                    ? 'rotate-45 translate-y-0'
                     : 'rotate-0 translate-y-[5px]',
                 )}
               ></span>
@@ -182,7 +182,7 @@ const Header = () => {
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   menuButtonOpen
-                    ? '-rotate-45 translate-y-[0px]'
+                    ? '-rotate-45 translate-y-0'
                     : 'rotate-0 translate-y-[-5px]',
                 )}
               ></span>

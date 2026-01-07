@@ -152,7 +152,7 @@ export function Search() {
         <Link
           href={'/'}
           className={clsx(
-            'block relative z-[3]',
+            'block relative z-3',
             'lg:absolute lg:top-[48px] lg:left-[48px]',
           )}
         >
@@ -173,7 +173,7 @@ export function Search() {
         />
         <div
           className={clsx(
-            'relative z-[2] max-w-[888px] mx-auto pt-[111px]',
+            'relative z-2 max-w-[888px] mx-auto pt-[111px]',
             'lg:pt-[275px]',
           )}
         >
@@ -206,7 +206,7 @@ export function Search() {
               type="submit"
               disabled={isLoading || !query.trim()}
               className={clsx(
-                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] flex-shrink-0',
+                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] shrink-0',
                 'hover:opacity-80 transition-opacity duration-200',
                 isLoading && 'opacity-70',
               )}
@@ -232,7 +232,7 @@ export function Search() {
         <section
           className={clsx(
             'max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]',
-            'lg:mt-[61px] lg:mb-[83px] lg:px-[0px]',
+            'lg:mt-[61px] lg:mb-[83px] lg:px-0',
           )}
         >
           {isLoading ? (
@@ -262,7 +262,7 @@ export function Search() {
                     <li
                       key={result.objectID}
                       className={clsx(
-                        'py-[28px] border-t-[1px] border-t-black/10',
+                        'py-[28px] border-t border-t-black/10',
                       )}
                     >
                       <Link
@@ -282,7 +282,7 @@ export function Search() {
                           <p
                             className={clsx(
                               'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
-                              'lg:w-paragraph-l-desktop lg:mb-[0px]',
+                              'lg:w-paragraph-l-desktop lg:mb-0',
                             )}
                           >
                             {result.metaDescription}
@@ -308,7 +308,7 @@ export function Search() {
           className={clsx(
             'px-[24px]',
             'lg:px-[48px] lg:max-w-[1800px] mx-auto',
-            'xl:px-[0px]',
+            'xl:px-0',
           )}
         >
           <Pagination

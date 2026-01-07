@@ -77,7 +77,7 @@ const LocationHomeHero = ({
               {data?.needsGradient && (
                 <div
                   className={clsx(
-                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'heroGradient absolute inset-0 z-2 rounded-[10px]',
                     'lg:rounded-[20px]',
                   )}
                 />
@@ -90,11 +90,11 @@ const LocationHomeHero = ({
       </div>
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between gap-y-[111px]',
+          'flex relative z-2 px-[24px] pt-[24px] flex-col h-full justify-between gap-y-[111px]',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}

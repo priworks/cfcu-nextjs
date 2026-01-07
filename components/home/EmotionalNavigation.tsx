@@ -178,8 +178,8 @@ const CardMobile = ({
         >
           <span
             className={clsx(
-              'w-[14px] h-[4px] rotate-[90deg]  absolute bg-lavender block transition-transform duration-300 ease-in-out-cubic',
-              'group-data-[state=open]:rotate-[0deg]',
+              'w-[14px] h-[4px] rotate-90  absolute bg-lavender block transition-transform duration-300 ease-in-out-cubic',
+              'group-data-[state=open]:rotate-0',
             )}
           ></span>
           <span className={clsx('w-[14px] h-[4px] bg-lavender block')}></span>
@@ -235,7 +235,7 @@ const CardDesktop = ({
     <article
       style={{ backgroundColor: colors?.background, color: colors?.heading }}
       className={clsx(
-        'px-[53px] pt-[77px] ml:clamp-w-[547px]  ml:clamp-h-[620px] flex-shrink-0 h-[620px] w-[547px]',
+        'px-[53px] pt-[77px] ml:clamp-w-[547px]  ml:clamp-h-[620px] shrink-0 h-[620px] w-[547px]',
       )}
     >
       <h4

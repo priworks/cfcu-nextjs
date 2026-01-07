@@ -56,10 +56,10 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
       ref={ref}
       className={clsx(
         'bg-white pt-[33px] pb-[98px]',
-        'lg:pt-[64px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[28px]',
+        'lg:pt-[64px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:pb-[28px]',
       )}
     >
-      <div className={clsx('px-[24px]', 'lg:px-[48px] xl:px-[0px]')}>
+      <div className={clsx('px-[24px]', 'lg:px-[48px] xl:px-0')}>
         <h2
           className={clsx(
             'text-[16px] leading-[16px] font-codec-news text-[#606060] tracking-[1.6px]',
@@ -86,7 +86,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
           className={clsx('mt-[39px]')}
         >
           {data?.cards?.map((card, index) => (
-            <SwiperSlide key={index} className={clsx('!w-fit')}>
+            <SwiperSlide key={index} className={clsx('w-fit!')}>
               <CardGridCard data={card} />
             </SwiperSlide>
           ))}
@@ -95,7 +95,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
       <div
         className={clsx(
           'lg:grid lg:grid-cols-4 lg:mt-[56px] lg:px-[48px] lg:gap-x-[24px]',
-          'xl:px-[0px]',
+          'xl:px-0',
         )}
       >
         {width >= 1024 && (

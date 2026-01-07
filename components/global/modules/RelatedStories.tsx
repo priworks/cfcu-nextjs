@@ -26,13 +26,13 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
       <div
         className={clsx(
           'pt-[66px] pb-[136px]',
-          'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
         )}
       >
         <article
           className={clsx(
             'px-[24px] flex items-center flex-col',
-            'lg:px-[48px] xl:px-[0px]',
+            'lg:px-[48px] xl:px-0',
           )}
         >
           {data?.subTitle && (
@@ -58,8 +58,8 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
           {data.description && (
             <p
               className={clsx(
-                'text-[18px] leading-[25.2px] flex flex-col gap-y-[24px] text-center font-codec-news break-words mt-[13px] text-black/75',
-                'lg:w-paragraph-l-desktop lg:mt-[0px] lg:max-w-[980px]',
+                'text-[18px] leading-[25.2px] flex flex-col gap-y-[24px] text-center font-codec-news wrap-break-word mt-[13px] text-black/75',
+                'lg:w-paragraph-l-desktop lg:mt-0 lg:max-w-[980px]',
               )}
             >
               {data?.description}
@@ -86,7 +86,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             slidesPerView={'auto'}
           >
             {posts?.map((post, index) => (
-              <SwiperSlide key={index} className={clsx('!w-fit')}>
+              <SwiperSlide key={index} className={clsx('w-fit!')}>
                 {<PostCard data={post} key={index} fixSize={true} />}
               </SwiperSlide>
             ))}
@@ -95,7 +95,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
         <div
           className={clsx(
             'hidden',
-            'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-[0px]',
+            'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-0',
           )}
         >
           {posts?.map((post, index) => (

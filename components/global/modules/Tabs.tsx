@@ -57,7 +57,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
     <section
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:relative',
+        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:relative',
       )}
     >
       {data?.subtitle && (
@@ -111,7 +111,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
               <Accordion.Header className={clsx('text-black')}>
                 <Accordion.Trigger
                   className={clsx(
-                    'flex gap-x-[10px] py-[16px] border-t-[1px] border-t-lightGrey transition-colors duration-200 w-full',
+                    'flex gap-x-[10px] py-[16px] border-t border-t-lightGrey transition-colors duration-200 w-full',
                     'group-data-[state=open]:border-t-lavender',
                   )}
                 >
@@ -168,7 +168,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
               key={index}
               onClick={() => setActiveTab(index)}
               className={clsx(
-                'py-[32px] flex justify-between w-full border-t-[1px] transition-colors duration-200 group gap-x-[18px]',
+                'py-[32px] flex justify-between w-full border-t transition-colors duration-200 group gap-x-[18px]',
                 activeTab === index
                   ? 'border-t-lavender'
                   : 'border-t-lightGrey',
@@ -204,7 +204,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 className={clsx(
                   activeTab === index
-                    ? 'translate-x-[0px] opacity-100 transition-all ease-out duration-200'
+                    ? 'translate-x-0 opacity-100 transition-all ease-out duration-200'
                     : 'translate-x-[-10px] opacity-0 transition-all ease-in duration-200',
                 )}
               >

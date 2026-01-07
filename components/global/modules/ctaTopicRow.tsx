@@ -66,17 +66,17 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         ref={containerRef}
         className={clsx(
           'px-[24px] py-[26px] ',
-          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-center',
+          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-0 lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:items-center',
           stegaClean(data?.imagePosition) === 'left'
             ? 'lg:flex-row'
             : 'lg:flex-row-reverse',
-          'xl:pl-[0px]',
+          'xl:pl-0',
         )}
       >
         <div
           className={clsx(
             'relative w-full',
-            'lg:flex-shrink-0 lg:w-[calc(50%-59px)]',
+            'lg:shrink-0 lg:w-[calc(50%-59px)]',
           )}
         >
           <div className={clsx('aspect-w-4 aspect-h-3 relative')}>
@@ -97,11 +97,11 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         <div
           className={clsx(
             'flex flex-col gap-y-[16px] mt-[30px]',
-            'lg:mt-[0px] lg:pt-[28px] lg:gap-y-[24px] lg:pb-[50px] ',
+            'lg:mt-0 lg:pt-[28px] lg:gap-y-[24px] lg:pb-[50px] ',
             stegaClean(data?.imagePosition) === 'left'
               ? 'lg:pr-[48px]'
               : 'lg:pl-[48px]',
-            'xl:pr-[0px] xl:pl-[0px]',
+            'xl:pr-0 xl:pl-0',
           )}
         >
           {data?.subtitle && (

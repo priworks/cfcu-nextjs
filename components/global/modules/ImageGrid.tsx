@@ -18,7 +18,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
       <div
         className={clsx(
           'px-[24px] py-[66px]',
-          'lg:px-[48px] lg:pt-[80px] lg:pb-[130px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:px-[48px] lg:pt-[80px] lg:pb-[130px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
           stegaClean(data?.backgroundColor) === 'lightGray' && 'bg-lightGrey',
           stegaClean(data?.backgroundColor) === 'white' && 'bg-white',
         )}

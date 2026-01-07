@@ -107,7 +107,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       ref={ref}
       className={clsx(
         'title-s pt-[51px]',
-        'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:bg-white! lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
       style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >
@@ -136,13 +136,13 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               alt={data?.ctaCard?.subtitle?.svg?.alt as string}
               width={140}
               height={140}
-              className={clsx('animateArticle !h-[81px] !w-auto', 'lg:hidden')}
+              className={clsx('animateArticle h-[81px]! w-auto!', 'lg:hidden')}
             />
           )}
           <div
             className={clsx(
               'aspect-w-6 aspect-h-4 relative mt-[26px]',
-              'lg:aspect-w-7 lg:mt-[0px]',
+              'lg:aspect-w-7 lg:mt-0',
             )}
           >
             <MediaComponent
@@ -154,7 +154,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             {stegaClean(data?.backgroundImage?.mediaType) === 'video' && (
               <button
                 className={clsx(
-                  'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit',
+                  'absolute right-[24px]! bottom-[24px]! top-[unset]! left-[unset]! z-2 w-fit! h-fit!',
                 )}
                 onClick={() => setIsPlaying((prev) => !prev)}
               >
@@ -169,8 +169,8 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             'mt-[22px] px-[24px] pb-[59px]',
             'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px] lg:[clip-path:inset(0%_0%_100%_0%)]',
             stegaClean(data?.ctaCard?.contentPosition) === 'left'
-              ? 'lg:left-[0px]'
-              : 'lg:right-[0px]',
+              ? 'lg:left-0'
+              : 'lg:right-0',
           )}
           style={{ backgroundColor: theme.background, color: theme.heading }}
         >
@@ -190,7 +190,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 alt={data?.ctaCard?.subtitle?.svg?.alt as string}
                 width={185}
                 height={185}
-                className={clsx('animateArticle !h-[107px] !w-auto')}
+                className={clsx('animateArticle h-[107px]! w-auto!')}
               />
             )}
           </div>

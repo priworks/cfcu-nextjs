@@ -42,7 +42,7 @@ const CustomSelectButton = ({ title, items, className }: Props) => {
         viewBox="0 0 13 13"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={clsx('absolute top-[18px] right-[20px] z-[2]')}
+        className={clsx('absolute top-[18px] right-[20px] z-2')}
       >
         <path
           d="M8.05273 12.9199H4.55273V8.16211H0V4.78516L4.55273 4.77148L4.53906 0H8.03906L8.05273 4.77148H12.6738V8.16211H8.05273V12.9199Z"

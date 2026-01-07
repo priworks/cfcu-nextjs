@@ -279,7 +279,7 @@ export default function MapView({
       {mapLoaded && (
         <div
           className={clsx(
-            'absolute top-[8px] left-[8px] z-[10]',
+            'absolute top-[8px] left-[8px] z-10',
             'lg:w-[450px]',
           )}
         >
@@ -308,7 +308,7 @@ export default function MapView({
         onClick={() => setShowATMs((prev) => !prev)}
         className={clsx(
           'bottom-[72px] right-[8px]',
-          'absolute lg:bottom-[64px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px] hidden',
+          'absolute lg:bottom-[64px] z-10 bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px] hidden',
         )}
       >
         Toggle Co-op Network ATM
@@ -368,13 +368,13 @@ export default function MapView({
             ref={popupGradient}
             onClick={() => setSelectedMobilePopup(null)}
             className={clsx(
-              'fixed top-0 left-0 w-full h-full bg-black/80 z-[100] opacity-0',
+              'fixed top-0 left-0 w-full h-full bg-black/80 z-100 opacity-0',
             )}
           />
           <div
             onClick={() => setSelectedMobilePopup(null)}
             className={clsx(
-              'fixed top-0 left-0 z-[101] w-full h-full flex items-center justify-center',
+              'fixed top-0 left-0 z-101 w-full h-full flex items-center justify-center',
             )}
           >
             <LocationCard
@@ -392,13 +392,13 @@ export default function MapView({
             ref={popupGradient}
             onClick={() => setSelectedMobileAtmPopup(null)}
             className={clsx(
-              'fixed top-0 left-0 w-full h-full bg-black/80 z-[100] opacity-0',
+              'fixed top-0 left-0 w-full h-full bg-black/80 z-100 opacity-0',
             )}
           />
           <div
             onClick={() => setSelectedMobileAtmPopup(null)}
             className={clsx(
-              'fixed top-0 left-0 z-[101] w-full h-full flex items-center justify-center',
+              'fixed top-0 left-0 z-101 w-full h-full flex items-center justify-center',
             )}
           >
             <ATMCard

@@ -27,14 +27,14 @@ const RateTable = ({ data }: { data: RateTableType }) => {
     <section
       className={clsx(
         'py-[89px]',
-        'lg:py-[74px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:py-[74px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <div
         className={clsx(
           'px-[24px] flex flex-col gap-y-[9px]',
           'lg:flex-row lg:justify-between lg:items-end lg:px-[48px]',
-          'xl:px-[0px]',
+          'xl:px-0',
         )}
       >
         <h3 className={clsx('text-lavender title-m', 'lg:title-m-desktop')}>
@@ -48,14 +48,14 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         <div
           ref={gradientRef}
           className={clsx(
-            'absolute right-0 top-0 w-[32px] h-full rateTableGradient z-[2]',
+            'absolute right-0 top-0 w-[32px] h-full rateTableGradient z-2',
           )}
         ></div>
         <div
           className={clsx(
             ' mt-[29px] relative flex overflow-x-auto pl-[24px] w-full',
             'lg:mt-[44px] lg:px-[48px] ',
-            'xl:px-[0px]',
+            'xl:px-0',
           )}
         >
           <table className="w-full" ref={tableRef}>
@@ -82,7 +82,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
                       <td
                         key={colIndex}
                         className={clsx(
-                          'pt-[16px] pb-[18px] pl-[20px] border-b-[1px] border-black/20 w-paragraph-s-desktop',
+                          'pt-[16px] pb-[18px] pl-[20px] border-b border-black/20 w-paragraph-s-desktop',
                           rowIndex % 2 === 0 ? 'bg-[#EDEDED]/20' : 'bg-white',
                           'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
                         )}
@@ -110,7 +110,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
           </table>
           <div
             className={clsx(
-              'w-[24px] h-[24px] bg-white flex-shrink-0 lg:hidden',
+              'w-[24px] h-[24px] bg-white shrink-0 lg:hidden',
             )}
           ></div>
         </div>
@@ -120,7 +120,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
           className={clsx(
             'px-[24px] pt-[28px] text-black w-paragraph-s-desktop rateTableBlock text-[16px] leading-[24px]',
             'lg:px-[48px] lg:pt-[12px]',
-            'xl:px-[0px]',
+            'xl:px-0',
           )}
         >
           <PortableText

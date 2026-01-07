@@ -43,7 +43,7 @@ const Pagination = ({
       >
         <ReversedButton
           label="Prev"
-          className={clsx('!bg-lavender !text-white')}
+          className={clsx('!bg-lavender text-white!')}
         />
       </Link>
       {/* <div className={clsx('flex items-center gap-x-[16px]')}>
@@ -52,7 +52,7 @@ const Pagination = ({
             <button
               className={clsx(
                 'w-[67px] h-[67px] bg-lightGrey font-codec-extra-bold text-lavender rounded-full',
-                currentPage == index + 1 && '!bg-lavender !text-white',
+                currentPage == index + 1 && '!bg-lavender text-white!',
               )}
             >
               {index + 1}
@@ -75,7 +75,7 @@ const Pagination = ({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={clsx(
-                'absolute top-[14px] right-[16px] z-[2] pointer-events-none',
+                'absolute top-[14px] right-[16px] z-2 pointer-events-none',
               )}
             >
               <path
@@ -109,7 +109,7 @@ const Pagination = ({
             currentPage == selectedPage && 'opacity-50 pointer-events-none',
           )}
         >
-          <Button label="Go" className={clsx('!bg-lavender !text-white')} />
+          <Button label="Go" className={clsx('!bg-lavender text-white!')} />
         </Link>
       </div>
 
@@ -120,7 +120,7 @@ const Pagination = ({
           'hidden md:block',
         )}
       >
-        <Button label="next" className={clsx('!bg-lavender !text-white')} />
+        <Button label="next" className={clsx('!bg-lavender text-white!')} />
       </Link>
     </div>
   )

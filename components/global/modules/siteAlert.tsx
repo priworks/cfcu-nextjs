@@ -42,9 +42,9 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
     <section
       style={{ maxHeight: alertHeight || 'unset' }}
       className={clsx(
-        ' bg-black px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
+        ' bg-black px-[24px] w-full z-10 flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
-        isClosed && '!max-h-[0px] !bg-transparent',
+        isClosed && 'max-h-0! bg-transparent!',
       )}
     >
       <div

@@ -75,7 +75,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
           'bg-lavender lg:px-[48px] lg:py-[201px]  items-end',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
@@ -83,7 +83,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
             height={108}
             priority
             className={clsx(
-              'w-[212px] relative z-[2]',
+              'w-[212px] relative z-2',
               'lg:w-[244.71px] lg:absolute lg:top-[48px] lg:left-[48px] ',
             )}
           />
@@ -98,17 +98,17 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
         <div
           className={clsx(
             'gap-y-[35px] flex flex-col-reverse mt-[48px] pb-[60px]',
-            'lg:grid lg:grid-cols-2 lg:gap-x-[24px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-end',
+            'lg:grid lg:grid-cols-2 lg:gap-x-[24px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:items-end',
           )}
         >
-          <article className={clsx('relative z-[2]')}>
+          <article className={clsx('relative z-2')}>
             <Link
               href={'/locations'}
               className={clsx('block opacity-0 backButton group ')}
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200',
+                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:opacity-80! transition-opacity duration-200',
                 )}
               >
                 <svg

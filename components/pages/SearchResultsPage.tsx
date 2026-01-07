@@ -83,7 +83,7 @@ const SearchResultsPage = ({
         <Link
           href={'/'}
           className={clsx(
-            'block relative z-[3]',
+            'block relative z-3',
             'lg:absolute lg:top-[48px] lg:left-[48px]',
           )}
         >
@@ -104,7 +104,7 @@ const SearchResultsPage = ({
         />
         <div
           className={clsx(
-            'relative z-[2] max-w-[888px] mx-auto pt-[111px]',
+            'relative z-2 max-w-[888px] mx-auto pt-[111px]',
             'lg:pt-[275px]',
           )}
         >
@@ -135,7 +135,7 @@ const SearchResultsPage = ({
             <button
               type="submit"
               className={clsx(
-                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] flex-shrink-0',
+                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] shrink-0',
                 'hover:opacity-80 transition-opacity duration-200',
               )}
             >
@@ -158,7 +158,7 @@ const SearchResultsPage = ({
       <section
         className={clsx(
           'max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]',
-          'lg:mt-[61px] lg:mb-[83px] lg:px-[0px]',
+          'lg:mt-[61px] lg:mb-[83px] lg:px-0',
         )}
       >
         <p
@@ -180,7 +180,7 @@ const SearchResultsPage = ({
             {results.map((result) => (
               <li
                 key={result._id}
-                className={clsx('py-[28px] border-t-[1px] border-t-black/10')}
+                className={clsx('py-[28px] border-t border-t-black/10')}
               >
                 <Link
                   href={createSlug(result._type, result?.slug?.current)}
@@ -198,7 +198,7 @@ const SearchResultsPage = ({
                     <p
                       className={clsx(
                         'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
-                        'lg:w-paragraph-l-desktop lg:mb-[0px]',
+                        'lg:w-paragraph-l-desktop lg:mb-0',
                       )}
                     >
                       {result.metaDescription}

@@ -41,8 +41,12 @@ export function getClient(preview?: { token: string }): SanityClient {
     apiVersion,
     useCdn,
     perspective: 'published',
-    encodeSourceMap: preview?.token ? true : false,
-    studioUrl,
+    // encodeSourceMap: preview?.token ? true : false,
+    resultSourceMap: preview?.token ? true : false,
+    stega: {
+      studioUrl,
+    },
+    // studioUrl,
   })
   if (preview) {
     if (!preview.token) {

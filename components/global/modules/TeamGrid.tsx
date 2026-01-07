@@ -165,7 +165,7 @@ function TeamCard({ data }: { data: GroupMember }) {
         >
           <Button
             label={data?.moreInfoLink.title}
-            className={clsx('!bg-lavender !text-white')}
+            className={clsx('!bg-lavender text-white!')}
           />
         </PageLink>
       )}

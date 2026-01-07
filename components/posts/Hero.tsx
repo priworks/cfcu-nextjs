@@ -53,13 +53,13 @@ const Hero = ({ post }: { post: PostPageType }) => {
       ref={heroRef}
       className={clsx(
         'px-[24px] pt-[24px] pb-[16px]',
-        'lg:px-[48px] lg:pt-[48px] lg:pb-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:px-[48px] lg:pt-[48px] lg:pb-0 lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <Link
         href={'/'}
         className={clsx(
-          'block w-fit focus:!shadow-none',
+          'block w-fit focus:shadow-none!',
           'lg:absolute lg:left-[48px]',
         )}
       >
@@ -206,7 +206,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                       key={index}
                       href={'/' + topic?.slug?.current + '/1'}
                       className={clsx(
-                        'underline hover:!no-underline w-fit block',
+                        'underline hover:no-underline! w-fit block',
                       )}
                     >
                       {topic?.name}

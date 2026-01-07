@@ -116,7 +116,7 @@ export function CustomDocumentView(props) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className={`mb-2 p-2 border-gray-300 border-[1px] rounded cursor-move ${
+                        className={`mb-2 p-2 border-gray-300 border rounded cursor-move ${
                           snapshot.isDragging ? 'shadow-lg' : ''
                         } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`} // Update 3: Add styles for pending state
                       >

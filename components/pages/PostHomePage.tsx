@@ -91,7 +91,7 @@ const PostHomePage = ({
           'lg:px-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('absolute w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('absolute w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/logoPurple.png'}
             alt={'Community Financial Logo'}
@@ -180,7 +180,7 @@ const PostHomePage = ({
         {topic?.name && (
           <div
             className={clsx(
-              'pt-[33px] text-center border-t-[1px] border-t-[#F0F0F0]  mt-[32px] w-paragraph-m-desktop subItem opacity-0',
+              'pt-[33px] text-center border-t border-t-[#F0F0F0]  mt-[32px] w-paragraph-m-desktop subItem opacity-0',
               'lg:mt-[56px]',
             )}
           >
@@ -195,7 +195,7 @@ const PostHomePage = ({
         className={clsx(
           'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] px-[24px]',
           'lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto',
-          'xl:px-[0px]',
+          'xl:px-0',
           topic?.name ? 'mt-[32px] lg:mt-[32px]' : 'mt-[49px] lg:mt-[111px]',
         )}
       >

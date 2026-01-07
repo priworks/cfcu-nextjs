@@ -17,7 +17,7 @@ export const WysiwygComponentsWithoutPadding = {
       <figure
         className={clsx(
           'flex flex-col gap-y-[17px]  w-full re',
-          'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+          'lg:items-end lg:gap-y-[9px] lg:px-0',
         )}
       >
         {value.asset && (
@@ -45,7 +45,7 @@ export const WysiwygComponentsWithoutPadding = {
         <figure
           className={clsx(
             'flex flex-col gap-y-[17px] px-[24px] w-full',
-            'lg:gap-y-[9px] lg:px-[0px]',
+            'lg:gap-y-[9px] lg:px-0',
           )}
         >
           {value.asset && (
@@ -74,7 +74,7 @@ export const WysiwygComponentsWithoutPadding = {
         <figure
           className={clsx(
             'flex flex-col gap-y-[17px] px-[24px] w-full',
-            'lg:gap-y-[9px] lg:px-[0px]',
+            'lg:gap-y-[9px] lg:px-0',
           )}
         >
           {value.asset && (
@@ -106,7 +106,7 @@ export const WysiwygComponentsWithoutPadding = {
       <figure
         className={clsx(
           'flex flex-col gap-y-[17px] w-full',
-          'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+          'lg:items-end lg:gap-y-[9px] lg:px-0',
         )}
       >
         {value.asset && (
@@ -168,7 +168,7 @@ export const WysiwygComponentsWithoutPadding = {
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
     orangeText: ({ children }) => (
-      <span className={clsx('!text-[#F56600]')}>{children}</span>
+      <span className={clsx('text-[#F56600]!')}>{children}</span>
     ),
     wysiwygPageLink: (props) => {
       return (
@@ -192,7 +192,7 @@ export const WysiwygComponentsWithoutPadding = {
       <h1
         className={clsx(
           'w-h1 text-lavender w-full',
-          'lg:w-h1-desktop lg:px-[0px]',
+          'lg:w-h1-desktop lg:px-0',
         )}
       >
         {children}
@@ -202,7 +202,7 @@ export const WysiwygComponentsWithoutPadding = {
       <h2
         className={clsx(
           'w-h2 text-lavender w-full ',
-          'lg:w-h2-desktop lg:px-[0px]',
+          'lg:w-h2-desktop lg:px-0',
         )}
       >
         {children}
@@ -220,14 +220,14 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     h3: ({ children }) => (
       <h3
-        className={clsx(' w-h3 text-lavender', 'lg:w-h3-desktop lg:px-[0px]')}
+        className={clsx(' w-h3 text-lavender', 'lg:w-h3-desktop lg:px-0')}
       >
         {children}
       </h3>
     ),
     h4: ({ children }) => (
       <h4
-        className={clsx('w-h4 text-lavender ', 'lg:w-h4-desktop lg:px-[0px]')}
+        className={clsx('w-h4 text-lavender ', 'lg:w-h4-desktop lg:px-0')}
       >
         {children}
       </h4>
@@ -239,7 +239,7 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     h6: ({ children }) => (
       <h6
-        className={clsx('w-h6 text-lavender ', 'lg:w-h6-desktop lg:px-[0px]')}
+        className={clsx('w-h6 text-lavender ', 'lg:w-h6-desktop lg:px-0')}
       >
         {children}
       </h6>
@@ -248,7 +248,7 @@ export const WysiwygComponentsWithoutPadding = {
       <p
         className={clsx(
           'w-full w-paragraph-s-desktop',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
+          'lg:px-0 lg:w-paragraph-l-desktop',
         )}
       >
         {children}
@@ -257,8 +257,8 @@ export const WysiwygComponentsWithoutPadding = {
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
-          '  text-lavender border-t-orange border-t-[4px] pt-[24px] text-[24px] leading-[30px]',
-          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px]  lg:mx-auto',
+          '  text-lavender border-t-orange border-t-4 pt-[24px] text-[24px] leading-[30px]',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-4  lg:mx-auto',
         )}
       >
         {children}
@@ -280,10 +280,10 @@ export const WysiwygComponentsWithoutPadding = {
         <ul
           className={clsx(
             'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop text-black/75',
-            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            'lg:px-0 lg:w-paragraph-l-desktop',
             childrenLists?.length > 0
               ? 'gap-y-[32px] px-[24px]'
-              : 'gap-y-[16px] px-[0px] pt-[16px]',
+              : 'gap-y-[16px] px-0 pt-[16px]',
           )}
         >
           {children}
@@ -294,7 +294,7 @@ export const WysiwygComponentsWithoutPadding = {
       <ol
         className={clsx(
           'list-none list-inside  w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop text-black/75',
-          'lg:px-[0px]',
+          'lg:px-0',
         )}
       >
         {children}
@@ -307,7 +307,7 @@ export const WysiwygComponentsWithoutPadding = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
@@ -390,7 +390,7 @@ export const WysiwygComopentsMin = {
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
     orangeText: ({ children }) => (
-      <span className={clsx('!text-[#F56600]')}>{children}</span>
+      <span className={clsx('text-[#F56600]!')}>{children}</span>
     ),
   },
 
@@ -404,7 +404,7 @@ export const WysiwygComopentsMin = {
       <h1
         className={clsx(
           'w-h1 text-lavender w-full',
-          'lg:w-h1-desktop lg:px-[0px]',
+          'lg:w-h1-desktop lg:px-0',
         )}
       >
         {children}
@@ -414,7 +414,7 @@ export const WysiwygComopentsMin = {
       <h2
         className={clsx(
           'w-h2 text-lavender w-full ',
-          'lg:w-h2-desktop lg:px-[0px]',
+          'lg:w-h2-desktop lg:px-0',
         )}
       >
         {children}
@@ -434,7 +434,7 @@ export const WysiwygComopentsMin = {
       <h3
         className={clsx(
           ' w-h3 text-current text-lavender',
-          'lg:w-h3-desktop lg:px-[0px]',
+          'lg:w-h3-desktop lg:px-0',
         )}
       >
         {children}
@@ -444,7 +444,7 @@ export const WysiwygComopentsMin = {
       <h4
         className={clsx(
           'w-h4 text-current text-lavender',
-          'lg:w-h4-desktop lg:px-[0px]',
+          'lg:w-h4-desktop lg:px-0',
         )}
       >
         {children}
@@ -461,7 +461,7 @@ export const WysiwygComopentsMin = {
       <h6
         className={clsx(
           'w-h6 text-current text-lavender',
-          'lg:w-h6-desktop lg:px-[0px]',
+          'lg:w-h6-desktop lg:px-0',
         )}
       >
         {children}
@@ -471,7 +471,7 @@ export const WysiwygComopentsMin = {
       <p
         className={clsx(
           'w-full w-paragraph-s-desktop  text-current ',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
+          'lg:px-0 lg:w-paragraph-l-desktop',
         )}
       >
         {children}
@@ -480,8 +480,8 @@ export const WysiwygComopentsMin = {
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
-          '  text-current border-t-orange border-t-[4px] pt-[24px] text-[24px] leading-[30px]',
-          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px]  lg:mx-auto',
+          '  text-current border-t-orange border-t-4 pt-[24px] text-[24px] leading-[30px]',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-4  lg:mx-auto',
         )}
       >
         {children}
@@ -503,10 +503,10 @@ export const WysiwygComopentsMin = {
         <ul
           className={clsx(
             'list-disc list-inside w-full flex flex-col  w-paragraph-s-desktop text-current',
-            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            'lg:px-0 lg:w-paragraph-l-desktop',
             childrenLists?.length > 0
-              ? 'gap-y-[32px] px-[0px]'
-              : 'gap-y-[16px] px-[0px] pt-[16px]',
+              ? 'gap-y-[32px] px-0'
+              : 'gap-y-[16px] px-0 pt-[16px]',
           )}
         >
           {children}
@@ -517,7 +517,7 @@ export const WysiwygComopentsMin = {
       <ol
         className={clsx(
           'list-none list-inside  w-full flex flex-col gap-y-[16px] lg:w-paragraph-l-desktop text-current',
-          'lg:px-[0px]',
+          'lg:px-0',
         )}
       >
         {children}
@@ -530,7 +530,7 @@ export const WysiwygComopentsMin = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-current flex-shrink-0 mt-[9px] lg:mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-current shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
@@ -575,7 +575,7 @@ export const WysiwygComponents = {
         <figure
           className={clsx(
             'flex flex-col gap-y-[17px] px-[24px] max-w-[888px] mx-auto w-full',
-            'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+            'lg:items-end lg:gap-y-[9px] lg:px-0',
           )}
         >
           {value.asset && (
@@ -605,7 +605,7 @@ export const WysiwygComponents = {
         <figure
           className={clsx(
             'flex flex-col gap-y-[17px] px-[24px] max-w-[888px] mx-auto w-full',
-            'lg:gap-y-[9px] lg:px-[0px]',
+            'lg:gap-y-[9px] lg:px-0',
           )}
         >
           {value.asset && (
@@ -634,7 +634,7 @@ export const WysiwygComponents = {
         <figure
           className={clsx(
             'flex flex-col gap-y-[17px] px-[24px] max-w-[888px] mx-auto w-full',
-            'lg:gap-y-[9px] lg:px-[0px]',
+            'lg:gap-y-[9px] lg:px-0',
           )}
         >
           {value.asset && (
@@ -663,7 +663,7 @@ export const WysiwygComponents = {
       <figure
         className={clsx(
           'flex flex-col gap-y-[17px] px-[24px] w-full',
-          'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+          'lg:items-end lg:gap-y-[9px] lg:px-0',
         )}
       >
         {value.asset && (
@@ -747,7 +747,7 @@ export const WysiwygComponents = {
       <p
         className={clsx(
           'text-[16px] leading-[21px] font-codec-regular  max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:px-[0px]',
+          'lg:px-0',
         )}
       >
         {children}
@@ -757,7 +757,7 @@ export const WysiwygComponents = {
       <h1
         className={clsx(
           'w-h1 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h1-desktop lg:px-[0px]',
+          'lg:w-h1-desktop lg:px-0',
         )}
       >
         {children}
@@ -767,7 +767,7 @@ export const WysiwygComponents = {
       <h2
         className={clsx(
           'w-h2 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h2-desktop lg:px-[0px]',
+          'lg:w-h2-desktop lg:px-0',
         )}
       >
         {children}
@@ -777,7 +777,7 @@ export const WysiwygComponents = {
       <h2
         className={clsx(
           'subtitle-m text-black/75 mb-[9px] max-w-[888px] mx-auto px-[24px] w-full',
-          'lg:mb-[11px] lg:subtitle-l lg:px-[0px]',
+          'lg:mb-[11px] lg:subtitle-l lg:px-0',
         )}
       >
         {children}
@@ -787,7 +787,7 @@ export const WysiwygComponents = {
       <h3
         className={clsx(
           ' w-h3 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h3-desktop lg:px-[0px]',
+          'lg:w-h3-desktop lg:px-0',
         )}
       >
         {children}
@@ -797,7 +797,7 @@ export const WysiwygComponents = {
       <h4
         className={clsx(
           'w-h4 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h4-desktop lg:px-[0px]',
+          'lg:w-h4-desktop lg:px-0',
         )}
       >
         {children}
@@ -807,7 +807,7 @@ export const WysiwygComponents = {
       <h5
         className={clsx(
           ' w-h5 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h5-desktop lg:px-[0px]',
+          'lg:w-h5-desktop lg:px-0',
         )}
       >
         {children}
@@ -817,7 +817,7 @@ export const WysiwygComponents = {
       <h6
         className={clsx(
           'w-h6 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
-          'lg:w-h6-desktop lg:px-[0px]',
+          'lg:w-h6-desktop lg:px-0',
         )}
       >
         {children}
@@ -827,7 +827,7 @@ export const WysiwygComponents = {
       <p
         className={clsx(
           'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 ',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
+          'lg:px-0 lg:w-paragraph-l-desktop',
         )}
       >
         {children}
@@ -836,8 +836,8 @@ export const WysiwygComponents = {
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
-          'max-w-[888px]   text-lavender border-t-orange border-t-[4px] pt-[24px] text-[24px] leading-[30px] mx-[24px]',
-          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px]  lg:mx-auto',
+          'max-w-[888px]   text-lavender border-t-orange border-t-4 pt-[24px] text-[24px] leading-[30px] mx-[24px]',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-4  lg:mx-auto',
         )}
       >
         {children}
@@ -861,7 +861,7 @@ export const WysiwygComponents = {
         <ul
           className={clsx(
             'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col w-paragraph-s-desktop  text-black/75',
-            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            'lg:px-0 lg:w-paragraph-l-desktop',
             childrenLists?.length > 0
               ? 'gap-y-[32px] px-[24px] innerContainer'
               : 'gap-y-[16px] px-[24px] pt-[16px]',
@@ -875,7 +875,7 @@ export const WysiwygComponents = {
       <ol
         className={clsx(
           'list-none list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop px-[24px] text-black/75',
-          'lg:px-[0px]',
+          'lg:px-0',
         )}
       >
         {children}
@@ -888,7 +888,7 @@ export const WysiwygComponents = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
