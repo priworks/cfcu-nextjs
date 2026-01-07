@@ -8,7 +8,7 @@ import { dataset, projectId } from '@/lib/sanity.api'
 import { previewDocumentNode } from '@/plugins/previewPane'
 import { settingsPlugin, settingsStructure } from '@/plugins/settings'
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import settingsType from '@/schemas/settings'
 import { schema } from '@/schemas'
@@ -26,7 +26,7 @@ export default defineConfig({
   title,
   schema,
   plugins: [
-    deskTool({
+    structureTool({
       structure: settingsStructure(settingsType),
       defaultDocumentNode: previewDocumentNode(),
     }),
