@@ -64,6 +64,8 @@ const LocationButtonLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  if (!externalLink && !link && !externalLinkOneOff?.link) return null
+
   return link?._type ? (
     <Link href={href} className={clsx('w-fit')}>
       <Button label={title} className="!bg-lavender text-white" />
