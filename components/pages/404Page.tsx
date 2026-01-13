@@ -1,10 +1,8 @@
-import { FourOhFour, HomepageType } from 'types/sanity'
+import { FourOhFour } from 'types/sanity'
 import { clsx } from 'clsx'
 import MediaComponent from 'components/global/ui/Media'
 import Button from 'components/global/ui/Button'
 import PageLink from 'components/global/ui/PageLink'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
-import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
@@ -13,6 +11,7 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { stegaClean } from '@sanity/client/stega'
 import PlayPause from 'components/global/ui/PlayPause'
+import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const Hero = ({ data }: { data: FourOhFour }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -101,17 +100,19 @@ const Hero = ({ data }: { data: FourOhFour }) => {
           isPlaying={isPlaying}
         />
       </div>
-      {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
-        <button
-          className={clsx(
-            'absolute !right-[16px] !bottom-[16px] !top-[unset] !left-[unset] z-[10] !w-fit !h-fit',
-            'lg:!right-[36px] lg:!bottom-[36px] ',
-          )}
-          onClick={() => setIsPlaying((prev) => !prev)}
-        >
-          <PlayPause isPlaying={isPlaying} />
-        </button>
-      )}
+      <MediaPlayPauseButton
+        className={clsx(
+          'absolute !right-[16px] !bottom-[16px] !top-[unset] !left-[unset] z-[10] !w-fit !h-fit',
+          'lg:!right-[36px] lg:!bottom-[36px] hidden lg:block',
+        )}
+        classNameMobile={clsx(
+          'absolute !right-[16px] !bottom-[16px] !top-[unset] !left-[unset] z-[10] !w-fit !h-fit',
+          'lg:!right-[36px] lg:!bottom-[36px] lg:hidden',
+        )}
+        media={data?.backgroundMedia}
+        isPlaying={isPlaying}
+        onToggle={() => setIsPlaying((prev) => !prev)}
+      />
       <div
         className={clsx(
           'lg:px-[30px] lg:flex lg:justify-between lg:relative lg:z-[3] lg:items-end lg:pb-[46px]',

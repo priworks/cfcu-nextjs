@@ -1,15 +1,14 @@
-import { SubPageHeroType } from 'types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import MediaComponent from 'components/global/ui/Media'
 import { LocationHomepageType } from 'types/sanity'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
+import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const LocationHomeHero = ({
   data,
@@ -19,6 +18,7 @@ const LocationHomeHero = ({
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
+  const [isPlaying, setIsPlaying] = useState(true)
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -85,6 +85,11 @@ const LocationHomeHero = ({
 
               <MediaComponent media={data?.backgroundMedia} />
             </div>
+            <MediaPlayPauseButton
+              media={data?.backgroundMedia}
+              isPlaying={isPlaying}
+              onToggle={() => setIsPlaying((prev) => !prev)}
+            />
           </div>
         )}
       </div>

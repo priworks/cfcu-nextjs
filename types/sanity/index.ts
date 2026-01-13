@@ -14,6 +14,23 @@ type MediaBase = {
   _type: 'media'
   _key: string
   mediaType: 'image' | 'video'
+  // Mobile override fields
+  mobileOverrideEnabled?: boolean
+  mobileMediaType?: 'image' | 'video'
+  mobileImage?: {
+    asset: ImageAsset
+    alt: string
+    hotspot?: {
+      x: number
+      y: number
+      height: number
+      width: number
+    }
+  }
+  mobileVideo?: {
+    asset: FileAsset
+    caption?: string
+  }
 }
 
 type ImageMedia = MediaBase & {

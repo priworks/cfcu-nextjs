@@ -13,9 +13,9 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import PlayPause from '../ui/PlayPause'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
+import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
@@ -151,16 +151,17 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               isCtaContent
             />
 
-            {stegaClean(data?.backgroundImage?.mediaType) === 'video' && (
-              <button
-                className={clsx(
-                  'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit',
-                )}
-                onClick={() => setIsPlaying((prev) => !prev)}
-              >
-                <PlayPause isPlaying={isPlaying} />
-              </button>
-            )}
+            <MediaPlayPauseButton
+              className={clsx(
+                'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit lg:block hidden',
+              )}
+              classNameMobile={clsx(
+                'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit lg:hidden',
+              )}
+              media={data?.backgroundImage}
+              isPlaying={isPlaying}
+              onToggle={() => setIsPlaying((prev) => !prev)}
+            />
           </div>
         </div>
         <article

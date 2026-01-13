@@ -7,10 +7,9 @@ import { useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
-import { stegaClean } from '@sanity/client/stega'
-import PlayPause from 'components/global/ui/PlayPause'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { SubPageType } from '@/types/sanity'
+import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const SubPageHero = ({
   data,
@@ -185,17 +184,15 @@ const SubPageHero = ({
             >
               {data?.subtitle}
             </p>
-            {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
-              <button
-                className={clsx(
-                  'z-[10] !w-fit !h-fit',
-                  'lg:!right-[36px] lg:!bottom-[36px] lg:absolute ',
-                )}
-                onClick={() => setIsPlaying((prev) => !prev)}
-              >
-                <PlayPause isPlaying={isPlaying} />
-              </button>
-            )}
+            <MediaPlayPauseButton
+              classNameMobile={clsx(
+                'z-[10] !w-fit !h-fit',
+                'lg:!right-[36px] lg:!bottom-[36px] lg:absolute',
+              )}
+              media={data?.backgroundMedia}
+              isPlaying={isPlaying}
+              onToggle={() => setIsPlaying((prev) => !prev)}
+            />
           </div>
         </article>
       </div>
