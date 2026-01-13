@@ -212,8 +212,8 @@ const Footer = () => {
               'lg:mt-[0px]',
             )}
           >
-            <FormattedTextField text={data?.lowerFooterMessage} />
-          </p>
+            <PortableText value={data?.lowerFooterContent} />
+          </div>
         </div>
       </footer>
     </div>
