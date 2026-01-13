@@ -5,6 +5,7 @@ import 'swiper/css'
 import CardGridCard from '../ui/CardGridCard'
 import { useWindowSize } from 'hooks/useWindowSize'
 import { PortableText } from '@portabletext/react'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()
@@ -23,7 +24,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
               'lg:subtitle-l',
             )}
           >
-            {data?.subTitle}
+            <FormattedTextField text={data?.subTitle} />
           </h2>
         )}
         {data?.title && (
@@ -33,7 +34,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
               'lg:title-m-desktop lg:max-w-[1216px]',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h3>
         )}
         {data?.description && (
@@ -43,7 +44,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
               'lg:w-paragraph-l-desktop lg:max-w-[1216px]',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
         )}
       </div>

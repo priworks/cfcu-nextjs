@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import { PostPageType } from '@/types/sanity'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const PostCard = ({
   data,
@@ -55,7 +56,7 @@ const PostCard = ({
               'lg:subtitle-m',
             )}
           >
-            {data?.type}
+            <FormattedTextField text={data?.type} />
           </h4>
           <h5
             className={clsx(
@@ -64,7 +65,7 @@ const PostCard = ({
               'lg:group-hover:opacity-80 transition-opacity duration-150',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h5>
           <p
             className={clsx(
@@ -73,7 +74,7 @@ const PostCard = ({
               'lg:w-paragraph-m-desktop',
             )}
           >
-            {data?.excerpt}
+            <FormattedTextField text={data?.excerpt} />
           </p>
         </div>
       </article>

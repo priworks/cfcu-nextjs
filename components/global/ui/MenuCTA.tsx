@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 
 import { useRef } from 'react'
 import Button from './Button'
+import FormattedTextField from 'components/interaction/formattedTextField'
 const MenuCTA = ({
   data,
   menuOpen,
@@ -79,7 +80,7 @@ const MenuCTA = ({
           'lg:text-[54px] lg:leading-[51.84px]',
         )}
       >
-        {data?.title}
+        <FormattedTextField text={data?.title} />
       </h3>
       <div className={clsx('opacity-75')}>
         <p
@@ -92,7 +93,7 @@ const MenuCTA = ({
             'lg:text-[24px] lg:leading-[36px] lg:max-w-[580px]',
           )}
         >
-          {data?.description}
+          <FormattedTextField text={data?.description} />
         </p>
       </div>
       <PageLink

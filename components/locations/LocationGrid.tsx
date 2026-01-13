@@ -10,6 +10,7 @@ import { PortableText } from '@portabletext/react'
 import { externalOnClick } from 'utils'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import LocationButtonLink from 'components/locations/LocationButtonLink'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
@@ -52,7 +53,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             'lg:text-[32px] lg:font-codec-extra-bold text-lavender',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div

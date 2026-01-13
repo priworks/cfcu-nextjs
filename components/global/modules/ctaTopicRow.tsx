@@ -12,6 +12,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef } from 'react'
 import { gsap } from 'gsap'
 import Button from '../ui/Button'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
   const theme = getThemeClasses(stegaClean(data?.theme?.label))
@@ -109,7 +110,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                 'lg:subtitle-l lg:text-left',
               )}
             >
-              {data.subtitle}
+              <FormattedTextField text={data?.subtitle} />
             </h2>
           )}
           <h3
@@ -118,7 +119,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               'lg:text-left lg:title-m-desktop',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h3>
           <div
             style={{

@@ -6,6 +6,7 @@ import { urlForImage } from '@/lib/sanity.image'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { formatPhoneNumber } from '@/lib/utils'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const TeamGrid = ({ data }: { data: TeamGridType }) => {
   return (
@@ -25,7 +26,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
               ' text-[#606060] ',
             )}
           >
-            {data?.subtitle}
+            <FormattedTextField text={data?.subtitle} />
           </h2>
         )}
         <h3
@@ -34,7 +35,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
             'lg:title-l-desktop',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
         {data?.description && (
           <p
@@ -43,7 +44,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
               'lg:w-paragraph-l-desktop text-black/75  lg:mt-[8px]',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
         )}
       </div>
@@ -57,7 +58,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
             )}
           >
             <h4 className={clsx('text-lavender w-h4', 'lg:w-h4-desktop')}>
-              {row?.groupTitle}
+              <FormattedTextField text={row?.groupTitle} />
             </h4>
             <div
               className={clsx(
@@ -97,14 +98,14 @@ function TeamCard({ data }: { data: GroupMember }) {
         />
       </div>
       <h5 className={clsx('w-h5-desktop text-lavender mt-[16px] text-center')}>
-        {data?.name}
+        <FormattedTextField text={data?.name} />
       </h5>
       <h6
         className={clsx(
           'w-paragraph-m-desktop text-black/65 mt-[4px] mb-[16px] text-center',
         )}
       >
-        {data?.title}
+        <FormattedTextField text={data?.title} />
       </h6>
       {data?.phoneNumber && (
         <a
