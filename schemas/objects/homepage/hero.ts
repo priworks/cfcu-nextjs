@@ -55,6 +55,14 @@ export default defineField({
       ],
     }),
     defineField({
+      name: 'needsGradient',
+      title: 'Needs Gradient',
+      type: 'boolean',
+      initialValue: true,
+      hidden: ({ parent }) => !parent?.backgroundMedia,
+      description: 'Toggle to enable or disable gradient for this hero',
+    }),
+    defineField({
       name: 'backgroundMedia',
       title: 'Background Media',
       type: 'media',
@@ -68,6 +76,7 @@ export default defineField({
       description: 'description',
       cta: 'cta',
       testimonial: 'testimonial',
+      needsGradient: 'needsGradient',
       backgroundMedia: 'backgroundMedia',
     },
     prepare(selection) {
