@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { externalOnClick } from 'utils'
 import FormattedTextField from 'components/interaction/formattedTextField'
 import LowerFooterIcon from 'components/global/LowerFooterIcon'
+import { PortableText } from '@portabletext/react'
 
 const Footer = () => {
   const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
