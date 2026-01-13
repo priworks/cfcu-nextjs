@@ -53,7 +53,7 @@ const LocationButtonLink = ({
       }
       setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
     }
-    console.log(123, href, externalLink)
+
     if (externalLink?.externalLink) {
       setHref(externalLink.externalLink)
       if (externalLink?.openInNewTab) {

@@ -153,6 +153,14 @@ export default function LocationCard({
         <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
       <div className="mt-[25px] flex flex-col gap-y-2">
+        {data?.appointmentLink && (
+          <LocationButtonLink
+            title={data.appointmentLink.title || 'Schedule an Appointment'}
+            link={data.appointmentLink?.link}
+            externalLink={data.appointmentLink?.externalLink}
+            externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
+          />
+        )}
         <Link
           href={`/${data?.slug.current}`}
           className={clsx('inline-block w-fit mt-[25px]')}
@@ -162,14 +170,6 @@ export default function LocationCard({
             className={clsx('!bg-lavender !text-white')}
           />
         </Link>
-        {data?.appointmentLink && (
-          <LocationButtonLink
-            title={data.appointmentLink.title || 'Schedule an Appointment'}
-            link={data.appointmentLink?.link}
-            externalLink={data.appointmentLink?.externalLink}
-            externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
-          />
-        )}
       </div>
     </article>
   )

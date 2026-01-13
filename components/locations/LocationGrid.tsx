@@ -110,12 +110,6 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
         <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
       <div className="mt-[25px] flex flex-col gap-y-2">
-        <Link href={data?.slug.current} className={clsx('block')}>
-          <Button
-            label={'More Info'}
-            className={clsx('!bg-lavender !text-white')}
-          />
-        </Link>
         {data?.appointmentLink && (
           <LocationButtonLink
             title={data.appointmentLink.title || 'Schedule an Appointment'}
@@ -124,6 +118,12 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
           />
         )}
+        <Link href={data?.slug.current} className={clsx('block')}>
+          <Button
+            label={'More Info'}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </Link>
       </div>
     </article>
   )
