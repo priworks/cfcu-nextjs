@@ -348,6 +348,11 @@ export default defineType({
                       return true
                     }),
                 },
+                {
+                  name: 'link',
+                  type: 'pageLink',
+                  title: 'Link',
+                },
               ],
               preview: {
                 select: {
@@ -369,6 +374,16 @@ export default defineType({
           title: 'Lower Footer Message',
           type: 'text',
           rows: 2,
+          // validation: (Rule: any) => Rule.required(),
+          hidden: ({ parent }) => !!parent?.lowerFooterContent,
+          deprecated: {
+            reason: 'Use "Lower Footer Content" field instead',
+          },
+        }),
+        defineField({
+          name: 'lowerFooterContent',
+          title: 'Lower Footer Content',
+          type: 'blockContentMin',
           validation: (Rule: any) => Rule.required(),
         }),
       ],
