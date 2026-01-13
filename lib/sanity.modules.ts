@@ -9,7 +9,8 @@ export const linkFragment = groq`
 export const externalLinkFragment = groq`
   openInNewTab,
   showPdfPageLeaveAlert,
-  "link": externalLink
+  "link": externalLink,
+  externalLink->{...}
 `
 
 export const wysiwygPageLinkFragment = groq`
