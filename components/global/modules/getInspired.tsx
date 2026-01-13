@@ -14,6 +14,7 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { useInView } from 'react-intersection-observer'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
   const posts = data?.useTopic
@@ -81,7 +82,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             'lg:title-xl-desktop',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h2>
         <p
           className={clsx(
@@ -89,7 +90,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             'lg:w-paragraph-xl-desktop lg:mt-[17px]',
           )}
         >
-          {data?.description}
+          <FormattedTextField text={data?.description} />
         </p>
         <PageLink
           data={data?.cta}
@@ -172,7 +173,7 @@ const PostCard = ({
               'lg:text-[16px] lg:leading-[16px]',
             )}
           >
-            {data?.type}
+            <FormattedTextField text={data?.type} />
           </h4>
           <h5
             className={clsx(
@@ -182,7 +183,7 @@ const PostCard = ({
               'text-lavender',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h5>
           <p
             className={clsx(
@@ -192,7 +193,7 @@ const PostCard = ({
                 : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px] lg:mt-[8px]',
             )}
           >
-            {data?.excerpt}
+            <FormattedTextField text={data?.excerpt} />
           </p>
         </div>
       </article>

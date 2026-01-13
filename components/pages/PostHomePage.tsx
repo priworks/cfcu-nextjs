@@ -16,6 +16,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import SplitTextDynamic from '../interaction/splitTextDynamic'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from 'components/interaction/formattedTextField'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
@@ -167,7 +168,7 @@ const PostHomePage = ({
               'lg:max-w-[922px] lg:mx-auto lg:font-codec-news lg:mt-[2px] lg:text-[24px] lg:leading-[36px]',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
           {isBlogHome && (
             <FilterButton

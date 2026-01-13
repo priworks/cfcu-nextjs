@@ -9,6 +9,7 @@ import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()
@@ -66,7 +67,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
             'lg:subtitle-l',
           )}
         >
-          {data?.subTitle}
+          <FormattedTextField text={data?.subTitle} />
         </h2>
         <h3
           className={clsx(
@@ -74,7 +75,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
             'lg:title-m-desktop lg:max-w-[1216px]',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
       </div>
       {width < 1024 && (
@@ -117,7 +118,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
               'font-codec-news text-[16px] leading-[16px] tracking-[1.6px] text-white uppercase elementAnimation',
             )}
           >
-            {data?.linkListTitle}
+            <FormattedTextField text={data?.linkListTitle} />
           </h5>
           <nav
             className={clsx(
@@ -133,7 +134,9 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
                   'font-codec-extra-bold text-[18px] leading-[27px]  text-white flex gap-x-[6px] items-center group elementAnimation',
                 )}
               >
-                <span>{link?.title}</span>
+                <span>
+                  <FormattedTextField text={link?.title} />
+                </span>
                 <svg
                   width="16"
                   height="16"

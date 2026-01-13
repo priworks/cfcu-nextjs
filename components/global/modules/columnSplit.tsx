@@ -6,6 +6,7 @@ import {
   WysiwygComopentsMin,
 } from 'lib/portabletTextComponents'
 import { stegaClean } from '@sanity/client/stega'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (
@@ -22,7 +23,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
             'lg:mb-[11px] lg:subtitle-l',
           )}
         >
-          {data?.subtitle}
+          <FormattedTextField text={data?.subtitle} />
         </h2>
       )}
       <h3
@@ -36,7 +37,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
             : 'text-lavender',
         )}
       >
-        {data?.title}
+        <FormattedTextField text={data?.title} />
       </h3>
       {data?.description && (
         <div

@@ -14,6 +14,23 @@ type MediaBase = {
   _type: 'media'
   _key: string
   mediaType: 'image' | 'video'
+  // Mobile override fields
+  mobileOverrideEnabled?: boolean
+  mobileMediaType?: 'image' | 'video'
+  mobileImage?: {
+    asset: ImageAsset
+    alt: string
+    hotspot?: {
+      x: number
+      y: number
+      height: number
+      width: number
+    }
+  }
+  mobileVideo?: {
+    asset: FileAsset
+    caption?: string
+  }
 }
 
 type ImageMedia = MediaBase & {
@@ -160,9 +177,7 @@ export interface PageLinkType {
     _id: string
     _type: string
     title: string
-    slug: {
-      current: string
-    }
+    slug: string
   }
   externalLink?: {
     _id: string
@@ -405,8 +420,9 @@ export interface GlobalSettingsType {
     routingNumber: string
     lowerFooterIcons: Array<{
       icon: ImageAsset
+      link?: PageLinkType
     }>
-    lowerFooterMessage: string
+    lowerFooterContent: PortableTextBlock
   }
   quickExit: {
     showFastExit?: boolean

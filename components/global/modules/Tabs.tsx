@@ -13,6 +13,7 @@ import {
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
@@ -67,7 +68,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
             'lg:mb-[11px] lg:subtitle-l',
           )}
         >
-          {data?.subtitle}
+          <FormattedTextField text={data?.subtitle} />
         </h2>
       )}
       <h3
@@ -81,7 +82,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
             : 'text-lavender',
         )}
       >
-        {data?.title}
+        <FormattedTextField text={data?.title} />
       </h3>
       {data?.description && (
         <div
