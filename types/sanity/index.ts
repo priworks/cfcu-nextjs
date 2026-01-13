@@ -454,6 +454,7 @@ export interface HomepageType {
       author: string
       title: string
     }
+    needsGradient?: boolean
     backgroundMedia: Media
   }
   emotionalNavigation: {

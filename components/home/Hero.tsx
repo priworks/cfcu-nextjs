@@ -79,13 +79,15 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           )}
         />
       </Link>
-      <div
-        ref={gradientRef}
-        className={clsx(
-          'heroGradient absolute inset-x-[10px] inset-y-[12px] z-[2] rounded-[10px]',
-          'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
-        )}
-      />
+      {data?.needsGradient && (
+        <div
+          ref={gradientRef}
+          className={clsx(
+            'heroGradient absolute inset-x-[10px] inset-y-[12px] z-[2] rounded-[10px]',
+            'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
+          )}
+        />
+      )}
       <div
         ref={backgroundRef}
         className={clsx(
