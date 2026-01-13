@@ -1923,11 +1923,6 @@
     "@sanity/incompatible-plugin" "^1.0.4"
     dompurify "^3.0.9"
 
-"@gsap/shockingly@^3.12.5":
-  version "3.13.0"
-  resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.13.0.tgz#3d31e41dc21aa6d969f43c55a0745031969c2c31"
-  integrity sha512-4AgtKV8q2A+fIwIXMFW72fJDdH4I5/bdq3PT2hfj4DghWGfkQvu/sw2lUPWHMGZzPJQame+TvoEcpbnmNgzTmQ==
-
 "@hello-pangea/dnd@^18.0.1":
   version "18.0.1"
   resolved "https://registry.yarnpkg.com/@hello-pangea/dnd/-/dnd-18.0.1.tgz#7d5ef7fe8bddf195307b16e03635b1be582b7b8d"
