@@ -163,7 +163,7 @@ export default function LocationCard({
         )}
         <Link
           href={`/${data?.slug.current}`}
-          className={clsx('inline-block w-fit mt-[25px]')}
+          className={clsx('inline-block w-fit')}
         >
           <Button
             label={'More Info'}
