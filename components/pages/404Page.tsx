@@ -11,6 +11,7 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { stegaClean } from '@sanity/client/stega'
 import PlayPause from 'components/global/ui/PlayPause'
+import FormattedTextField from 'components/interaction/formattedTextField'
 import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const Hero = ({ data }: { data: FourOhFour }) => {
@@ -147,7 +148,7 @@ const Hero = ({ data }: { data: FourOhFour }) => {
               'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px]',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
           {data?.links?.length > 0 && (
             <div className={clsx('flex gap-x-[16px] mt-[16px]')}>

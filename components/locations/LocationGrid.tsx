@@ -9,6 +9,7 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { externalOnClick } from 'utils'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
@@ -53,7 +54,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             'lg:text-[32px] lg:font-codec-extra-bold text-lavender',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div
@@ -77,7 +78,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

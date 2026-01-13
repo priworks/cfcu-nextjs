@@ -14,6 +14,7 @@ import SiteAlert from './modules/siteAlert'
 import GlobalSiteAlert from './modules/GlobalSiteAlert'
 import globalAlert from '@/schemas/documents/modules/globalAlert'
 import SanitizedEmbed from './modules/Embed'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -111,7 +112,7 @@ const Header = () => {
                   'lg:hover:opacity-60 transition-opacity duration-150',
                 )}
               >
-                {link.title}
+                <FormattedTextField text={link.title} />
               </a>
             ))}
           </div>

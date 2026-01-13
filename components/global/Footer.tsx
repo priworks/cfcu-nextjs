@@ -9,7 +9,7 @@ import { useClickToCopy } from 'hooks/useClickToCopy'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { externalOnClick } from 'utils'
-import { PortableText } from '@portabletext/react'
+import FormattedTextField from 'components/interaction/formattedTextField'
 import LowerFooterIcon from 'components/global/LowerFooterIcon'
 
 const Footer = () => {
@@ -99,7 +99,9 @@ const Footer = () => {
                     'lg:hover:opacity-60 transition-opacity duration-150',
                   )}
                 >
-                  <span>{link.title}</span>
+                  <span>
+                    <FormattedTextField text={link.title} />
+                  </span>
                 </PageLink>
               ))}
             </div>
@@ -127,7 +129,9 @@ const Footer = () => {
                     'lg:hover:opacity-60 transition-opacity duration-150',
                   )}
                 >
-                  <span>{link.title}</span>
+                  <span>
+                    <FormattedTextField text={link.title} />
+                  </span>
                 </PageLink>
               ))}
             </div>
@@ -207,8 +211,8 @@ const Footer = () => {
               'lg:mt-[0px]',
             )}
           >
-            <PortableText value={data?.lowerFooterContent} />
-          </div>
+            <FormattedTextField text={data?.lowerFooterMessage} />
+          </p>
         </div>
       </footer>
     </div>

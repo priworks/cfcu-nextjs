@@ -9,6 +9,7 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
   const leftGridItems = data?.cards?.filter((article, index) => index % 2 === 0)
@@ -74,7 +75,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
               'lg:mb-[11px] ml:subtitle-l',
             )}
           >
-            {stegaClean(data?.subtitle)}
+            <FormattedTextField text={stegaClean(data?.subtitle)} />
           </h2>
         )}
         <h3
@@ -88,7 +89,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
               : 'text-lavender',
           )}
         >
-          {stegaClean(data?.title)}
+          <FormattedTextField text={stegaClean(data?.title)} />
         </h3>
         {data?.description && (
           <p
@@ -97,7 +98,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
               'lg:mt-[11px] ml:w-paragraph-l-desktop lg:max-w-[473px]',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
         )}
       </article>
@@ -151,7 +152,7 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
   return (
     <article>
       <h4 className={clsx('w-h6 text-lavender mb-[4px]', 'lg:w-h6-desktop')}>
-        {stegaClean(card?.title)}
+        <FormattedTextField text={stegaClean(card?.title)} />
       </h4>
       <p
         className={clsx(
@@ -161,7 +162,7 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
           card?.pageLink?.title && 'mb-[19px]',
         )}
       >
-        {card?.description}
+        <FormattedTextField text={card?.description} />
       </p>
       {card?.pageLink?.title && (
         <PageLink data={card?.pageLink}>

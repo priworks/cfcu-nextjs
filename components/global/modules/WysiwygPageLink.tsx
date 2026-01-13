@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { externalOnClick } from 'utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 interface Props {
   title: string
   externalLink?: {
@@ -76,6 +77,8 @@ const WysiwygPageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const label = <FormattedTextField text={title} />
+
   return link?._type ? (
     <Link
       href={href}
@@ -83,7 +86,7 @@ const WysiwygPageLink = ({
         'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
       )}
     >
-      {title}
+      {label}
     </Link>
   ) : (
     <a
@@ -94,7 +97,7 @@ const WysiwygPageLink = ({
         'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
       )}
     >
-      {title}
+      {label}
     </a>
   )
 }

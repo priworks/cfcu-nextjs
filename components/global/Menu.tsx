@@ -12,6 +12,7 @@ import { animate, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const Menu = ({
   menuOpen,
@@ -136,7 +137,7 @@ const Menu = ({
         >
           {globalSettings?.navigation?.headerBarLinks?.map((link, index) => (
             <a key={index} href={link.url}>
-              {link.title}
+              <FormattedTextField text={link.title} />
             </a>
           ))}
         </div>
@@ -168,7 +169,7 @@ const Menu = ({
                       'lg:hover:opacity-60 transition-opacity duration-150',
                     )}
                   >
-                    {item.titleLink.title}
+                    <FormattedTextField text={item.titleLink.title} />
                   </PageLink>
                   <nav
                     className={clsx(
@@ -184,7 +185,7 @@ const Menu = ({
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
                       >
-                        {link.title}
+                        <FormattedTextField text={link.title} />
                       </PageLink>
                     ))}
                   </nav>
@@ -229,7 +230,7 @@ const Menu = ({
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
                         >
-                          {item.titleLink.title}
+                          <FormattedTextField text={item.titleLink.title} />
                         </PageLink>
                       </div>
                       <svg
@@ -269,7 +270,7 @@ const Menu = ({
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
                         >
-                          {link.title}
+                          <FormattedTextField text={link.title} />
                         </PageLink>
                       ))}
                     </nav>
@@ -319,7 +320,7 @@ const Menu = ({
                       'lg:text-[16px] lg:leading-[16px]',
                     )}
                   >
-                    {nav.title}
+                    <FormattedTextField text={nav.title} />
                   </h4>
                 </div>
                 <div
@@ -337,7 +338,7 @@ const Menu = ({
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}
                     >
-                      {link.title}
+                      <FormattedTextField text={link.title} />
                     </PageLink>
                   ))}
                 </div>

@@ -11,6 +11,7 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { externalOnClick } from 'utils'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 export default function LocationCard({
   data,
@@ -94,7 +95,7 @@ export default function LocationCard({
             'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div
@@ -118,7 +119,9 @@ export default function LocationCard({
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

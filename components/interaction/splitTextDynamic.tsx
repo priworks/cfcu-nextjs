@@ -5,9 +5,10 @@ import { gsap } from 'gsap'
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
 import { useState } from 'react'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 type Props = {
-  value: string
+  value: string | React.ReactNode
   classNames: string
   wrapperHeights: string
   stagger: number
@@ -88,7 +89,7 @@ const SplitTextDynamic = ({
       ref={headingRef}
       className={clsx(classNames, 'opacity-0 w-max unbalance')}
     >
-      {stegaClean(value)}
+      {<FormattedTextField text={stegaClean(value)} />}
     </span>
   )
 }

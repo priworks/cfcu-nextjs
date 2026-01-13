@@ -15,6 +15,7 @@ import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
+import FormattedTextField from 'components/interaction/formattedTextField'
 import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
@@ -127,7 +128,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 'lg:hidden',
               )}
             >
-              {data?.ctaCard?.subtitle?.text}
+              <FormattedTextField text={data?.ctaCard?.subtitle?.text} />
             </h2>
           )}
           {data?.ctaCard?.subtitle?.type === 'svg' && (
@@ -182,7 +183,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                   'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold animateArticle opacity-0',
                 )}
               >
-                {data?.ctaCard?.subtitle?.text}
+                <FormattedTextField text={data?.ctaCard?.subtitle?.text} />
               </h2>
             )}
             {data?.ctaCard?.subtitle?.type === 'svg' && (
@@ -202,7 +203,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 'lg:title-s-desktop',
               )}
             >
-              {data?.ctaCard?.title}
+              <FormattedTextField text={data?.ctaCard?.title} />
             </h3>
 
             {data?.ctaCard?.description ? (

@@ -12,6 +12,7 @@ import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useWindowSize } from 'hooks/useWindowSize'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const EmotionalNavigation = ({
   data,
@@ -103,7 +104,7 @@ const EmotionalNavigation = ({
             'lg:subtitle-l lg:mt-[32px]',
           )}
         >
-          {data?.subtitle}
+          <FormattedTextField text={data?.subtitle} />
         </h2>
         <h3
           className={clsx(
@@ -111,7 +112,7 @@ const EmotionalNavigation = ({
             'lg:mt-[16px] lg:w-h4-desktop ',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
       </div>
       <div className={clsx('px-[9px]', 'lg:hidden')}>
@@ -152,9 +153,9 @@ const CardMobile = ({
   }
   return (
     <Accordion.Item
-      value={data.title}
+      value={data?.title}
       style={{ backgroundColor: colors.background, color: colors.heading }}
-      className={clsx('pt-[35px] pl-[26px] pr-[37px] group')}
+      className={clsx('pt-[35px] pl-[26px] pr-[37px] group LMAO')}
     >
       <Accordion.Header className={clsx('pb-[35px]')}>
         <div>
@@ -163,14 +164,14 @@ const CardMobile = ({
               'text-left text-[14px] leading-[14px] tracking-[1.6px] uppercase font-codec-news',
             )}
           >
-            {data.subtitle}
+            <FormattedTextField text={data?.subtitle} />
           </h4>
           <h3
             className={clsx(
               'font-codec-extra-bold text-[32px] leading-[33.28px] tracking-[-0.16px] text-left mt-[4px]',
             )}
           >
-            {data.title}
+            <FormattedTextField text={data?.title} />
           </h3>
         </div>
         <Accordion.Trigger
@@ -188,7 +189,9 @@ const CardMobile = ({
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Content className={clsx('AccordionContent overflow-hidden')}>
-        <p>{data.description}</p>
+        <p>
+          <FormattedTextField text={data?.description} />
+        </p>
         <nav className={clsx('flex flex-col gap-y-[12px] mt-[18px] pb-[41px]')}>
           {data?.links?.map((link, index) => (
             <PageLink
@@ -197,7 +200,7 @@ const CardMobile = ({
               className={clsx('flex flex-row gap-x-[6px] items-center')}
             >
               <span className={clsx('font-codec-extra-bold')}>
-                {link?.title}
+                <FormattedTextField text={link?.title} />
               </span>
               <svg
                 width="16"
@@ -246,7 +249,7 @@ const CardDesktop = ({
           'text-[16px] leading-[16px] tracking-[1.6px]',
         )}
       >
-        {data?.subtitle}
+        <FormattedTextField text={data?.subtitle} />
       </h4>
       <h3
         className={clsx(
@@ -254,14 +257,14 @@ const CardDesktop = ({
           'mt-[8px]',
         )}
       >
-        {data?.title}
+        <FormattedTextField text={data?.title} />
       </h3>
       <p
         className={clsx(
           'w-paragraph-l-desktop mt-[17px] ml:clamp-text-[21px] ml:clamp-leading-[31.5px] ml:clamp-mt-[17px]',
         )}
       >
-        {data?.description}
+        <FormattedTextField text={data?.description} />
       </p>
       <nav
         className={clsx(
@@ -281,7 +284,7 @@ const CardDesktop = ({
                 'font-codec-extra-bold ml:clamp-text-[18px] ml:clamp-leading-[27px]',
               )}
             >
-              {link?.title}
+              <FormattedTextField text={link?.title} />
             </span>
             <svg
               width="16"

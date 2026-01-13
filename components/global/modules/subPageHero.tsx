@@ -9,6 +9,7 @@ import { gsap } from 'gsap'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { SubPageType } from '@/types/sanity'
+import FormattedTextField from 'components/interaction/formattedTextField'
 import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 const SubPageHero = ({
@@ -182,7 +183,7 @@ const SubPageHero = ({
                 'lg:text-[26px] lg:leading-[33.8px]',
               )}
             >
-              {data?.subtitle}
+              <FormattedTextField text={data?.subtitle} />
             </p>
             <MediaPlayPauseButton
               classNameMobile={clsx(
