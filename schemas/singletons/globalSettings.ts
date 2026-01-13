@@ -371,14 +371,18 @@ export default defineType({
         }),
         defineField({
           name: 'lowerFooterMessage',
-          title: 'Lower Footer Message (deprecated)',
+          title: 'Lower Footer Message',
           type: 'text',
           rows: 2,
-          validation: (Rule: any) => Rule.required(),
+          // validation: (Rule: any) => Rule.required(),
+          hidden: ({ parent }) => !!parent?.lowerFooterContent,
+          deprecated: {
+            reason: 'Use "Lower Footer Content" field instead',
+          },
         }),
         defineField({
           name: 'lowerFooterContent',
-          title: 'Lower Footer Message',
+          title: 'Lower Footer Content',
           type: 'blockContentMin',
           validation: (Rule: any) => Rule.required(),
         }),
