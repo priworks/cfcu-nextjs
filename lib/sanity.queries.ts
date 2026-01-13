@@ -100,9 +100,25 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
       externalLink->{
           ...,
         }
-    }   
+    },
+    lowerFooterIcons[]{
+      ...,
+      link {
+        ...,
+        link->{
+          _id,
+          _type,
+          title,
+          "slug": slug.current
+        },
+        externalLink->{
+          _id,
+          _type,
+          externalLink,
+        }
+      }
+    }
   }
-  
 }`
 
 export const dynamicPageBySlugQuery = groq`

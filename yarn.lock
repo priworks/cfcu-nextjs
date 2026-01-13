@@ -268,7 +268,7 @@
     run-waterfall "~1.1.7"
     sha "~3.0.0"
 
-"@asamuzakjp/css-color@^4.1.1":
+"@asamuzakjp/css-color@^4.1.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@asamuzakjp/css-color/-/css-color-4.1.1.tgz#e5c662f488367dc74194609179fe6621f2586114"
   integrity sha512-B0Hv6G3gWGMn0xKJ0txEi/jM5iFpT3MfDxmhZFb4W047GvytCf1DHQ1D69W3zHI4yWe2aTZAA0JnbMZ7Xc8DuQ==
@@ -9631,7 +9631,7 @@ jsdom-global@^3.0.2:
   resolved "https://registry.yarnpkg.com/jsdom-global/-/jsdom-global-3.0.2.tgz#6bd299c13b0c4626b2da2c0393cd4385d606acb9"
   integrity sha512-t1KMcBkz/pT5JrvcJbpUR2u/w1kO9jXctaaGJ0vZDzwFnIvGWw9IDSRciT83kIs8Bnw4qpOl8bQK08V01YgMPg==
 
-jsdom@27.3.0, jsdom@^23.0.1, jsdom@^27.3.0, jsdom@^27.4.0:
+jsdom@27.3.0, jsdom@^23.0.1, jsdom@^27.3.0:
   version "27.3.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-27.3.0.tgz#7f08340b047ab3555ac7d8128fcf1feeca4d8587"
   integrity sha512-GtldT42B8+jefDUC4yUKAvsaOrH7PDHmZxZXNgF2xMmymjUbRYJvpAybZAKEmXDGTM0mCsz8duOa4vTm5AY2Kg==

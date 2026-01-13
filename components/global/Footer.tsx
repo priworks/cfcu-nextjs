@@ -10,6 +10,8 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { externalOnClick } from 'utils'
 import FormattedTextField from 'components/interaction/formattedTextField'
+import LowerFooterIcon from 'components/global/LowerFooterIcon'
+
 const Footer = () => {
   const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
   const { isCopied, handleCopy } = useClickToCopy(
@@ -200,20 +202,10 @@ const Footer = () => {
             )}
           >
             {data?.lowerFooterIcons.map((icon, index) => (
-              <Image
-                key={index}
-                src={
-                  icon?.icon ? urlForImage(icon?.icon).quality(100).url() : ''
-                }
-                alt={icon.icon.alt as string}
-                quality={100}
-                width={200}
-                height={200}
-                className={clsx('h-[65px] object-contain flex-shrink w-fit')}
-              />
+              <LowerFooterIcon key={index} value={icon} />
             ))}
           </div>
-          <p
+          <div
             className={clsx(
               'font-codec-regular text-[14px] leading-[18.2px] text-white mt-[56px] max-w-[570px]',
               'lg:mt-[0px]',

@@ -7,7 +7,6 @@ import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
-import PlayPause from '../ui/PlayPause'
 import { useState } from 'react'
 
 import { useRef } from 'react'
@@ -17,6 +16,7 @@ import { useInView } from 'react-intersection-observer'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
 import FormattedTextField from 'components/interaction/formattedTextField'
+import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
 
 interface Props {
   data: CtaFullMediaType
@@ -161,14 +161,13 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
               />
             </PageLink>
           </div>
-          {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
-            <button
-              className={clsx('relative z-[2]')}
-              onClick={() => setIsPlaying((prev) => !prev)}
-            >
-              <PlayPause isPlaying={isPlaying} />
-            </button>
-          )}
+          <MediaPlayPauseButton
+            className={clsx('hidden lg:block relative z-[2]')}
+            classNameMobile={clsx('lg:hidden relative z-[2]')}
+            media={data?.backgroundMedia}
+            isPlaying={isPlaying}
+            onToggle={() => setIsPlaying((prev) => !prev)}
+          />
         </div>
       </section>
     </div>
