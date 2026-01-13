@@ -5,6 +5,7 @@ import { useState, useRef, useEffect, use } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
@@ -59,7 +60,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
             'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit whitespace-nowrap',
           )}
         >
-          {data?.tabName}
+          <FormattedTextField text={data?.tabName} />
         </h6>
         <div
           className={clsx(

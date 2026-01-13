@@ -11,6 +11,7 @@ import { PostPageType } from 'types/sanity'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import PostCard from '../ui/PostCard'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
   const posts = data?.useTopic ? data?.topic?.relatedPosts : data?.posts
@@ -42,7 +43,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
                 'lg:subtitle-l lg:mb-[7px]',
               )}
             >
-              {data.subTitle}
+              <FormattedTextField text={data.subTitle} />
             </h2>
           )}
           <h3
@@ -53,7 +54,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
                 : 'lg:title-m-desktop lg:py-[20px]',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h3>
           {data.description && (
             <p
@@ -62,7 +63,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
                 'lg:w-paragraph-l-desktop lg:mt-[0px] lg:max-w-[980px]',
               )}
             >
-              {data?.description}
+              <FormattedTextField text={data?.description} />
             </p>
           )}
           {data?.pageLink && (

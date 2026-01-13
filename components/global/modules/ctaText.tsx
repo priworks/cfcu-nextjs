@@ -11,6 +11,7 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 import { stegaClean } from '@sanity/client/stega'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
@@ -63,7 +64,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
               'lg:subtitle-l  lg:mb-[16px]',
             )}
           >
-            {data.subtitle}
+            <FormattedTextField text={data.subtitle} />
           </h2>
         )}
         <h3
@@ -73,7 +74,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           )}
           style={{ color: theme?.heading }}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
         {data?.description && (
           <div

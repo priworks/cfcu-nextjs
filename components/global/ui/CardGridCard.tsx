@@ -5,6 +5,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import CardLink from '../ui/CardLink'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 export default function CardGridCard({
   data,
@@ -39,7 +40,7 @@ export default function CardGridCard({
               'lg:w-h6-desktop lg:mt-[19px]',
             )}
           >
-            {data?.title}{' '}
+            <FormattedTextField text={data?.title} />{' '}
             <svg
               width="16"
               height="16"
@@ -64,7 +65,7 @@ export default function CardGridCard({
               'lg:w-paragraph-s-desktop',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
         )}
       </article>
@@ -94,7 +95,7 @@ export default function CardGridCard({
             'lg:w-h6-desktop lg:mt-[19px]',
           )}
         >
-          {data?.title}{' '}
+          <FormattedTextField text={data?.title} />{' '}
           {/* <svg
             width="16"
             height="16"
@@ -119,7 +120,7 @@ export default function CardGridCard({
             'lg:w-paragraph-s-desktop',
           )}
         >
-          {data?.description}
+          <FormattedTextField text={data?.description} />
         </p>
       )}
     </article>

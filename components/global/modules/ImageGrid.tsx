@@ -6,6 +6,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import { externalOnClick } from 'utils'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -30,11 +31,11 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
               'lg:subtitle-l lg:mb-[11px]',
             )}
           >
-            {data?.subtitle}
+            <FormattedTextField text={data?.subtitle} />
           </h2>
         )}
         <h3 className={clsx('title-m text-lavender', 'lg:title-l-desktop')}>
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
         {data?.description && (
           <div
@@ -68,7 +69,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                     'lg:w-h5-desktop lg:mt-[84px] lg:mb-[23px]',
                   )}
                 >
-                  {group?.logoGroupTitle}
+                  <FormattedTextField text={group?.logoGroupTitle} />
                 </h5>
               )}
               <div

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType } from 'types/sanity'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const SearchResultsPage = ({
   initialQuery,
@@ -192,7 +193,7 @@ const SearchResultsPage = ({
                       'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold ',
                     )}
                   >
-                    {result.metaTitle}
+                    <FormattedTextField text={result.metaTitle} />
                   </h3>
                   {result.metaDescription && (
                     <p
@@ -201,7 +202,7 @@ const SearchResultsPage = ({
                         'lg:w-paragraph-l-desktop lg:mb-[0px]',
                       )}
                     >
-                      {result.metaDescription}
+                      <FormattedTextField text={result.metaDescription} />
                     </p>
                   )}
                 </Link>

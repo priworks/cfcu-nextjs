@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Button from 'components/global/ui/Button'
 import { clsx } from 'clsx'
 import { ATMLocation, LocationPage } from 'types/sanity'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 export default function ATMCard({
   data,
@@ -69,7 +70,7 @@ export default function ATMCard({
           'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
         )}
       >
-        {data?.name}
+        <FormattedTextField text={data?.name} />
       </h4>
       <div
         className={clsx(
@@ -89,7 +90,9 @@ export default function ATMCard({
             fill="#F56600"
           />
         </svg>
-        <h5>{data?.address}</h5>
+        <h5>
+          <FormattedTextField text={data?.address} />
+        </h5>
       </div>
     </article>
   )

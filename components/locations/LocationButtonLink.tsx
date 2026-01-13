@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
+import { clsx } from 'clsx'
 import Link from 'next/link'
-import clsx from 'clsx'
+import Button from 'components/global/ui/Button'
 import { externalOnClick } from 'utils'
-import FormattedTextField from '@/components/interaction/formattedTextField'
-interface Props {
-  title: string
-  externalLink?: {
-    link: string
-    openInNewTab: boolean
-    showPdfPageLeaveAlert?: boolean
-  }
-  link?: {
-    _type: string
-    link: string
-  }
-  externalLinkOneOff?: {
-    link: string
-    openInNewTab: boolean
-    showPdfPageLeaveAlert?: boolean
-  }
-}
+import type { PageLinkType } from 'types/sanity'
 
-const WysiwygPageLink = ({
+const LocationButtonLink = ({
   title,
   externalLink,
   link,
   externalLinkOneOff,
-}: Props) => {
+}: PageLinkType) => {
   const [href, setHref] = useState('')
   const [target, setTarget] = useState('_self')
   const [showAlert, setShowAlert] = useState(true)
@@ -35,13 +19,13 @@ const WysiwygPageLink = ({
     if (link?._type) {
       switch (link?._type) {
         case 'post':
-          setHref(`/${link?.link}`)
+          setHref(`/${link?.slug}`)
           break
         case 'homepage':
           setHref('/')
           break
         case 'subPage':
-          setHref(`/${link?.link}`)
+          setHref(`/${link?.slug}`)
           break
         case 'blogHomePage':
           setHref(`/posts/page/1`)
@@ -50,25 +34,28 @@ const WysiwygPageLink = ({
           setHref(`/locations`)
           break
         case 'topic':
-          setHref(`/${link?.link}/1`)
+          setHref(`/${link?.slug}/1`)
           break
         case 'location':
-          setHref(`/${link?.link}`)
+          setHref(`/${link?.slug}`)
           break
         default:
           setHref('/')
           break
       }
     }
-    if (externalLinkOneOff?.link) {
-      setHref(externalLinkOneOff?.link)
+    if (externalLinkOneOff) {
+      if (externalLinkOneOff?.link) {
+        setHref(externalLinkOneOff.link)
+      }
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
       setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
     }
-    if (externalLink?.link) {
-      setHref(externalLink.link)
+
+    if (externalLink?.externalLink) {
+      setHref(externalLink.externalLink)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
@@ -77,29 +64,21 @@ const WysiwygPageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const label = <FormattedTextField text={title} />
+  if (!externalLink && !link && !externalLinkOneOff?.link) return null
 
   return link?._type ? (
-    <Link
-      href={href}
-      className={clsx(
-        'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
-      )}
-    >
-      {label}
+    <Link href={href} className={clsx('w-fit')}>
+      <Button label={title} className="!bg-lavender text-white" />
     </Link>
   ) : (
     <a
       href={href}
       target={target}
+      className={clsx('w-fit')}
       onClick={(e) => externalOnClick(e, href, showAlert)}
-      className={clsx(
-        'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
-      )}
     >
-      {label}
+      <Button label={title} className="!bg-lavender text-white" />
     </a>
   )
 }
-
-export default WysiwygPageLink
+export default LocationButtonLink

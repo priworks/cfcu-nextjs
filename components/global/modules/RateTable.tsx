@@ -5,6 +5,7 @@ import { PortableText } from '@portabletext/react'
 import { useEffect, useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const RateTable = ({ data }: { data: RateTableType }) => {
   const maxRows = data?.columns?.reduce(
@@ -38,7 +39,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         )}
       >
         <h3 className={clsx('text-lavender title-m', 'lg:title-m-desktop')}>
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h3>
         <h4 className={clsx('w-paragraph-s-desktop text-black/75')}>
           Date Updated {formatDate(data?._updatedAt)}

@@ -11,6 +11,8 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { externalOnClick } from 'utils'
+import LocationButtonLink from 'components/locations/LocationButtonLink'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 export default function LocationCard({
   data,
@@ -94,7 +96,7 @@ export default function LocationCard({
             'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div
@@ -118,7 +120,9 @@ export default function LocationCard({
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText
@@ -149,15 +153,25 @@ export default function LocationCard({
 
         <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
-      <Link
-        href={`/${data?.slug.current}`}
-        className={clsx('inline-block w-fit mt-[25px]')}
-      >
-        <Button
-          label={'More Info'}
-          className={clsx('!bg-lavender !text-white')}
-        />
-      </Link>
+      <div className="mt-[25px] flex flex-col gap-y-2">
+        {data?.appointmentLink && (
+          <LocationButtonLink
+            title={data.appointmentLink.title || 'Schedule an Appointment'}
+            link={data.appointmentLink?.link}
+            externalLink={data.appointmentLink?.externalLink}
+            externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
+          />
+        )}
+        <Link
+          href={`/${data?.slug.current}`}
+          className={clsx('inline-block w-fit')}
+        >
+          <Button
+            label={'More Info'}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </Link>
+      </div>
     </article>
   )
 }

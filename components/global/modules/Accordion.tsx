@@ -6,6 +6,7 @@ import {
   WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
 } from 'lib/portabletTextComponents'
+import FormattedTextField from 'components/interaction/formattedTextField'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
@@ -23,11 +24,11 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
               'lg:subtitle-l  lg:mb-[19px]',
             )}
           >
-            {data.subTitle}
+            <FormattedTextField text={data?.subTitle} />
           </h2>
         )}
         <h3 className={clsx('title-m text-lavender ', 'lg:title-m-desktop')}>
-          {data.title}
+          <FormattedTextField text={data.title} />
         </h3>
         {data.description && (
           <div

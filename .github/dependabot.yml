@@ -1,0 +1,92 @@
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    open-pull-requests-limit: 5
+    labels:
+      - 'dependencies'
+      - 'npm'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+    # Group minor and patch updates together to reduce PR noise
+    groups:
+      # Group all Next.js related packages
+      next-packages:
+        patterns:
+          - 'next'
+          - 'next-*'
+          - 'eslint-config-next'
+      # Group all Sanity related packages
+      sanity-packages:
+        patterns:
+          - 'sanity'
+          - 'sanity-*'
+          - '@sanity/*'
+          - 'next-sanity'
+          - 'next-sanity-image'
+      # Group React packages
+      react-packages:
+        patterns:
+          - 'react'
+          - 'react-*'
+          - '@types/react'
+      # Group Radix UI packages
+      radix-packages:
+        patterns:
+          - '@radix-ui/*'
+      # Group development dependencies
+      dev-dependencies:
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+      # Group Storybook packages
+      storybook-packages:
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+          - '@chromatic-com/storybook'
+      # Group linting and formatting tools
+      linting-packages:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - 'prettier'
+          - 'prettier-*'
+      # Group Tailwind CSS packages
+      tailwind-packages:
+        patterns:
+          - 'tailwindcss'
+          - 'tailwindcss-*'
+          - '@tailwindcss/*'
+          - 'postcss'
+          - 'autoprefixer'
+    # Ignore major version updates for stable packages
+    ignore:
+      # Keep Next.js on v14 until ready to upgrade
+      - dependency-name: 'next'
+        update-types: ['version-update:semver-major']
+      # Keep React on v18 until ready to upgrade
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react-dom'
+        update-types: ['version-update:semver-major']
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    labels:
+      - 'dependencies'
+      - 'github-actions'
+    commit-message:
+      prefix: 'ci'
