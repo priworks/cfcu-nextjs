@@ -17,7 +17,9 @@ import React from 'react'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+// import { PortableTextBlock } from '@portabletext/types'
 import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
@@ -214,7 +216,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               </PageLink>
             )}
           </article>
-          <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>
+          <div className={clsx('aspect-[8/7] aspect-w-8 aspect-h-7 w-full')}>
             <Image
               src={urlForImage(data?.thumbnailImage)
                 .width(1200)
@@ -270,7 +272,7 @@ function DetailCard({
           'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
         )}
       >
-        {subtitle}
+        <FormattedTextField text={subtitle} />
       </h6>
 
       <div
@@ -287,7 +289,7 @@ function DetailCard({
               'lg:text-[18px] lg:leading-[27px]',
             )}
           >
-            {content}
+            <FormattedTextField text={content} />
           </a>
         ) : isAddress ? (
           <a
@@ -310,7 +312,9 @@ function DetailCard({
             />
           </div>
         ) : (
-          <p>{content}</p>
+          <p>
+            <FormattedTextField text={content} />
+          </p>
         )}
       </div>
     </div>

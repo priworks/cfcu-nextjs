@@ -13,14 +13,15 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import PlayPause from '../ui/PlayPause'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
   const innerContentRef = useRef(null)
-  const articleRef = useRef(null)
+  const articleRef = useRef<HTMLElement>(null)
   const [isPlaying, setIsPlaying] = useState(true)
 
   const { ref, inView } = useInView({
@@ -80,14 +81,17 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   }, [inView, width])
 
   useIsomorphicLayoutEffect(() => {
-    if (!inView || width < 1024) return
+    if (!inView || width < 1024 || !articleRef.current) return
+    const articleRefEl = articleRef?.current
     const ctx = gsap.context(() => {
       gsap
         .timeline({
           scrollTrigger: {
             trigger: articleRef.current,
             start: 'top-=400px top',
-            end: `+=${articleRef.current.offsetHeight * 0.8}px`,
+            end: articleRefEl
+              ? `+=${articleRefEl.offsetHeight * 0.8}px`
+              : 'top bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -127,7 +131,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 'lg:hidden',
               )}
             >
-              {data?.ctaCard?.subtitle?.text}
+              <FormattedTextField text={data?.ctaCard?.subtitle?.text} />
             </h2>
           )}
           {data?.ctaCard?.subtitle?.type === 'svg' && (
@@ -141,8 +145,8 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           )}
           <div
             className={clsx(
-              'aspect-w-6 aspect-h-4 relative mt-[26px]',
-              'lg:aspect-w-7 lg:mt-0',
+              'aspect-[6/4] aspect-w-6 aspect-h-4 relative mt-[26px]',
+              'lg:aspect-[7/4] lg:aspect-w-7 lg:mt-0',
             )}
           >
             <MediaComponent
@@ -151,16 +155,17 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               isCtaContent
             />
 
-            {stegaClean(data?.backgroundImage?.mediaType) === 'video' && (
-              <button
-                className={clsx(
-                  'absolute right-[24px]! bottom-[24px]! top-[unset]! left-[unset]! z-2 w-fit! h-fit!',
-                )}
-                onClick={() => setIsPlaying((prev) => !prev)}
-              >
-                <PlayPause isPlaying={isPlaying} />
-              </button>
-            )}
+            <MediaPlayPauseButton
+              className={clsx(
+                'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit lg:block hidden',
+              )}
+              classNameMobile={clsx(
+                'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit lg:hidden',
+              )}
+              media={data?.backgroundImage}
+              isPlaying={isPlaying}
+              onToggle={() => setIsPlaying((prev) => !prev)}
+            />
           </div>
         </div>
         <article
@@ -181,7 +186,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                   'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold animateArticle opacity-0',
                 )}
               >
-                {data?.ctaCard?.subtitle?.text}
+                <FormattedTextField text={data?.ctaCard?.subtitle?.text} />
               </h2>
             )}
             {data?.ctaCard?.subtitle?.type === 'svg' && (
@@ -201,7 +206,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 'lg:title-s-desktop',
               )}
             >
-              {data?.ctaCard?.title}
+              <FormattedTextField text={data?.ctaCard?.title} />
             </h3>
 
             {data?.ctaCard?.description ? (

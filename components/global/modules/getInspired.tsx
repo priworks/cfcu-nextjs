@@ -14,6 +14,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useInView } from 'react-intersection-observer'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
   const posts = data?.useTopic
@@ -46,15 +47,16 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
     )
       return
 
+    const gridElement = gridRef.current
     const ctx = gsap.context(() => {
       gsap.set(leftGridItemsRef.current, { yPercent: 5 })
       gsap.set(rightGridItemsRef.current, { yPercent: -4 })
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: gridRef.current,
+            trigger: gridElement,
             start: 'top-=400px top',
-            end: `+=${gridRef.current.offsetHeight * 0.8}px`,
+            end: `+=${gridElement.offsetHeight * 0.8}px`,
             scrub: true,
           },
         })
@@ -81,7 +83,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             'lg:title-xl-desktop',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h2>
         <p
           className={clsx(
@@ -89,7 +91,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             'lg:w-paragraph-xl-desktop lg:mt-[17px]',
           )}
         >
-          {data?.description}
+          <FormattedTextField text={data?.description} />
         </p>
         <PageLink
           data={data?.cta}
@@ -104,7 +106,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative lg:pb-[32px]',
         )}
       >
-        <PostCard data={featuredArticle} isFeatured={true} />
+        {featuredArticle && <PostCard data={featuredArticle} isFeatured={true} />}
         <div
           ref={gridRef}
           className={clsx(
@@ -174,7 +176,7 @@ const PostCard = ({
               'lg:text-[16px] lg:leading-[16px]',
             )}
           >
-            {data?.type}
+            <FormattedTextField text={data?.type} />
           </h4>
           <h5
             className={clsx(
@@ -184,7 +186,7 @@ const PostCard = ({
               'text-lavender',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h5>
           <p
             className={clsx(
@@ -194,7 +196,7 @@ const PostCard = ({
                 : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px] lg:mt-[8px]',
             )}
           >
-            {data?.excerpt}
+            <FormattedTextField text={data?.excerpt} />
           </p>
         </div>
       </article>

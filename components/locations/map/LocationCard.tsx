@@ -11,6 +11,8 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 import { externalOnClick } from '@/utils'
+import LocationButtonLink from '@/components/locations/LocationButtonLink'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 export default function LocationCard({
   data,
@@ -18,11 +20,9 @@ export default function LocationCard({
   setSelectedMobilePopup,
 }: {
   data: LocationPage
-  setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>
-  setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>
-  setSelectedMobilePopup: React.Dispatch<
-    React.SetStateAction<LocationPage | null>
-  >
+  setSelectedLocation: React.Dispatch
+  setSelectedATM: React.Dispatch
+  setSelectedMobilePopup: React.Dispatch
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   useIsomorphicLayoutEffect(() => {
@@ -71,7 +71,7 @@ export default function LocationCard({
         </svg>
       </button>
       <Link href={`/${data?.slug.current}`}>
-        <div className={clsx('aspect-w-16 aspect-h-9')}>
+        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9')}>
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(600)
@@ -96,7 +96,7 @@ export default function LocationCard({
             'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div
@@ -153,15 +153,25 @@ export default function LocationCard({
 
         <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
-      <Link
-        href={`/${data?.slug.current}`}
-        className={clsx('inline-block w-fit mt-[25px]')}
-      >
-        <Button
-          label={'More Info'}
-          className={clsx('!bg-lavender text-white!')}
-        />
-      </Link>
+      <div className="mt-[25px] flex flex-col gap-y-2">
+        {data?.appointmentLink && (
+          <LocationButtonLink
+            title={data.appointmentLink.title || 'Schedule an Appointment'}
+            link={data.appointmentLink?.link}
+            externalLink={data.appointmentLink?.externalLink}
+            externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
+          />
+        )}
+        <Link
+          href={`/${data?.slug.current}`}
+          className={clsx('inline-block w-fit')}
+        >
+          <Button
+            label={'More Info'}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </Link>
+      </div>
     </article>
   )
 }

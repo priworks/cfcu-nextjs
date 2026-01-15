@@ -1,15 +1,15 @@
-import { SubPageHeroType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import MediaComponent from '@/components/global/ui/Media'
 import { LocationHomepageType } from '@/types/sanity'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const LocationHomeHero = ({
   data,
@@ -19,6 +19,7 @@ const LocationHomeHero = ({
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
+  const [isPlaying, setIsPlaying] = useState(true)
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,7 +43,9 @@ const LocationHomeHero = ({
           scrollTrigger: {
             trigger: backgroundRef.current,
             start: 'top-=16px top',
-            end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+            end: backgroundRef.current
+              ? `+=${backgroundRef.current.offsetHeight * 0.8}px`
+              : 'top bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -83,8 +86,17 @@ const LocationHomeHero = ({
                 />
               )}
 
-              <MediaComponent media={data?.backgroundMedia} />
+              {data?.backgroundMedia && (
+                <MediaComponent media={data?.backgroundMedia} />
+              )}
             </div>
+            {data?.backgroundMedia && (
+              <MediaPlayPauseButton
+                media={data?.backgroundMedia}
+                isPlaying={isPlaying}
+                onToggle={() => setIsPlaying((prev) => !prev)}
+              />
+            )}
           </div>
         )}
       </div>
@@ -127,7 +139,7 @@ const LocationHomeHero = ({
               'lg:text-[26px] lg:leading-[33.8px]',
             )}
           >
-            {data?.subtitle}
+            <FormattedTextField text={data?.subtitle} />
           </p>
         </article>
       </div>

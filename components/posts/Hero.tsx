@@ -11,6 +11,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Hero = ({ post }: { post: PostPageType }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -139,7 +140,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 'lg:text-[26px] lg:leading-[39px]  l:mt-[17px]',
               )}
             >
-              {post?.excerpt}
+              <FormattedTextField text={post?.excerpt} />
             </p>
           )}
           <div
@@ -163,7 +164,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                     'font-codec-pro text-black text-[16px] leading-[20.8px]',
                   )}
                 >
-                  {post?.author?.name}
+                  <FormattedTextField text={post?.author?.name} />
                 </h5>
               </div>
             )}
@@ -209,7 +210,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                         'underline hover:no-underline! w-fit block',
                       )}
                     >
-                      {topic?.name}
+                      <FormattedTextField text={topic?.name} />
                     </Link>
                   ))}
                 </div>
@@ -253,7 +254,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
             )}
           </div>
         </article>
-        <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>
+        <div className={clsx('aspect-[8/7] aspect-w-8 aspect-h-7 w-full')}>
           <Image
             src={urlForImage(post?.thumbnailImage)
               .width(1000)

@@ -3,7 +3,6 @@ import { clsx } from 'clsx'
 import MediaComponent from '@/components/global/ui/Media'
 import Button from '@/components/global/ui/Button'
 import PageLink from '@/components/global/ui/PageLink'
-import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
@@ -11,8 +10,10 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import { stegaClean } from '@sanity/client/stega'
-import PlayPause from '@/components/global/ui/PlayPause'
+// import { stegaClean } from '@sanity/client/stega'
+// import PlayPause from '@/components/global/ui/PlayPause'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -46,7 +47,9 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         scrollTrigger: {
           trigger: backgroundRef.current,
           start: 'top-=16px top',
-          end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+          end: backgroundRef?.current
+            ? `+=${backgroundRef.current.offsetHeight * 0.8}px`
+            : 'top bottom',
           scrub: true,
           invalidateOnRefresh: true,
         },
@@ -99,17 +102,11 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           isPlaying={isPlaying}
         />
       </div>
-      {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
-        <button
-          className={clsx(
-            'absolute right-[16px]! bottom-[16px]! top-[unset]! left-[unset]! z-10 w-fit! h-fit!',
-            'lg:right-[36px]! lg:bottom-[36px]! ',
-          )}
-          onClick={() => setIsPlaying((prev) => !prev)}
-        >
-          <PlayPause isPlaying={isPlaying} />
-        </button>
-      )}
+      <MediaPlayPauseButton
+        media={data?.backgroundMedia}
+        isPlaying={isPlaying}
+        onToggle={() => setIsPlaying((prev) => !prev)}
+      />
       <div
         className={clsx(
           'lg:px-[30px] lg:flex lg:justify-between lg:relative lg:z-3 lg:items-end lg:pb-[46px]',
@@ -166,7 +163,8 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
             <PortableText value={data?.testimonial?.content} />
           </div>
           <h6 className={clsx('font-codec-heavy text-[16px] leading-[24px]')}>
-            – {data?.testimonial?.author}, {data?.testimonial?.title}
+            – {data?.testimonial?.author},{' '}
+            <FormattedTextField text={data?.testimonial?.title} />
           </h6>
         </article>
       </div>

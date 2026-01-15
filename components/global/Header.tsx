@@ -1,19 +1,20 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import { clsx } from 'clsx'
-import Menu from './Menu'
+import Menu from '@/components/global/Menu'
 import { useState, useEffect } from 'react'
-import { AnimatePresence } from 'framer-motion'
+// import { AnimatePresence } from 'framer-motion'
 import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import { useScrollPastPoint } from '@/hooks/useScrollPastPoint'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import FastExitButton from './modules/QuickExit'
-import SiteAlert from './modules/siteAlert'
-import GlobalSiteAlert from './modules/GlobalSiteAlert'
-import globalAlert from '@/schemas/documents/modules/globalAlert'
-import SanitizedEmbed from './modules/Embed'
+import FastExitButton from '@/components/global/modules/QuickExit'
+// import SiteAlert from './modules/siteAlert'
+import GlobalSiteAlert from '@/components/global/modules/GlobalSiteAlert'
+// import globalAlert from '@/schemas/documents/modules/globalAlert'
+import SanitizedEmbed from '@/components/global/modules/Embed'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -69,7 +70,9 @@ const Header = () => {
   return (
     <>
       {globalSettings?.quickExit?.showFastExit && (
-        <FastExitButton url={globalSettings?.quickExit?.exitUrl} />
+        <FastExitButton
+          url={globalSettings?.quickExit?.exitUrl || 'https://weather.com/'}
+        />
       )}
       {globalSettings?.globalAlerts?.map((alert, index) => (
         <GlobalSiteAlert key={index} data={alert} />
@@ -111,7 +114,7 @@ const Header = () => {
                   'lg:hover:opacity-60 transition-opacity duration-150',
                 )}
               >
-                {link.title}
+                <FormattedTextField text={link.title} />
               </a>
             ))}
           </div>

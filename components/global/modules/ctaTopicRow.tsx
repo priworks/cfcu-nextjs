@@ -12,6 +12,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef } from 'react'
 import { gsap } from 'gsap'
 import Button from '../ui/Button'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
   const theme = getThemeClasses(stegaClean(data?.theme?.label))
@@ -79,7 +80,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             'lg:shrink-0 lg:w-[calc(50%-59px)]',
           )}
         >
-          <div className={clsx('aspect-w-4 aspect-h-3 relative')}>
+          <div className={clsx('aspect-[4/3] aspect-w-4 aspect-h-3 relative')}>
             <Image
               src={urlForImage(data?.image).width(1000).quality(90).url()}
               alt={data?.image.alt as string}
@@ -117,7 +118,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                 'lg:subtitle-l lg:text-left',
               )}
             >
-              {data.subtitle}
+              <FormattedTextField text={data?.subtitle} />
             </h2>
           )}
           <h3
@@ -126,7 +127,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               'lg:text-left lg:title-m-desktop',
             )}
           >
-            {data?.title}
+            <FormattedTextField text={data?.title} />
           </h3>
           <div
             style={{
@@ -165,7 +166,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               'lg:items-start',
             )}
           >
-            {data?.links?.length > 1 ? (
+            {(data?.links?.length ?? 0) > 1 ? (
               data?.links?.map((link, index) => (
                 <PageLink
                   key={index}

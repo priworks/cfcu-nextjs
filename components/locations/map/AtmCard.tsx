@@ -1,10 +1,11 @@
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { gsap } from 'gsap'
-import { useRef, useState } from 'react'
-import Link from 'next/link'
-import Button from '@/components/global/ui/Button'
-import { clsx } from 'clsx'
-import { ATMLocation, LocationPage } from '@/types/sanity'
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
+import { gsap } from "gsap";
+import { useRef, useState } from "react";
+// import Link from 'next/link'
+// import Button from '@/components/global/ui/Button'
+import { clsx } from "clsx";
+import { ATMLocation, LocationPage } from "@/types/sanity";
+import FormattedTextField from "@/components/interaction/formattedTextField";
 
 export default function ATMCard({
   data,
@@ -12,42 +13,40 @@ export default function ATMCard({
   setSelectedATM,
   setSelectedMobileAtmPopup,
 }: {
-  data: ATMLocation
-  setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>
-  setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>
-  setSelectedMobileAtmPopup: React.Dispatch<
-    React.SetStateAction<ATMLocation | null>
-  >
+  data: ATMLocation;
+  setSelectedLocation: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
+  setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
+  setSelectedMobileAtmPopup: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null);
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         cardRef.current,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' },
-      )
-    })
+        { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }
+      );
+    });
 
     return () => {
-      ctx.revert()
-    }
-  }, [])
+      ctx.revert();
+    };
+  }, []);
   return (
     <article
       ref={cardRef}
       className={clsx(
-        ' bg-white p-[30px] relative mapCardShadow opacity-0 max-w-[329px] w-[90%]',
-        'lg:max-w-[428px] lg:w-[428px]',
+        " bg-white p-[30px] relative mapCardShadow opacity-0 max-w-[329px] w-[90%]",
+        "lg:max-w-[428px] lg:w-[428px]"
       )}
     >
       <button
         onClick={() => {
-          setSelectedATM(null)
-          setSelectedMobileAtmPopup(null)
+          setSelectedATM(null);
+          setSelectedMobileAtmPopup(null);
         }}
         className={clsx(
-          'bg-orange w-[48px] h-[48px] rounded-full flex items-center justify-center absolute top-[-24px] right-[-24px]',
+          "bg-orange w-[48px] h-[48px] rounded-full flex items-center justify-center absolute top-[-24px] right-[-24px]"
         )}
       >
         <svg
@@ -65,16 +64,16 @@ export default function ATMCard({
       </button>
       <h4
         className={clsx(
-          'w-h5',
-          'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
+          "w-h5",
+          "mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender "
         )}
       >
-        {data?.name}
+        <FormattedTextField text={data?.name} />
       </h4>
       <div
         className={clsx(
-          'w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]',
-          'lg:text-[18px] lg:leading-[27px]',
+          "w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]",
+          "lg:text-[18px] lg:leading-[27px]"
         )}
       >
         <svg
@@ -89,8 +88,10 @@ export default function ATMCard({
             fill="#F56600"
           />
         </svg>
-        <h5>{data?.address}</h5>
+        <h5>
+          <FormattedTextField text={data?.address} />
+        </h5>
       </div>
     </article>
-  )
+  );
 }

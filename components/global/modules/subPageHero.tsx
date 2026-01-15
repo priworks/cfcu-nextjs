@@ -7,10 +7,10 @@ import { useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
-import { stegaClean } from '@sanity/client/stega'
-import PlayPause from '@/components/global/ui/PlayPause'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { SubPageType } from '@/types/sanity'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const SubPageHero = ({
   data,
@@ -49,7 +49,9 @@ const SubPageHero = ({
           scrollTrigger: {
             trigger: backgroundRef.current,
             start: 'top-=16px top',
-            end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+            end: backgroundRef.current
+              ? `+=${backgroundRef.current.offsetHeight * 0.8}px`
+              : 'bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -94,12 +96,14 @@ const SubPageHero = ({
                   )}
                 />
               )}
-              <MediaComponent
-                media={data?.backgroundMedia}
-                isPlaying={isPlaying}
-                priority={true}
-                isSubHero
-              />
+              {data?.backgroundMedia && (
+                <MediaComponent
+                  media={data?.backgroundMedia}
+                  isPlaying={isPlaying}
+                  priority={true}
+                  isSubHero
+                />
+              )}
             </div>
           </div>
         )}
@@ -184,18 +188,18 @@ const SubPageHero = ({
                 'lg:text-[26px] lg:leading-[33.8px]',
               )}
             >
-              {data?.subtitle}
+              <FormattedTextField text={data?.subtitle} />
             </p>
-            {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
-              <button
-                className={clsx(
-                  'z-10 w-fit! h-fit!',
-                  'lg:right-[36px]! lg:bottom-[36px]! lg:absolute ',
+            {data?.backgroundMedia && (
+              <MediaPlayPauseButton
+                classNameMobile={clsx(
+                  'z-[10] !w-fit !h-fit',
+                  'lg:!right-[36px] lg:!bottom-[36px] lg:absolute',
                 )}
-                onClick={() => setIsPlaying((prev) => !prev)}
-              >
-                <PlayPause isPlaying={isPlaying} />
-              </button>
+                media={data.backgroundMedia}
+                isPlaying={isPlaying}
+                onToggle={() => setIsPlaying((prev) => !prev)}
+              />
             )}
           </div>
         </article>

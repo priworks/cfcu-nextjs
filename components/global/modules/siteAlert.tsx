@@ -1,70 +1,75 @@
-import { GlobalAlertType } from '@/types/sanity'
-import { clsx } from 'clsx'
-import { PortableText } from '@portabletext/react'
-import { useState, useRef, useEffect, use } from 'react'
-import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
-import { useWindowSize } from '@/hooks/useWindowSize'
-import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { GlobalAlertType } from "@/types/sanity";
+import { clsx } from "clsx";
+import { PortableText } from "@portabletext/react";
+import { useState, useRef, useEffect, use } from "react";
+import { useGlobalSettingsStore } from "@/stores/globalSettingsStore";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { WysiwygComopentsMin } from "@/lib/portabletTextComponents";
+import FormattedTextField from "@/components/interaction/formattedTextField";
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
-  const [isClosed, setIsClosed] = useState(false)
+  const [isClosed, setIsClosed] = useState(false);
   // const [alertHeight, setAlertHeight] = useState(0)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const alertHeight = useGlobalSettingsStore((state) => state.alertHeight)
-  const setAlertHeight = useGlobalSettingsStore((state) => state.setAlertHeight)
-  const setAlertIsOpen = useGlobalSettingsStore((state) => state.setAlertIsOpen)
-  const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
-  const { width } = useWindowSize()
+  const contentRef = useRef<HTMLDivElement>(null);
+  const alertHeight = useGlobalSettingsStore((state) => state.alertHeight);
+  const setAlertHeight = useGlobalSettingsStore(
+    (state) => state.setAlertHeight
+  );
+  const setAlertIsOpen = useGlobalSettingsStore(
+    (state) => state.setAlertIsOpen
+  );
+  const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (contentRef.current) {
-      setAlertHeight(contentRef.current.scrollHeight)
-      setAlertHeight(contentRef.current.scrollHeight)
-      setAlertIsOpen(true)
-      window.scrollTo(0, 0)
+      setAlertHeight(contentRef.current.scrollHeight);
+      setAlertHeight(contentRef.current.scrollHeight);
+      setAlertIsOpen(true);
+      window.scrollTo(0, 0);
     }
     return () => {
-      setAlertIsOpen(false)
-      setAlertHeight(0)
-    }
+      setAlertIsOpen(false);
+      setAlertHeight(0);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (alertIsOpen) {
-      setAlertHeight(alertHeight + contentRef.current.scrollHeight)
-      setAlertHeight(contentRef.current.scrollHeight)
+      setAlertHeight(alertHeight + (contentRef?.current?.scrollHeight || 0));
+      contentRef?.current && setAlertHeight(contentRef.current.scrollHeight);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width, setAlertHeight, setAlertHeight])
+  }, [width, setAlertHeight, setAlertHeight]);
 
   return (
     <section
-      style={{ maxHeight: alertHeight || 'unset' }}
+      style={{ maxHeight: alertHeight || "unset" }}
       className={clsx(
-        ' bg-black px-[24px] w-full z-10 flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
-        'lg:px-[48px]',
-        isClosed && 'max-h-0! bg-transparent!',
+        " bg-black px-[24px] w-full z-10 flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start",
+        "lg:px-[48px]",
+        isClosed && "max-h-0! bg-transparent!"
       )}
     >
       <div
         ref={contentRef}
         className={clsx(
-          'flex flex-col gap-[20px] py-[16px]',
-          'lg:flex-row lg:items-start lg:gap-x-[40px]',
+          "flex flex-col gap-[20px] py-[16px]",
+          "lg:flex-row lg:items-start lg:gap-x-[40px]"
         )}
       >
         <h6
           className={clsx(
-            'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit whitespace-nowrap',
+            "text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit whitespace-nowrap"
           )}
         >
-          {data?.tabName}
+          <FormattedTextField text={data?.tabName} />
         </h6>
         <div
           className={clsx(
-            'w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]',
-            'lg:w-[90%] lg:mt-[4px]',
+            "w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]",
+            "lg:w-[90%] lg:mt-[4px]"
           )}
         >
           <PortableText
@@ -75,13 +80,13 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       </div>
       <button
         onClick={() => {
-          setIsClosed(true)
-          setAlertIsOpen(false)
-          setAlertHeight(0)
+          setIsClosed(true);
+          setAlertIsOpen(false);
+          setAlertHeight(0);
         }}
         className={clsx(
-          'transition-opacity duration-150 py-[16px]',
-          isClosed && 'opacity-0',
+          "transition-opacity duration-150 py-[16px]",
+          isClosed && "opacity-0"
         )}
       >
         <svg
@@ -98,7 +103,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
         </svg>
       </button>
     </section>
-  )
-}
+  );
+};
 
-export default SiteAlert
+export default SiteAlert;

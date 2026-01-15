@@ -12,6 +12,7 @@ import { animate, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Menu = ({
   menuOpen,
@@ -88,13 +89,13 @@ const Menu = ({
 
   useIsomorphicLayoutEffect(() => {
     if (!closeInitiated) return
-    setMenuButtonOpen(false)
+    setMenuButtonOpen && setMenuButtonOpen(false)
     const ctx = gsap.context(() => {
       const tl = gsap
         .timeline({
           onComplete: () => {
             setMenuOpen(false)
-            setCloseInitiated(false)
+            setCloseInitiated && setCloseInitiated(false)
           },
         })
         .fromTo(
@@ -136,7 +137,7 @@ const Menu = ({
         >
           {globalSettings?.navigation?.headerBarLinks?.map((link, index) => (
             <a key={index} href={link.url}>
-              {link.title}
+              <FormattedTextField text={link.title} />
             </a>
           ))}
         </div>
@@ -161,14 +162,14 @@ const Menu = ({
                     />
                   </div>
                   <PageLink
-                    onClick={() => setCloseInitiated(true)}
+                    onClick={() => setCloseInitiated && setCloseInitiated(true)}
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
                       'lg:hover:opacity-60 transition-opacity duration-150',
                     )}
                   >
-                    {item.titleLink.title}
+                    <FormattedTextField text={item.titleLink.title} />
                   </PageLink>
                   <nav
                     className={clsx(
@@ -179,12 +180,12 @@ const Menu = ({
                       <PageLink
                         data={link}
                         key={index}
-                        onClick={() => setCloseInitiated(true)}
+                        onClick={() => setCloseInitiated &&setCloseInitiated(true)}
                         className={clsx(
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
                       >
-                        {link.title}
+                        <FormattedTextField text={link.title} />
                       </PageLink>
                     ))}
                   </nav>
@@ -222,14 +223,14 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
-                          onClick={() => setCloseInitiated(true)}
+                          onClick={() => setCloseInitiated &&setCloseInitiated(true)}
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
                         >
-                          {item.titleLink.title}
+                          <FormattedTextField text={item.titleLink.title} />
                         </PageLink>
                       </div>
                       <svg
@@ -264,12 +265,12 @@ const Menu = ({
                         <PageLink
                           data={link}
                           key={index}
-                          onClick={() => setCloseInitiated(true)}
+                          onClick={() => setCloseInitiated &&setCloseInitiated(true)}
                           className={clsx(
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
                         >
-                          {link.title}
+                          <FormattedTextField text={link.title} />
                         </PageLink>
                       ))}
                     </nav>
@@ -319,7 +320,7 @@ const Menu = ({
                       'lg:text-[16px] lg:leading-[16px]',
                     )}
                   >
-                    {nav.title}
+                    <FormattedTextField text={nav.title} />
                   </h4>
                 </div>
                 <div
@@ -332,12 +333,12 @@ const Menu = ({
                     <PageLink
                       data={link}
                       key={index}
-                      onClick={() => setCloseInitiated(true)}
+                      onClick={() => setCloseInitiated &&setCloseInitiated(true)}
                       className={clsx(
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}
                     >
-                      {link.title}
+                      <FormattedTextField text={link.title} />
                     </PageLink>
                   ))}
                 </div>

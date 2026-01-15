@@ -1,50 +1,54 @@
-import { GlobalSettingsType } from '@/types/sanity'
-import { clsx } from 'clsx'
-import Image from 'next/image'
-import LogoFull from '@/public/icons/LogoFull.png'
-import { urlForImage } from '@/lib/sanity.image'
-import PageLink from './ui/PageLink'
-import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
-import { useClickToCopy } from '@/hooks/useClickToCopy'
-import { useRef } from 'react'
-import Link from 'next/link'
-import { externalOnClick } from '@/utils'
+import { GlobalSettingsType } from "@/types/sanity";
+import { clsx } from "clsx";
+import Image from "next/image";
+import LogoFull from "@/public/icons/LogoFull.png";
+import { urlForImage } from "@/lib/sanity.image";
+import PageLink from "./ui/PageLink";
+import { useGlobalSettingsStore } from "@/stores/globalSettingsStore";
+import { useClickToCopy } from "@/hooks/useClickToCopy";
+import { useRef } from "react";
+import Link from "next/link";
+import { externalOnClick } from "@/utils";
+import FormattedTextField from "@/components/interaction/formattedTextField";
+import LowerFooterIcon from "@/components/global/LowerFooterIcon";
+import { PortableText } from "@portabletext/react";
+
 const Footer = () => {
-  const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
+  const data = useGlobalSettingsStore((state) => state.globalSettings?.footer);
   const { isCopied, handleCopy } = useClickToCopy(
-    data?.routingNumber || '',
-    2000,
-  )
-  const copiedRef = useRef<HTMLParagraphElement>(null)
+    data?.routingNumber || "",
+    2000
+  );
+  const copiedRef = useRef<HTMLParagraphElement>(null);
 
   return (
     <div
       className={clsx(
-        'bg-lavender border-t border-t-white/10',
-        'lg:pt-[36px] lg:border-b-0',
+        "bg-lavender border-t border-t-white/10",
+        "lg:pt-[36px] lg:border-b-0"
       )}
     >
       <footer
         className={clsx(
-          'px-[24px] py-[66px]',
-          'lg:px-[48px] lg:pt-[102px] lg:pb-[46px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
+          "px-[24px] py-[66px]",
+          "lg:px-[48px] lg:pt-[102px] lg:pb-[46px] lg:max-w-[1800px] xl:px-0 lg:mx-auto"
         )}
       >
-        <div className={clsx('lg:grid lg:grid-cols-12 lg:gap-x-[24px]')}>
-          <div className={clsx('lg:col-span-5')}>
-            <Link href={'/'} className={clsx('block')}>
+        <div className={clsx("lg:grid lg:grid-cols-12 lg:gap-x-[24px]")}>
+          <div className={clsx("lg:col-span-5")}>
+            <Link href={"/"} className={clsx("block")}>
               <Image
                 src={LogoFull}
                 alt="Community Financial Logo"
                 width={273}
                 height={60}
-                className={clsx('w-[208px]', 'lg:w-[273px]')}
+                className={clsx("w-[208px]", "lg:w-[273px]")}
               />
             </Link>
             <nav
               className={clsx(
-                'mt-[33.17px] flex flex-row gap-x-[36px] items-center',
-                'lg:mt-[46px] lg:gap-x-[17px]',
+                "mt-[33.17px] flex flex-row gap-x-[36px] items-center",
+                "lg:mt-[46px] lg:gap-x-[17px]"
               )}
             >
               {data?.socials.map((social, index) => (
@@ -54,20 +58,20 @@ const Footer = () => {
                   onClick={(e) => externalOnClick(e, social.url)}
                   href={social.url}
                   className={clsx(
-                    'lg:hover:opacity-60 transition-opacity duration-150',
+                    "lg:hover:opacity-60 transition-opacity duration-150"
                   )}
                 >
                   <Image
                     src={
                       social?.icon?.asset
                         ? urlForImage(social.icon).quality(100).url()
-                        : ''
+                        : ""
                     }
                     alt={social?.icon?.alt as string}
                     quality={100}
                     width={50}
                     height={50}
-                    className={clsx('w-[25px] h-auto object-contain')}
+                    className={clsx("w-[25px] h-auto object-contain")}
                   />
                 </a>
               ))}
@@ -75,56 +79,60 @@ const Footer = () => {
           </div>
           <div
             className={clsx(
-              'mt-[66px] flex flex-col gap-y-[25px]',
-              'lg:col-span-3 lg:mt-0',
+              "mt-[66px] flex flex-col gap-y-[25px]",
+              "lg:col-span-3 lg:mt-0"
             )}
           >
             <h5
               className={clsx(
-                'font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase',
+                "font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase"
               )}
             >
               Company
             </h5>
-            <div className={clsx('flex flex-col gap-y-[18px]')}>
+            <div className={clsx("flex flex-col gap-y-[18px]")}>
               {data?.companyLinks.map((link, index) => (
                 <PageLink
                   key={index}
                   data={link}
                   className={clsx(
-                    'font-codec-bold text-[18px] leading-[16.2px] text-white',
-                    'lg:hover:opacity-60 transition-opacity duration-150',
+                    "font-codec-bold text-[18px] leading-[16.2px] text-white",
+                    "lg:hover:opacity-60 transition-opacity duration-150"
                   )}
                 >
-                  <span>{link.title}</span>
+                  <span>
+                    <FormattedTextField text={link.title} />
+                  </span>
                 </PageLink>
               ))}
             </div>
           </div>
           <div
             className={clsx(
-              'mt-[48px] flex flex-col gap-y-[25px]',
-              'lg:mt-0 lg:col-span-2',
+              "mt-[48px] flex flex-col gap-y-[25px]",
+              "lg:mt-0 lg:col-span-2"
             )}
           >
             <h5
               className={clsx(
-                'font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase',
+                "font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase"
               )}
             >
               Resources
             </h5>
-            <div className={clsx('flex flex-col gap-y-[18px]')}>
+            <div className={clsx("flex flex-col gap-y-[18px]")}>
               {data?.resourceLinks.map((link, index) => (
                 <PageLink
                   key={index}
                   data={link}
                   className={clsx(
-                    'font-codec-bold text-[18px] leading-[16.2px] text-white',
-                    'lg:hover:opacity-60 transition-opacity duration-150',
+                    "font-codec-bold text-[18px] leading-[16.2px] text-white",
+                    "lg:hover:opacity-60 transition-opacity duration-150"
                   )}
                 >
-                  <span>{link.title}</span>
+                  <span>
+                    <FormattedTextField text={link.title} />
+                  </span>
                 </PageLink>
               ))}
             </div>
@@ -132,24 +140,24 @@ const Footer = () => {
 
           <div
             className={clsx(
-              'mt-[48px] flex flex-col gap-y-[22px] relative h-fit',
-              'lg:mt-0 lg:col-span-2',
+              "mt-[48px] flex flex-col gap-y-[22px] relative h-fit",
+              "lg:mt-0 lg:col-span-2"
             )}
           >
             <h5
               className={clsx(
-                'font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase',
+                "font-codec-news text-white/70 text-[14px] leading-[14px] tracking-[1.6px] uppercase"
               )}
             >
               Routing Number
             </h5>
             <button
               onClick={handleCopy}
-              className={clsx('flex flex-row gap-x-[6px] items-center group')}
+              className={clsx("flex flex-row gap-x-[6px] items-center group")}
             >
               <span
                 className={clsx(
-                  'font-codec-bold text-[18px] leading-[16.2px] text-white',
+                  "font-codec-bold text-[18px] leading-[16.2px] text-white"
                 )}
               >
                 {data?.routingNumber}
@@ -161,7 +169,7 @@ const Footer = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className={clsx(
-                  'lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:opacity-0 group-hover:ease-in-cubic lg:translate-y-[6px] transition-all duration-200 ease-out-cubic',
+                  "lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:opacity-0 group-hover:ease-in-cubic lg:translate-y-[6px] transition-all duration-200 ease-out-cubic"
                 )}
               >
                 <path
@@ -173,10 +181,10 @@ const Footer = () => {
             <p
               ref={copiedRef}
               className={clsx(
-                'absolute bottom-[-32px] text-white ',
+                "absolute bottom-[-32px] text-white ",
                 isCopied
-                  ? 'opacity-100 translate-y-0 transition-all duration-200 ease-out-cubic'
-                  : 'opacity-0 translate-y-[6px] transition-all duration-200 ease-in-cubic',
+                  ? "opacity-100 translate-y-0 transition-all duration-200 ease-out-cubic"
+                  : "opacity-0 translate-y-[6px] transition-all duration-200 ease-in-cubic"
               )}
             >
               Copied!
@@ -185,41 +193,31 @@ const Footer = () => {
         </div>
         <div
           className={clsx(
-            'lg:border-t lg:border-t-white/20 lg:flex  lg:flex-row lg:mt-[129px] lg:justify-start lg:pt-[33px] lg:items-center lg:gap-x-[32px]',
+            "lg:border-t lg:border-t-white/20 lg:flex  lg:flex-row lg:mt-[129px] lg:justify-start lg:pt-[33px] lg:items-center lg:gap-x-[32px]"
           )}
         >
           <div
             className={clsx(
-              'flex gap-x-[24px] items-center mt-[50px] pt-[33px] border-t border-t-white/20',
-              'lg:border-t-0 lg:gap-x-[36px] lg:w-fit lg:pt-0 lg:mt-0',
+              "flex gap-x-[24px] items-center mt-[50px] pt-[33px] border-t border-t-white/20",
+              "lg:border-t-0 lg:gap-x-[36px] lg:w-fit lg:pt-0 lg:mt-0"
             )}
           >
             {data?.lowerFooterIcons.map((icon, index) => (
-              <Image
-                key={index}
-                src={
-                  icon?.icon ? urlForImage(icon?.icon).quality(100).url() : ''
-                }
-                alt={icon.icon.alt as string}
-                quality={100}
-                width={200}
-                height={200}
-                className={clsx('h-[65px] object-contain shrink w-fit')}
-              />
+              <LowerFooterIcon key={index} value={icon} />
             ))}
           </div>
-          <p
+          <div
             className={clsx(
-              'font-codec-regular text-[14px] leading-[18.2px] text-white mt-[56px] max-w-[570px]',
-              'lg:mt-0',
+              "font-codec-regular text-[14px] leading-[18.2px] text-white mt-[56px] max-w-[570px]",
+              "lg:mt-0"
             )}
           >
-            {data?.lowerFooterMessage}
-          </p>
+            <PortableText value={data?.lowerFooterContent} />
+          </div>
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

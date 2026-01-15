@@ -9,6 +9,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Pagination from './pagination' // Adjust the import path as needed
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 export function Search() {
   const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!
@@ -261,9 +262,7 @@ export function Search() {
                   {results.map((result) => (
                     <li
                       key={result.objectID}
-                      className={clsx(
-                        'py-[28px] border-t border-t-black/10',
-                      )}
+                      className={clsx('py-[28px] border-t border-t-black/10')}
                     >
                       <Link
                         href={createSlug(result.type, result?.slug)}
@@ -275,7 +274,9 @@ export function Search() {
                             'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold ',
                           )}
                         >
-                          {result.title || result.metaTitle}
+                          <FormattedTextField
+                            text={result.title || result.metaTitle}
+                          />
                         </h3>
                         {(result.metaDescription ||
                           result._type === 'subPage') && (
@@ -285,7 +286,7 @@ export function Search() {
                               'lg:w-paragraph-l-desktop lg:mb-0',
                             )}
                           >
-                            {result.metaDescription}
+                            <FormattedTextField text={result.metaDescription} />
                           </p>
                         )}
                       </Link>

@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import Link from 'next/link'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import * as Accordion from '@radix-ui/react-accordion'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
   const { width } = useWindowSize()
@@ -23,17 +24,14 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
             )}
           >
             {' '}
-            {page?.title}
+            <FormattedTextField text={page?.title} />
           </Link>
         ))}
       </nav>
       <Accordion.Root
         type="single"
         collapsible
-        className={clsx(
-          'w-full border-b border-b-black/10 ',
-          'lg:hidden',
-        )}
+        className={clsx('w-full border-b border-b-black/10 ', 'lg:hidden')}
       >
         <Accordion.Item value="subPageLinks group">
           <Accordion.Header className={clsx('text-black')}>
@@ -75,7 +73,7 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
                     'text-lavender font-codec-bold text-[18px] leading-[27px]',
                   )}
                 >
-                  {page.title}
+                  <FormattedTextField text={page.title} />
                 </Link>
               ))}
             </nav>

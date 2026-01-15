@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocationPage } from '@/types/sanity'
+import type { LocationPage } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from '@/lib/sanity.image'
@@ -9,6 +9,8 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { externalOnClick } from '@/utils'
 import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import LocationButtonLink from '@/components/locations/LocationButtonLink'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
@@ -25,13 +27,11 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   )
 }
 
-export default LocationGrid
-
 const LocationCard = ({ data }: { data: LocationPage }) => {
   return (
     <article>
       <Link href={data?.slug.current}>
-        <div className={clsx('aspect-w-16 aspect-h-9')}>
+        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9')}>
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(1200)
@@ -55,7 +55,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             'lg:text-[32px] lg:font-codec-extra-bold text-lavender',
           )}
         >
-          {data?.title}
+          <FormattedTextField text={data?.title} />
         </h4>
       </Link>
       <div
@@ -112,12 +112,24 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
 
         <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
-      <Link href={data?.slug.current} className={clsx('block mt-[25px]')}>
-        <Button
-          label={'More Info'}
-          className={clsx('!bg-lavender text-white!')}
-        />
-      </Link>
+      <div className="mt-[25px] flex flex-col gap-y-2">
+        {data?.appointmentLink && (
+          <LocationButtonLink
+            title={data.appointmentLink.title || 'Schedule an Appointment'}
+            link={data.appointmentLink?.link}
+            externalLink={data.appointmentLink?.externalLink}
+            externalLinkOneOff={data.appointmentLink?.externalLinkOneOff}
+          />
+        )}
+        <Link href={data?.slug.current} className={clsx('block')}>
+          <Button
+            label={'More Info'}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </Link>
+      </div>
     </article>
   )
 }
+
+export default LocationGrid

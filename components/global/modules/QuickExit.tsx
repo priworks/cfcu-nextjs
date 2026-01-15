@@ -12,7 +12,7 @@ export default function FastExitButton({ url }: { url: string }) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const chatWidget = document.querySelector('.sm-visitor-app')
-      if (!chatWidget) return
+      if (!chatWidget || !buttonRef.current) return
       if (width > 768) {
         buttonRef.current.style.transform = 'translateY(-75px)'
       } else {

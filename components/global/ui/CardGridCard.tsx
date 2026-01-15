@@ -5,6 +5,7 @@ import { urlForImage } from '@/lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import CardLink from '../ui/CardLink'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 export default function CardGridCard({
   data,
@@ -15,7 +16,7 @@ export default function CardGridCard({
     <CardLink data={data?.cardLink} className={clsx('group')}>
       <article className={clsx('w-[239px]', 'lg:w-full')}>
         <div
-          className={clsx('aspect-w-10 aspect-h-11 relative overflow-hidden')}
+          className={clsx('aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden')}
         >
           <Image
             src={
@@ -41,7 +42,7 @@ export default function CardGridCard({
               'lg:w-h6-desktop lg:mt-[19px]',
             )}
           >
-            {data?.title}{' '}
+            <FormattedTextField text={data?.title} />{' '}
             <svg
               width="16"
               height="16"
@@ -66,14 +67,14 @@ export default function CardGridCard({
               'lg:w-paragraph-s-desktop',
             )}
           >
-            {data?.description}
+            <FormattedTextField text={data?.description} />
           </p>
         )}
       </article>
     </CardLink>
   ) : (
     <article className={clsx('w-[239px]', 'lg:w-full')}>
-      <div className={clsx('aspect-w-10 aspect-h-11 relative overflow-hidden')}>
+      <div className={clsx('aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden')}>
         <Image
           src={
             data?.image
@@ -98,7 +99,7 @@ export default function CardGridCard({
             'lg:w-h6-desktop lg:mt-[19px]',
           )}
         >
-          {data?.title}{' '}
+          <FormattedTextField text={data?.title} />{' '}
           {/* <svg
             width="16"
             height="16"
@@ -123,7 +124,7 @@ export default function CardGridCard({
             'lg:w-paragraph-s-desktop',
           )}
         >
-          {data?.description}
+          <FormattedTextField text={data?.description} />
         </p>
       )}
     </article>
