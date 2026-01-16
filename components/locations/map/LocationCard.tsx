@@ -71,7 +71,7 @@ export default function LocationCard({
         </svg>
       </button>
       <Link href={`/${data?.slug.current}`}>
-        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9')}>
+        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9 relative')}>
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(600)

@@ -37,7 +37,7 @@ const Header = () => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const isPastPoint = useScrollPastPoint(alertHeight)
   const { width } = useWindowSize()
-  const headerRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const [entryRun, setEntryRun] = useState(false)
 
   useIsomorphicLayoutEffect(() => {

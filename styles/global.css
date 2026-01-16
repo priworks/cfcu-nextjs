@@ -3,6 +3,8 @@
 @import './_variables.css';
 
 @import 'tailwindcss';
+/* @plugin 'tailwindcss/animate'; */
+@plugin '../plugins/clamp-plugin.ts';
 
 @theme {
   /* Custom Colors */
@@ -421,3 +423,272 @@
 @utility font-codec-light {
   font-family: var(--font-codec-light);
 }
+
+/* Clamp Utilities - Responsive scaling from 1440px to 1800px */
+/* @utility clamp-p {
+  padding: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-px {
+  padding-left: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+  padding-right: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-py {
+  padding-top: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+  padding-bottom: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-pt {
+  padding-top: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-pr {
+  padding-right: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-pb {
+  padding-bottom: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-pl {
+  padding-left: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-m {
+  margin: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-mx {
+  margin-left: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+  margin-right: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-my {
+  margin-top: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+  margin-bottom: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-mt {
+  margin-top: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-mr {
+  margin-right: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-mb {
+  margin-bottom: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-ml {
+  margin-left: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-w {
+  width: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-h {
+  height: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-max-w {
+  max-width: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-max-h {
+  max-height: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-min-w {
+  min-width: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-min-h {
+  min-height: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-gap {
+  gap: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-gap-x {
+  column-gap: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-gap-y {
+  row-gap: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-text {
+  font-size: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-leading {
+  line-height: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-tracking {
+  letter-spacing: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-rounded {
+  border-radius: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-left {
+  left: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-right {
+  right: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-top {
+  top: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+}
+
+@utility clamp-bottom {
+  bottom: clamp(
+    0px,
+    calc(var(--value) / 1440 * 100vw),
+    calc(var(--value) / 1440 * 1800px)
+  );
+} */

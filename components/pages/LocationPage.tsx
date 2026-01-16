@@ -216,7 +216,11 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               </PageLink>
             )}
           </article>
-          <div className={clsx('aspect-[8/7] aspect-w-8 aspect-h-7 w-full')}>
+          <div
+            className={clsx(
+              'aspect-[8/7] aspect-w-8 aspect-h-7 w-full relative',
+            )}
+          >
             <Image
               src={urlForImage(data?.thumbnailImage)
                 .width(1200)

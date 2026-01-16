@@ -30,7 +30,7 @@ const PostCard = ({
       >
         <div
           className={clsx(
-            'overflow-hidden w-full',
+            'overflow-hidden w-full relative',
             fixSize && 'aspect-[1/1] aspect-w-1 aspect-h-1',
           )}
         >
