@@ -16,7 +16,9 @@ export default function CardGridCard({
     <CardLink data={data?.cardLink} className={clsx('group')}>
       <article className={clsx('w-[239px]', 'lg:w-full')}>
         <div
-          className={clsx('aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden')}
+          className={clsx(
+            'aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden',
+          )}
         >
           <Image
             src={
@@ -74,7 +76,11 @@ export default function CardGridCard({
     </CardLink>
   ) : (
     <article className={clsx('w-[239px]', 'lg:w-full')}>
-      <div className={clsx('aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden')}>
+      <div
+        className={clsx(
+          'aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden',
+        )}
+      >
         <Image
           src={
             data?.image

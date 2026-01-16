@@ -60,8 +60,8 @@ export default defineType({
                 subtitle:
                   subtitle && subtitle[0]?.children
                     ? subtitle[0].children
-                        .filter((child) => child._type === 'span')
-                        .map((span) => span.text)
+                        .filter((child: any) => child._type === 'span')
+                        .map((span: any) => span.text)
                         .join('')
                     : 'No preview available',
               }

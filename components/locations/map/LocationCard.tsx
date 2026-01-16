@@ -22,7 +22,9 @@ export default function LocationCard({
   data: LocationPage
   setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>
   setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>
-  setSelectedMobilePopup: React.Dispatch<React.SetStateAction<LocationPage | null>>
+  setSelectedMobilePopup: React.Dispatch<
+    React.SetStateAction<LocationPage | null>
+  >
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   useIsomorphicLayoutEffect(() => {

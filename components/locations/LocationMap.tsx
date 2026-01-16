@@ -123,7 +123,6 @@ export default function MapView({
         map.current.off('zoom', updatePosition)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocation, selectedATM])
 
   // Initialize map

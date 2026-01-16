@@ -144,7 +144,7 @@ export async function getATMLocations(
   return new Promise((resolve, reject) => {
     Papa.parse(csvText, {
       header: false, // Set to true if your CSV has headers
-      complete: (results) => {
+      complete: (results: any) => {
         const locations = results.data
           .filter((row: any) => row.length === 4) // Ensure row has all fields
           .map((row: any) => ({
@@ -155,7 +155,7 @@ export async function getATMLocations(
           }))
         resolve(locations)
       },
-      error: (error) => {
+      error: (error: any) => {
         reject(error)
       },
     })

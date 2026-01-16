@@ -85,7 +85,7 @@ export function CustomDocumentView(props: any) {
       <h3 className="text-xl font-bold mb-2">Child Pages:</h3>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
-          {(provided) => (
+          {(provided: any) => (
             <ul
               className="list-none pl-0"
               {...provided.droppableProps}
@@ -97,7 +97,7 @@ export function CustomDocumentView(props: any) {
                   draggableId={childDoc._id}
                   index={index}
                 >
-                  {(provided) => (
+                  {(provided: any) => (
                     <li
                       ref={provided.innerRef}
                       {...provided.draggableProps}

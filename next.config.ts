@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     ...,
   }`)
     const sanitySortedRedirects = sanityRedirects[0]?.redirects
-      .filter((redirect) => {
+      .filter((redirect: any) => {
         // Filter out /go.php?bid= redirects (handled by middleware)
         const isGoPhpBidRedirect = redirect.source.startsWith('/go.php?bid=')
 
@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
 
         return true
       })
-      .map((redirect) => {
+      .map((redirect: any) => {
         let source = redirect.source
 
         // Strip query params from other redirects

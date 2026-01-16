@@ -180,7 +180,9 @@ const Menu = ({
                       <PageLink
                         data={link}
                         key={index}
-                        onClick={() => setCloseInitiated &&setCloseInitiated(true)}
+                        onClick={() =>
+                          setCloseInitiated && setCloseInitiated(true)
+                        }
                         className={clsx(
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
@@ -223,7 +225,9 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
-                          onClick={() => setCloseInitiated &&setCloseInitiated(true)}
+                          onClick={() =>
+                            setCloseInitiated && setCloseInitiated(true)
+                          }
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
@@ -265,7 +269,9 @@ const Menu = ({
                         <PageLink
                           data={link}
                           key={index}
-                          onClick={() => setCloseInitiated &&setCloseInitiated(true)}
+                          onClick={() =>
+                            setCloseInitiated && setCloseInitiated(true)
+                          }
                           className={clsx(
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
@@ -333,7 +339,9 @@ const Menu = ({
                     <PageLink
                       data={link}
                       key={index}
-                      onClick={() => setCloseInitiated &&setCloseInitiated(true)}
+                      onClick={() =>
+                        setCloseInitiated && setCloseInitiated(true)
+                      }
                       className={clsx(
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}

@@ -1,13 +1,13 @@
-import { useState, useEffect, use } from "react";
-import { SearchResult } from "@/types/sanity";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { clsx } from "clsx";
-import Image from "next/image";
-import defualtSubPageHero from "public/images/defaultSubPage.png";
-import { useGlobalSettingsStore } from "@/stores/globalSettingsStore";
-import { GlobalSettingsType } from "@/types/sanity";
-import FormattedTextField from "@/components/interaction/formattedTextField";
+import { useState, useEffect, use } from 'react'
+import { SearchResult } from '@/types/sanity'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { clsx } from 'clsx'
+import Image from 'next/image'
+import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
+import { GlobalSettingsType } from '@/types/sanity'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const SearchResultsPage = ({
   initialQuery,
@@ -17,102 +17,102 @@ const SearchResultsPage = ({
   currentPage,
   totalPages,
 }: {
-  initialQuery: string;
-  results: SearchResult[];
-  globalSettings: GlobalSettingsType;
-  totalResults: number;
-  currentPage: number;
-  totalPages: number;
+  initialQuery: string
+  results: SearchResult[]
+  globalSettings: GlobalSettingsType
+  totalResults: number
+  currentPage: number
+  totalPages: number
 }) => {
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState(initialQuery)
+  const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
-  };
+    e.preventDefault()
+    router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
+  }
   const setGlobalSettings = useGlobalSettingsStore(
-    (state) => state.setGlobalSettings
-  );
+    (state) => state.setGlobalSettings,
+  )
 
   useEffect(() => {
-    setGlobalSettings(globalSettings);
-  }, [setGlobalSettings, globalSettings]);
+    setGlobalSettings(globalSettings)
+  }, [setGlobalSettings, globalSettings])
 
   function createSlug(_type: string, slug?: string) {
-    let generatedSlug = "";
+    let generatedSlug = ''
 
     switch (_type) {
-      case "subPage":
-        generatedSlug = `/${slug}`;
-        break;
-      case "rates":
-        generatedSlug = `/${slug}`;
-        break;
-      case "location":
-        generatedSlug = `/${slug}`;
-        break;
-      case "homepage":
-        generatedSlug = `/`;
-        break;
-      case "post":
-        generatedSlug = `/${slug}`;
-        break;
+      case 'subPage':
+        generatedSlug = `/${slug}`
+        break
+      case 'rates':
+        generatedSlug = `/${slug}`
+        break
+      case 'location':
+        generatedSlug = `/${slug}`
+        break
+      case 'homepage':
+        generatedSlug = `/`
+        break
+      case 'post':
+        generatedSlug = `/${slug}`
+        break
       default:
-        generatedSlug = `/`;
+        generatedSlug = `/`
     }
-    return generatedSlug;
+    return generatedSlug
   }
 
   //TODO once we know what to display here.
   function generateExcerpt(SearchResult: any) {
-    let excerpt = "";
+    const excerpt = ''
   }
 
   useEffect(() => {
-    setSearchQuery(initialQuery);
-  }, [initialQuery]);
+    setSearchQuery(initialQuery)
+  }, [initialQuery])
 
   return (
     <div>
       <section
         className={clsx(
-          "relative px-[24px] pt-[24px] pb-[45px]",
-          "lg:h-[650px]"
+          'relative px-[24px] pt-[24px] pb-[45px]',
+          'lg:h-[650px]',
         )}
       >
         <Link
-          href={"/"}
+          href={'/'}
           className={clsx(
-            "block relative z-3",
-            "lg:absolute lg:top-[48px] lg:left-[48px]"
+            'block relative z-3',
+            'lg:absolute lg:top-[48px] lg:left-[48px]',
           )}
         >
           <Image
-            src={"/icons/LogoFull.png"}
-            alt={"Community Financial Logo"}
+            src={'/icons/LogoFull.png'}
+            alt={'Community Financial Logo'}
             width={500}
             height={108}
-            className={clsx("w-[212px]", "lg:w-[244.71px]")}
+            className={clsx('w-[212px]', 'lg:w-[244.71px]')}
           />
         </Link>
         <Image
           src={defualtSubPageHero}
-          alt={"origami"}
+          alt={'origami'}
           fill
           priority
-          className={clsx("object-cover w-full h-full absolute top-0 left-0 ")}
+          className={clsx('object-cover w-full h-full absolute top-0 left-0 ')}
         />
         <div
           className={clsx(
-            "relative z-2 max-w-[888px] mx-auto pt-[111px]",
-            "lg:pt-[275px]"
+            'relative z-2 max-w-[888px] mx-auto pt-[111px]',
+            'lg:pt-[275px]',
           )}
         >
           <h1
             className={clsx(
-              "w-h1 text-white mb-[27px]",
-              "lg:text-[90px] lg:leading-[99px] font-codec-heavy lg:text-center lg:mb-[33px]"
+              'w-h1 text-white mb-[27px]',
+              'lg:text-[90px] lg:leading-[99px] font-codec-heavy lg:text-center lg:mb-[33px]',
             )}
           >
             Search CFCU
@@ -120,8 +120,8 @@ const SearchResultsPage = ({
           <form
             onSubmit={handleSearch}
             className={clsx(
-              "pl-[20px]",
-              "relative lg:pl-[25px] pr-[5px] pt-[5px] pb-[5px] rounded-[8px] bg-white flex"
+              'pl-[20px]',
+              'relative lg:pl-[25px] pr-[5px] pt-[5px] pb-[5px] rounded-[8px] bg-white flex',
             )}
           >
             <input
@@ -130,14 +130,14 @@ const SearchResultsPage = ({
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search..."
               className={clsx(
-                "w-full font-codec-bold text-black bg-none focus:outline-none"
+                'w-full font-codec-bold text-black bg-none focus:outline-none',
               )}
             />
             <button
               type="submit"
               className={clsx(
-                "w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] shrink-0",
-                "hover:opacity-80 transition-opacity duration-200"
+                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] shrink-0',
+                'hover:opacity-80 transition-opacity duration-200',
               )}
             >
               <svg
@@ -158,39 +158,39 @@ const SearchResultsPage = ({
       </section>
       <section
         className={clsx(
-          "max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]",
-          "lg:mt-[61px] lg:mb-[83px] lg:px-0"
+          'max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]',
+          'lg:mt-[61px] lg:mb-[83px] lg:px-0',
         )}
       >
         <p
           className={clsx(
-            "text-black text-[16px] leading-[14.4px] font-codec-bold"
+            'text-black text-[16px] leading-[14.4px] font-codec-bold',
           )}
         >
-          Showing{" "}
-          <span className={clsx("text-lavender font-codec-heavy")}>
+          Showing{' '}
+          <span className={clsx('text-lavender font-codec-heavy')}>
             {totalResults}
-          </span>{" "}
-          results for{" "}
-          <span className={clsx("text-lavender font-codec-heavy")}>
+          </span>{' '}
+          results for{' '}
+          <span className={clsx('text-lavender font-codec-heavy')}>
             &apos;{initialQuery}&apos;
           </span>
         </p>
         {results.length > 0 ? (
-          <ul className={clsx("mt-[68px]", "lg:mt-[40px]")}>
+          <ul className={clsx('mt-[68px]', 'lg:mt-[40px]')}>
             {results.map((result) => (
               <li
                 key={result._id}
-                className={clsx("py-[28px] border-t border-t-black/10")}
+                className={clsx('py-[28px] border-t border-t-black/10')}
               >
                 <Link
                   href={createSlug(result._type, result?.slug?.current)}
-                  className={clsx("group")}
+                  className={clsx('group')}
                 >
                   <h3
                     className={clsx(
-                      "w-h6 group-hover:opacity-80 transition-opacity duration-200",
-                      "text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold "
+                      'w-h6 group-hover:opacity-80 transition-opacity duration-200',
+                      'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold ',
                     )}
                   >
                     <FormattedTextField text={result.metaTitle} />
@@ -198,8 +198,8 @@ const SearchResultsPage = ({
                   {result.metaDescription && (
                     <p
                       className={clsx(
-                        "w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]",
-                        "lg:w-paragraph-l-desktop lg:mb-0"
+                        'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
+                        'lg:w-paragraph-l-desktop lg:mb-0',
                       )}
                     >
                       <FormattedTextField text={result.metaDescription} />
@@ -214,7 +214,7 @@ const SearchResultsPage = ({
         )}
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default SearchResultsPage;
+export default SearchResultsPage

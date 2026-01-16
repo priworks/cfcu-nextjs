@@ -37,7 +37,7 @@ export interface Seo {
 
 export const myWysiwygComponentsWithoutPadding = {
   types: {
-    image: ({ value }) => (
+    image: ({ value }: { value: any }) => (
       <Image
         src={urlForImage(value).quality(80).width(2440).url()}
         alt={String(value.alt)}
@@ -51,10 +51,7 @@ export const myWysiwygComponentsWithoutPadding = {
 
 const PreviewProvider = lazy(() => import('@/components/PreviewProvider'))
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps<SharedPageProps>) {
+export default function App({ Component, pageProps }: AppProps) {
   const { draftMode, token } = pageProps
   return (
     <GlobalErrorBoundary>

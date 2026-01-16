@@ -1,8 +1,18 @@
 const plugin = require('tailwindcss/plugin')
 
-module.exports = plugin(function ({ addUtilities, matchUtilities, theme, e }) {
-  const convertToVw = (px) => `${((px / 1440) * 100).toFixed(4)}vw`
-  const calculateMaxPx = (px) => Math.round((px / 1440) * 1800)
+module.exports = plugin(function ({
+  addUtilities,
+  matchUtilities,
+  theme,
+  e,
+}: {
+  addUtilities: any
+  matchUtilities: any
+  theme: any
+  e: any
+}) {
+  const convertToVw = (px: any) => `${((px / 1440) * 100).toFixed(4)}vw`
+  const calculateMaxPx = (px: any) => Math.round((px / 1440) * 1800)
 
   const clampableProperties = {
     p: 'padding',
@@ -42,11 +52,11 @@ module.exports = plugin(function ({ addUtilities, matchUtilities, theme, e }) {
   Object.entries(clampableProperties).forEach(([key, properties]) => {
     matchUtilities(
       {
-        [`clamp-${key}`]: (value) => {
+        [`clamp-${key}`]: (value: any) => {
           const pixelValue = parseInt(value)
           if (isNaN(pixelValue)) return {}
 
-          const styles = {}
+          const styles: { [key: string]: string } = {}
           if (Array.isArray(properties)) {
             properties.forEach((prop) => {
               styles[prop] =

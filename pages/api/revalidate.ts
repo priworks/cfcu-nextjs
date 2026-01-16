@@ -1,20 +1,76 @@
 import { apiVersion, dataset, projectId } from '@/lib/sanity.api'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {
-  createClient,
-  groq,
-  type SanityClient,
-  type SanityDocument,
-} from 'next-sanity'
-import { parseBody, type ParsedBody } from 'next-sanity/webhook'
-// export { config } from 'next-sanity/webhook'
+import { createClient, groq, type SanityClient } from 'next-sanity'
+import crypto from 'crypto'
+
+// Custom interface for webhook body since parseBody from next-sanity/webhook is designed for App Router
+interface WebhookBody {
+  _id: string
+  _type: string
+  slug?: { current: string }
+  date?: string
+  [key: string]: unknown
+}
+
+interface ParsedWebhookResult {
+  body: WebhookBody | null
+  isValidSignature: boolean
+}
+
+async function parseWebhookBody(
+  req: NextApiRequest,
+  secret?: string,
+): Promise<any> {
+  const signature = req.headers['sanity-webhook-signature'] as
+    | string
+    | undefined
+  const body =
+    typeof req.body === 'string' ? req.body : JSON.stringify(req.body)
+
+  if (!signature || !secret) {
+    return { body: null, isValidSignature: false }
+  }
+
+  const [timestamp, signatureHash] = signature.split(',')
+  const t = timestamp?.replace('t=', '')
+  const v1 = signatureHash?.replace('v1=', '')
+
+  if (!t || !v1) {
+    return { body: null, isValidSignature: false }
+  }
+
+  const computedSignature = crypto
+    .createHmac('sha256', secret)
+    .update(`${t}.${body}`)
+    .digest('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
+
+  const isValidSignature = computedSignature === v1
+
+  if (!isValidSignature) {
+    return { body: null, isValidSignature: false }
+  }
+
+  const parsedBody =
+    typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+  return { body: parsedBody as WebhookBody, isValidSignature: true }
+}
+
+// Disable body parsing to get raw body for signature verification
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+}
 
 export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   try {
-    const { body, isValidSignature } = await parseBody(
+    const { body, isValidSignature } = await parseWebhookBody(
       req,
       process.env.SANITY_REVALIDATE_SECRET,
     )
@@ -29,12 +85,12 @@ export default async function revalidate(
       return res.status(400).send(invalidId)
     }
     // res.status(200).json({ body })
-    const staleRoutes = await queryStaleRoutes(body as any)
-    await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
+    const staleRoutes = await queryStaleRoutes(body)
+    await Promise.all(staleRoutes.map((route: any) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
     return res.status(200).send(updatedRoutes)
-  } catch (err) {
+  } catch (err: any) {
     console.error(err)
     return res.status(500).send(err.message)
   }
@@ -42,12 +98,7 @@ export default async function revalidate(
 
 type StaleRoute = '/' | `/${string}` | '/test-modules' | string
 
-async function queryStaleRoutes(
-  body: Pick<
-    ParsedBody<SanityDocument>['body'],
-    '_type' | '_id' | 'date' | 'slug'
-  >,
-): Promise<StaleRoute[]> {
+async function queryStaleRoutes(body: WebhookBody): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
   // return queryAllRoutes(client)
 
@@ -115,7 +166,7 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
     '/locations',
     '/test-modules',
     '/search',
-    ...routes.map((slug) => `/${slug}`),
+    ...routes.map((slug: any) => `/${slug}`),
     // ...topicPagesThatNeedToBeRevalidated,
     // ...postHomeRoutes,
   ]
@@ -193,8 +244,8 @@ async function moduleHandler(client: SanityClient, body: any) {
         return null
       }
     })
-    .filter((route) => route !== null)
-    .map((route) => route.slug)
+    .filter((route: any) => route !== null)
+    .map((route: any) => route.slug)
 
   return processedRoutes
 }
@@ -216,7 +267,7 @@ async function getAllPostHomePageSlugs(
 
   const topicIds = await client.fetch(groq`*[_type == "topic"]{"_id":_id}`)
   const topicSlugs = await Promise.all(
-    topicIds.map(async (topic) => {
+    topicIds.map(async (topic: any) => {
       const slugs = await getTopicPostPageSlugs(client, topic._id, true, true)
       return slugs
     }),
@@ -261,7 +312,7 @@ async function getIndividualPostSlugs(
 
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
-    referencingModules.map(async (moduleId) => {
+    referencingModules.map(async (moduleId: any) => {
       return moduleHandler(client, { _id: moduleId })
     }),
   ).then((slugArrays) => slugArrays.flat())
@@ -285,7 +336,7 @@ async function getAllRefercingSlugs(
   )
 
   const globalSettingsPresent = referencingPages.find(
-    (page) => page._type === 'globalSettings',
+    (page: any) => page._type === 'globalSettings',
   )
 
   if (globalSettingsPresent) {
@@ -313,8 +364,8 @@ async function getAllRefercingSlugs(
         return null
       }
     })
-    .filter((route) => route !== null)
-    .map((route) => route.slug)
+    .filter((route: any) => route !== null)
+    .map((route: any) => route.slug)
 
   // Find modules that reference this location
   const referencingModules = await client.fetch(
@@ -324,7 +375,7 @@ async function getAllRefercingSlugs(
 
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
-    referencingModules.map(async (moduleId) => {
+    referencingModules.map(async (moduleId: any) => {
       return moduleHandler(client, { _id: moduleId })
     }),
   ).then((slugArrays) => slugArrays.flat())

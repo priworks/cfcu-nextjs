@@ -110,7 +110,7 @@ export function CustomDocumentView(props: any) {
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         {enabled ? (
           <Droppable droppableId="list">
-            {(provided) => (
+            {(provided: any) => (
               <ul
                 className="list-none pl-0"
                 {...provided.droppableProps}
@@ -123,7 +123,7 @@ export function CustomDocumentView(props: any) {
                     index={index}
                     isDragDisabled={isPending} // Update 3: Disable dragging when pending
                   >
-                    {(provided, snapshot) => (
+                    {(provided: any, snapshot: any) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}

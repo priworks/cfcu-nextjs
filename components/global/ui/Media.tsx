@@ -1,22 +1,22 @@
 //@ts-nocheck
 
-import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
-import type { Media } from "@/types/sanity";
-import { urlForImage } from "@/lib/sanity.image";
-import { urlForFile } from "@/lib/sanity.file";
-import { clsx } from "clsx";
-import { stegaClean } from "@sanity/client/stega";
-import { SanityImage } from "sanity-image";
-import { useNextSanityImage } from "next-sanity-image";
-import { getClient } from "@/lib/sanity.client";
+import Image from 'next/image'
+import { useState, useRef, useEffect } from 'react'
+import type { Media } from '@/types/sanity'
+import { urlForImage } from '@/lib/sanity.image'
+import { urlForFile } from '@/lib/sanity.file'
+import { clsx } from 'clsx'
+import { stegaClean } from '@sanity/client/stega'
+import { SanityImage } from 'sanity-image'
+import { useNextSanityImage } from 'next-sanity-image'
+import { getClient } from '@/lib/sanity.client'
 
 interface MediaComponentProps {
-  media: Media;
-  isPlaying?: boolean;
-  priority?: boolean;
-  isSubHero?: boolean;
-  isCtaContent?: boolean;
+  media: Media
+  isPlaying?: boolean
+  priority?: boolean
+  isSubHero?: boolean
+  isCtaContent?: boolean
 }
 
 // Helper to determine what media to show on mobile
@@ -24,15 +24,15 @@ function getMobileMedia(media: Media) {
   const hasMobileOverride =
     media?.mobileOverrideEnabled &&
     media?.mobileMediaType &&
-    ((stegaClean(media?.mobileMediaType) === "image" && media?.mobileImage) ||
-      (stegaClean(media?.mobileMediaType) === "video" && media?.mobileVideo));
+    ((stegaClean(media?.mobileMediaType) === 'image' && media?.mobileImage) ||
+      (stegaClean(media?.mobileMediaType) === 'video' && media?.mobileVideo))
 
   if (hasMobileOverride) {
     return {
       type: stegaClean(media.mobileMediaType),
       image: media.mobileImage,
       video: media.mobileVideo,
-    };
+    }
   }
 
   // Fallback to primary media
@@ -40,7 +40,7 @@ function getMobileMedia(media: Media) {
     type: stegaClean(media?.mediaType),
     image: media?.image,
     video: media?.video,
-  };
+  }
 }
 
 // Helper to determine what media to show on desktop
@@ -49,7 +49,7 @@ function getDesktopMedia(media: Media) {
     type: stegaClean(media?.mediaType),
     image: media?.image,
     video: media?.video,
-  };
+  }
 }
 
 export default function MediaComponent({
@@ -59,36 +59,36 @@ export default function MediaComponent({
   isSubHero,
   isCtaContent,
 }: MediaComponentProps) {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const videoPlayerRef = useRef<HTMLVideoElement>(null);
-  const mobileVideoPlayerRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const videoPlayerRef = useRef<HTMLVideoElement>(null)
+  const mobileVideoPlayerRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     if (isPlaying) {
-      videoPlayerRef.current?.play();
-      mobileVideoPlayerRef.current?.play();
+      videoPlayerRef.current?.play()
+      mobileVideoPlayerRef.current?.play()
     } else {
-      videoPlayerRef.current?.pause();
-      mobileVideoPlayerRef.current?.pause();
+      videoPlayerRef.current?.pause()
+      mobileVideoPlayerRef.current?.pause()
     }
-  }, [isPlaying]);
+  }, [isPlaying])
 
-  const desktopMedia = getDesktopMedia(media);
-  const mobileMedia = getMobileMedia(media);
+  const desktopMedia = getDesktopMedia(media)
+  const mobileMedia = getMobileMedia(media)
 
   // Check if we need to render separate desktop and mobile elements
   const needsSeparateElements =
     desktopMedia.type !== mobileMedia.type ||
-    (desktopMedia.type === "image" &&
-      mobileMedia.type === "image" &&
+    (desktopMedia.type === 'image' &&
+      mobileMedia.type === 'image' &&
       desktopMedia.image !== mobileMedia.image) ||
-    (desktopMedia.type === "video" &&
-      mobileMedia.type === "video" &&
-      desktopMedia.video !== mobileMedia.video);
+    (desktopMedia.type === 'video' &&
+      mobileMedia.type === 'video' &&
+      desktopMedia.video !== mobileMedia.video)
 
   // Single media element (no mobile override or same media)
   if (!needsSeparateElements) {
-    if (desktopMedia.type === "image" && desktopMedia.image) {
+    if (desktopMedia.type === 'image' && desktopMedia.image) {
       return (
         <Image
           //@ts-ignore
@@ -104,24 +104,24 @@ export default function MediaComponent({
           quality={100}
           priority={priority}
           onLoad={(event) =>
-            (event.target as HTMLImageElement).classList.remove("opacity-0")
+            (event.target as HTMLImageElement).classList.remove('opacity-0')
           }
           className={clsx(
-            "object-cover w-full h-full",
-            "opacity-0 transition-all duration-300 ease-in-out-cubic"
+            'object-cover w-full h-full',
+            'opacity-0 transition-all duration-300 ease-in-out-cubic',
           )}
         />
-      );
-    } else if (desktopMedia.type === "video" && desktopMedia.video) {
+      )
+    } else if (desktopMedia.type === 'video' && desktopMedia.video) {
       return (
-        <figure className={clsx("w-full h-full")}>
+        <figure className={clsx('w-full h-full')}>
           <video
             muted
             playsInline
             autoPlay
             loop
             ref={videoPlayerRef}
-            className={clsx("w-full h-full object-cover")}
+            className={clsx('w-full h-full object-cover')}
           >
             <source
               src={urlForFile(desktopMedia.video?.asset?._ref)}
@@ -130,16 +130,16 @@ export default function MediaComponent({
             Your browser does not support the video tag.
           </video>
         </figure>
-      );
+      )
     }
-    return <div></div>;
+    return <div></div>
   }
 
   // Separate desktop and mobile elements
   return (
     <>
       {/* Desktop media */}
-      {desktopMedia.type === "image" && desktopMedia.image && (
+      {desktopMedia.type === 'image' && desktopMedia.image && (
         <Image
           //@ts-ignore
           src={urlForImage(desktopMedia.image)
@@ -153,19 +153,19 @@ export default function MediaComponent({
           height={1080}
           quality={100}
           priority={priority}
-          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
-            "object-cover w-full h-full hidden",
-            "opacity-0 transition-all duration-300 ease-in-out-cubic",
-            isSubHero ? "min-[500px]:block" : "lg:block"
+            'object-cover w-full h-full hidden',
+            'opacity-0 transition-all duration-300 ease-in-out-cubic',
+            isSubHero ? 'min-[500px]:block' : 'lg:block',
           )}
         />
       )}
-      {desktopMedia.type === "video" && desktopMedia.video && (
+      {desktopMedia.type === 'video' && desktopMedia.video && (
         <figure
           className={clsx(
-            "w-full h-full hidden",
-            isSubHero ? "min-[500px]:block" : "lg:block"
+            'w-full h-full hidden',
+            isSubHero ? 'min-[500px]:block' : 'lg:block',
           )}
         >
           <video
@@ -174,7 +174,7 @@ export default function MediaComponent({
             autoPlay
             loop
             ref={videoPlayerRef}
-            className={clsx("w-full h-full object-cover")}
+            className={clsx('w-full h-full object-cover')}
           >
             <source
               src={urlForFile(desktopMedia.video?.asset?._ref)}
@@ -186,7 +186,7 @@ export default function MediaComponent({
       )}
 
       {/* Mobile media */}
-      {mobileMedia.type === "image" && mobileMedia.image && (
+      {mobileMedia.type === 'image' && mobileMedia.image && (
         <Image
           //@ts-ignore
           src={urlForImage(mobileMedia.image).quality(100).url()}
@@ -196,19 +196,19 @@ export default function MediaComponent({
           height={isCtaContent ? 1948 : 1080}
           quality={100}
           priority={priority}
-          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
-            "object-cover w-full h-full",
-            "opacity-0 transition-all duration-300 ease-in-out-cubic",
-            isSubHero ? "min-[500px]:hidden" : "lg:hidden"
+            'object-cover w-full h-full',
+            'opacity-0 transition-all duration-300 ease-in-out-cubic',
+            isSubHero ? 'min-[500px]:hidden' : 'lg:hidden',
           )}
         />
       )}
-      {mobileMedia.type === "video" && mobileMedia.video && (
+      {mobileMedia.type === 'video' && mobileMedia.video && (
         <figure
           className={clsx(
-            "w-full h-full",
-            isSubHero ? "min-[500px]:hidden" : "lg:hidden"
+            'w-full h-full',
+            isSubHero ? 'min-[500px]:hidden' : 'lg:hidden',
           )}
         >
           <video
@@ -217,7 +217,7 @@ export default function MediaComponent({
             autoPlay
             loop
             ref={mobileVideoPlayerRef}
-            className={clsx("w-full h-full object-cover")}
+            className={clsx('w-full h-full object-cover')}
           >
             <source
               src={urlForFile(mobileMedia.video?.asset?._ref)}
@@ -228,5 +228,5 @@ export default function MediaComponent({
         </figure>
       )}
     </>
-  );
+  )
 }

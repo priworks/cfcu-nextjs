@@ -36,7 +36,8 @@ export default defineType({
       name: 'showPdfPageLeaveAlert',
       title: 'Show PDF/Page Leave Alert',
       type: 'boolean',
-      description: 'Please select this if you want the page leave alert to show if you are linking to a PDF. No alert will show for PDFs unless you check this',
+      description:
+        'Please select this if you want the page leave alert to show if you are linking to a PDF. No alert will show for PDFs unless you check this',
       initialValue: false,
     }),
   ],

@@ -88,11 +88,11 @@ export const settingsStructure = (
     ]
 
     const globalSettingsListItem = S.listItem()
-      .title(globalSettings.title)
+      .title(globalSettings.title || '')
       .icon(globalSettings.icon)
       .child(
         S.editor()
-          .title(globalSettings.title)
+          .title(globalSettings.title || '')
           .id(globalSettings.name)
           .schemaType(globalSettings.name)
           .documentId(globalSettings.name)
@@ -103,11 +103,11 @@ export const settingsStructure = (
       )
 
     const homepageListItem = S.listItem()
-      .title(homepage.title)
+      .title(homepage.title || '')
       .icon(homepage.icon)
       .child(
         S.editor()
-          .title(homepage.title)
+          .title(homepage.title || '')
           .id(homepage.name)
           .schemaType(homepage.name)
           .documentId(homepage.name)
@@ -118,11 +118,11 @@ export const settingsStructure = (
       )
 
     const fourOhFourListItem = S.listItem()
-      .title(fourOhFour.title)
+      .title(fourOhFour.title || '')
       .icon(fourOhFour.icon)
       .child(
         S.editor()
-          .title(fourOhFour.title)
+          .title(fourOhFour.title || '')
           .id(fourOhFour.name)
           .schemaType(fourOhFour.name)
           .documentId(fourOhFour.name)
@@ -132,11 +132,11 @@ export const settingsStructure = (
           ]),
       )
     const testModulesListItem = S.listItem()
-      .title(testModules.title)
+      .title(testModules.title || '')
       .icon(testModules.icon)
       .child(
         S.editor()
-          .title(testModules.title)
+          .title(testModules.title || '')
           .id(testModules.name)
           .schemaType(testModules.name)
           .documentId(testModules.name)
@@ -248,11 +248,11 @@ export const settingsStructure = (
       )
 
     const redirectsListItem = S.listItem()
-      .title(redirects.title)
+      .title(redirects.title || '')
       .icon(redirects.icon)
       .child(
         S.editor()
-          .title(redirects.title)
+          .title(redirects.title || '')
           .id(redirects.name)
           .schemaType(redirects.name)
           .documentId(redirects.name)
@@ -260,7 +260,7 @@ export const settingsStructure = (
       )
 
     const defaultListItems = S.documentTypeListItems().filter(
-      (listItem) => !hiddenTypes.includes(listItem.getId()),
+      (listItem: any) => !hiddenTypes.includes(listItem.getId()),
     )
 
     return S.list()

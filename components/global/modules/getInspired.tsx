@@ -106,7 +106,9 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative lg:pb-[32px]',
         )}
       >
-        {featuredArticle && <PostCard data={featuredArticle} isFeatured={true} />}
+        {featuredArticle && (
+          <PostCard data={featuredArticle} isFeatured={true} />
+        )}
         <div
           ref={gridRef}
           className={clsx(

@@ -63,7 +63,7 @@ export default function Page(props: PageProps) {
     blogHomepageQuery,
   )
   const [allTopics] = useLiveQuery<TopicWithRelatedPosts[]>(
-    props.allTopics,
+    props.allTopics || [],
     allTopicsQuery,
   )
 

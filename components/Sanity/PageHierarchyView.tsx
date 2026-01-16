@@ -5,10 +5,10 @@ import { useClient } from 'sanity'
 import { Box, Card, Stack, Text, Flex } from '@sanity/ui'
 import { ChevronDownIcon, ChevronRightIcon, LinkIcon } from '@sanity/icons'
 import { useRouter } from 'next/navigation'
-const TreeItem = ({ node, level = 0 }) => {
+const TreeItem = ({ node, level = 0 }: { node: any; level?: number }) => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
-  const handleLinkClick = (e) => {
+  const handleLinkClick = (e: React.MouseEvent) => {
     e.stopPropagation()
     // Navigate to the page in Sanity Studio
     router.push(`/studio/structure/subpages;subpages;${node._id}`)
@@ -44,7 +44,7 @@ const TreeItem = ({ node, level = 0 }) => {
       {isOpen && node.children.length > 0 && (
         <Box paddingLeft={4}>
           <Stack space={3}>
-            {node.children.map((child) => (
+            {node.children.map((child: any) => (
               <TreeItem key={child._id} node={child} level={level + 1} />
             ))}
           </Stack>
@@ -73,9 +73,9 @@ export const PageHierarchyView = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const buildTree = (pages) => {
-    const tree = []
-    const map = {}
+  const buildTree = (pages: any[]) => {
+    const tree: any[] = []
+    const map: Record<string, any> = {}
 
     pages.forEach((page) => {
       map[page._id] = { ...page, children: [] }

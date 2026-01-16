@@ -102,7 +102,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-function removeLocationPrefix(slug) {
+function removeLocationPrefix(slug: any) {
   // Check if the slug starts with 'post/'
   if (slug.startsWith('locations/')) {
     // If it does, remove 'post/' and return the rest

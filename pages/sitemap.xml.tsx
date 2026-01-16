@@ -60,7 +60,7 @@ export default function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({ res }: { res: any }) {
   const client = getClient()
 
   const locationsSlugs = await client.fetch<{ slug: string }[]>(
@@ -97,7 +97,7 @@ export async function getServerSideProps({ res }) {
   `,
   )
 
-  const topicSlugs = allTopicIds.map((topicId) => {
+  const topicSlugs = allTopicIds.map((topicId: any) => {
     return topicId.slug.current
   })
 
