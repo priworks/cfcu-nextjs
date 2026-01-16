@@ -234,7 +234,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               data={data?.ctaCard?.cta}
               className={clsx(
                 'mt-[21px] block',
-                'lg:mt-[24px] animateArticle opacity-0',
+                'lg:mt-[24px] animateArticle opacity-0 tracking-normal',
               )}
             >
               <Button label={data?.ctaCard?.cta?.title} />

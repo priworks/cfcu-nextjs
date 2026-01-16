@@ -326,8 +326,8 @@
 
 @utility w-h5-desktop {
   font-family: var(--font-codec-extra-bold);
-  font-size: 32px;
-  line-height: 38.4px;
+  font-size: 32px !important;
+  line-height: 38.4px !important;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
