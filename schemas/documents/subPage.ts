@@ -1,6 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { Browser } from '@phosphor-icons/react'
-import { modules } from 'schemas/schemaTypes/modules'
+import { modules } from '@/schemas/schemaTypes/modules'
 import { useClient } from 'sanity'
 import { createClient } from 'next-sanity'
 import { getClient } from '@/lib/sanity.client'
@@ -23,7 +23,7 @@ export default defineType({
     const query = `*[_type == "subPage" && parent._ref == $parentId]{_id, title} | order(title asc)`
     const results = await client.fetch(query, { parentId: null })
     return {
-      childrenOrder: results.map((child) => ({
+      childrenOrder: results.map((child: any) => ({
         _type: 'reference',
         _ref: child._id,
       })),

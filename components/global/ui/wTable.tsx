@@ -1,6 +1,6 @@
-import { RateTableType } from 'types/sanity'
+import { RateTableType } from '@/types/sanity'
 import { clsx } from 'clsx'
-import { formatDate } from 'utils'
+import { formatDate } from '@/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
@@ -19,16 +19,16 @@ const WTable = ({
   return (
     <section
       className={clsx(
-        'py-[0px] w-full',
-        'lg:py-[0]',
-        !noPadding && 'lg:max-w-[888px] lg:px-[0px] lg:mx-auto',
+        'py-0 w-full',
+        'lg:py-0',
+        !noPadding && 'lg:max-w-[888px] lg:px-0 lg:mx-auto',
       )}
     >
       <div
         className={clsx(
           'flex flex-col gap-y-[9px]',
           !noPadding && 'px-[24px]',
-          'lg:flex-row lg:justify-between lg:items-end lg:px-[0px]',
+          'lg:flex-row lg:justify-between lg:items-end lg:px-0',
         )}
       >
         <h3 className={clsx('text-lavender title-m', 'lg:title-m-desktop')}>
@@ -40,7 +40,7 @@ const WTable = ({
         className={clsx(
           'overflow-x-auto mt-[29px]  w-full ',
           !noPadding && 'px-[24px]',
-          'lg:mt-[44px] lg:px-[0px]',
+          'lg:mt-[44px] lg:px-0',
         )}
       >
         <table className="w-full overflow-x-auto">
@@ -74,7 +74,7 @@ const WTable = ({
                   <td
                     key={colIndex}
                     className={clsx(
-                      'pt-[16px] pb-[18px] pl-[20px] border-b-[1px] border-black/20 w-paragraph-s-desktop',
+                      'pt-[16px] pb-[18px] pl-[20px] border-b border-black/20 w-paragraph-s-desktop',
                       rowIndex % 2 === 0 ? 'bg-[#EDEDED]/20' : 'bg-white',
                       'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
                     )}

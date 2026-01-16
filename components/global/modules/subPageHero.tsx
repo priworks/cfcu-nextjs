@@ -1,16 +1,16 @@
-import { SubPageHeroType } from 'types/sanity'
+import { SubPageHeroType } from '@/types/sanity'
 import { clsx } from 'clsx'
-import MediaComponent from 'components/global/ui/Media'
+import MediaComponent from '@/components/global/ui/Media'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import SplitTextDynamic from 'components/interaction/splitTextDynamic'
+import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { SubPageType } from '@/types/sanity'
-import FormattedTextField from 'components/interaction/formattedTextField'
-import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const SubPageHero = ({
   data,
@@ -49,7 +49,9 @@ const SubPageHero = ({
           scrollTrigger: {
             trigger: backgroundRef.current,
             start: 'top-=16px top',
-            end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+            end: backgroundRef.current
+              ? `+=${backgroundRef.current.offsetHeight * 0.8}px`
+              : 'bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -89,17 +91,19 @@ const SubPageHero = ({
               {data?.needsGradient && (
                 <div
                   className={clsx(
-                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'heroGradient absolute inset-0 z-2 rounded-[10px]',
                     'lg:rounded-[20px]',
                   )}
                 />
               )}
-              <MediaComponent
-                media={data?.backgroundMedia}
-                isPlaying={isPlaying}
-                priority={true}
-                isSubHero
-              />
+              {data?.backgroundMedia && (
+                <MediaComponent
+                  media={data?.backgroundMedia}
+                  isPlaying={isPlaying}
+                  priority={true}
+                  isSubHero
+                />
+              )}
             </div>
           </div>
         )}
@@ -107,17 +111,18 @@ const SubPageHero = ({
 
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between',
+          'flex relative z-2 px-[24px] pt-[24px] flex-col h-full justify-between',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
             width={500}
             height={108}
             className={clsx('w-[212px]', 'lg:w-[244.71px]')}
+            priority
           />
         </Link>
 
@@ -134,7 +139,7 @@ const SubPageHero = ({
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px]  py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200 text-left',
+                  'flex gap-x-[6px]  py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:opacity-80! transition-opacity duration-200 text-left',
                 )}
               >
                 <svg
@@ -162,7 +167,7 @@ const SubPageHero = ({
           <h1
             className={clsx(
               'w-h1 text-white',
-              'lg:page-title-desktop lg:!leading-[85px] unbalance',
+              'lg:page-title-desktop lg:leading-[85px]! unbalance',
             )}
           >
             <SplitTextDynamic
@@ -185,15 +190,17 @@ const SubPageHero = ({
             >
               <FormattedTextField text={data?.subtitle} />
             </p>
-            <MediaPlayPauseButton
-              classNameMobile={clsx(
-                'z-[10] !w-fit !h-fit',
-                'lg:!right-[36px] lg:!bottom-[36px] lg:absolute',
-              )}
-              media={data?.backgroundMedia}
-              isPlaying={isPlaying}
-              onToggle={() => setIsPlaying((prev) => !prev)}
-            />
+            {data?.backgroundMedia && (
+              <MediaPlayPauseButton
+                classNameMobile={clsx(
+                  'z-[10] !w-fit !h-fit',
+                  'lg:!right-[36px] lg:!bottom-[36px] lg:absolute',
+                )}
+                media={data.backgroundMedia}
+                isPlaying={isPlaying}
+                onToggle={() => setIsPlaying((prev) => !prev)}
+              />
+            )}
           </div>
         </article>
       </div>

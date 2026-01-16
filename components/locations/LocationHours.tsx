@@ -1,14 +1,11 @@
 import React from 'react'
-import { LocationPage } from 'types/sanity'
+import { LocationPage } from '@/types/sanity'
 import { clsx } from 'clsx'
 
 const LocationHours = ({ data }: { data: LocationPage['hours'] }) => {
   return (
     <section
-      className={clsx(
-        'max-w-[888px] mx-auto px-[24px]',
-        'lg:px-[0px] lg:pb-[0px]',
-      )}
+      className={clsx('max-w-[888px] mx-auto px-[24px]', 'lg:px-0 lg:pb-0')}
     >
       <h2 className={clsx('w-h2', 'lg:w-h2-desktop text-lavender')}>Hours</h2>
       <div className={clsx(' w-full flex flex-col mt-[12px]', 'lg:mt-[27px]')}>

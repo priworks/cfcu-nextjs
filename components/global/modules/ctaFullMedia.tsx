@@ -1,8 +1,8 @@
-import { CtaFullMediaType, ThemeLabel } from 'types/sanity'
+import { CtaFullMediaType, ThemeLabel } from '@/types/sanity'
 import { clsx } from 'clsx'
 import MediaComponent from '../ui/Media'
-import { getThemeClasses } from 'lib/themeConfig'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { getThemeClasses } from '@/lib/themeConfig'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
@@ -10,13 +10,13 @@ import { stegaClean } from '@sanity/client/stega'
 import { useState } from 'react'
 
 import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
-import FormattedTextField from 'components/interaction/formattedTextField'
-import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 interface Props {
   data: CtaFullMediaType
@@ -61,7 +61,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
     <div
       className={clsx(
         'lg:py-[48px]',
-        moduleIndex == modulesLength - 1 && '!pb-[0px]',
+        modulesLength && moduleIndex == modulesLength - 1 && 'pb-0!',
       )}
       ref={ref}
     >
@@ -75,16 +75,14 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
         {data?.needsOverlay && (
           <div
             className={clsx(
-              'w-full h-full absolute z-[2] ctaFullMediaGradient inset-0',
+              'w-full h-full absolute z-2 ctaFullMediaGradient inset-0',
             )}
           />
         )}
-        <div className={clsx('w-full h-full absolute inset-0 z-[1]')}>
+        <div className={clsx('w-full h-full absolute inset-0 z-1')}>
           <MediaComponent media={data?.backgroundMedia} isPlaying={isPlaying} />
         </div>
-        <div
-          className={clsx('relative z-[2]', 'xl:pl-[calc((100%-1800px)/2)]')}
-        >
+        <div className={clsx('relative z-2', 'xl:pl-[calc((100%-1800px)/2)]')}>
           <div className={clsx('mt-[15px]')}>
             {stegaClean(data?.topContent?.title?.type) === 'svg' ? (
               <Image
@@ -123,7 +121,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
             'xl:pl-[calc((100%-1800px)/2)]',
           )}
         >
-          <div className={clsx('relative z-[2]')}>
+          <div className={clsx('relative z-2')}>
             <h3
               style={{ color: theme.background }}
               className={clsx(
@@ -137,7 +135,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
               <div
                 className={clsx(
                   'w-paragraph mt-[14px] max-w-[330px] text-white animateContent flex flex-col gap-y-[16px]',
-                  'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:!leading-[28px] currentColorLinks',
+                  'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:leading-[28px]! currentColorLinks',
                   stegaClean(data?.theme?.label) === 'Lavender' &&
                     '!text-lavender',
                 )}
@@ -156,7 +154,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
                 label={data?.cta?.title}
                 className={clsx(
                   stegaClean(data?.theme?.label) === 'Lavender' &&
-                    '!bg-lavender !text-white',
+                    '!bg-lavender text-white!',
                 )}
               />
             </PageLink>

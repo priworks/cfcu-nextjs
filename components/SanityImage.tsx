@@ -1,5 +1,5 @@
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { getSanityImageConfig } from 'lib/sanity.client'
+import type { SanityImageSource } from '@sanity/image-url'
+import { getSanityImageConfig } from '@/lib/sanity.client'
 import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
 

@@ -4,8 +4,8 @@
 // It's part of the Studio's “Structure Builder API” and is documented here:
 // https://www.sanity.io/docs/structure-builder-reference
 
-import { DRAFT_MODE_ROUTE } from 'lib/sanity.api'
-import { DefaultDocumentNodeResolver } from 'sanity/desk'
+import { DRAFT_MODE_ROUTE } from '@/lib/sanity.api'
+import { DefaultDocumentNodeResolver } from 'sanity/structure'
 import { Iframe, IframeOptions } from 'sanity-plugin-iframe-pane'
 
 export const iframeOptions = {

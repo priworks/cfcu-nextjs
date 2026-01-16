@@ -1,6 +1,6 @@
-import { NextSeo } from 'next-seo'
+// import { NextSeo } from 'next-seo'
 import NextHead from 'next/head'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 //SETUP GUIDE:
@@ -96,7 +96,8 @@ export function CustomHead({
           />
         )}
       </NextHead>
-      <NextSeo
+      {/* @todo: Update NextSeo Component */}
+      {/* <NextSeo
         title={title}
         description={description || defaultDescription}
         noindex={noIndex}
@@ -122,7 +123,7 @@ export function CustomHead({
           cardType: 'summary_large_image',
           site: 'https://www.cfcu.org/',
         }}
-      />
+      /> */}
     </>
   )
 }

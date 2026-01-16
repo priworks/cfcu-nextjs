@@ -1,15 +1,15 @@
-import { TextCardGridType } from 'types/sanity'
+import { TextCardGridType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
 import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
   const leftGridItems = data?.cards?.filter((article, index) => index % 2 === 0)
@@ -62,7 +62,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
       ref={ref}
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:grid-cols-12 lg:grid lg:gap-x-[24px] lg:px-[48px] lg:pt-[95px] lg:pb-[187px] lg:relative lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:grid-cols-12 lg:grid lg:gap-x-[24px] lg:px-[48px] lg:pt-[95px] lg:pb-[187px] lg:relative lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <article
@@ -168,7 +168,7 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
         <PageLink data={card?.pageLink}>
           <Button
             label={card?.pageLink?.title}
-            className={clsx('!bg-lavender !text-white')}
+            className={clsx('!bg-lavender text-white!')}
           />
         </PageLink>
       )}

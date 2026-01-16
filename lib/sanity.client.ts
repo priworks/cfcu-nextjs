@@ -4,8 +4,8 @@ import {
   projectId,
   studioUrl,
   useCdn,
-} from 'lib/sanity.api'
-import { ATMLocation, TopicPageType, PostPageType } from 'types/sanity'
+} from '@/lib/sanity.api'
+import { ATMLocation, TopicPageType, PostPageType } from '@/types/sanity'
 import {
   globalSettingsQuery,
   dynamicPageSlugsQuery,
@@ -30,7 +30,7 @@ import {
   fourOhFourQuery,
   allSubpagesQuery,
   allPostsWithouPagination,
-} from 'lib/sanity.queries'
+} from '@/lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
 import Papa from 'papaparse'
@@ -41,8 +41,12 @@ export function getClient(preview?: { token: string }): SanityClient {
     apiVersion,
     useCdn,
     perspective: 'published',
-    encodeSourceMap: preview?.token ? true : false,
-    studioUrl,
+    // encodeSourceMap: preview?.token ? true : false,
+    resultSourceMap: preview?.token ? true : false,
+    stega: {
+      studioUrl,
+    },
+    // studioUrl,
   })
   if (preview) {
     if (!preview.token) {
@@ -140,7 +144,7 @@ export async function getATMLocations(
   return new Promise((resolve, reject) => {
     Papa.parse(csvText, {
       header: false, // Set to true if your CSV has headers
-      complete: (results) => {
+      complete: (results: any) => {
         const locations = results.data
           .filter((row: any) => row.length === 4) // Ensure row has all fields
           .map((row: any) => ({
@@ -151,7 +155,7 @@ export async function getATMLocations(
           }))
         resolve(locations)
       },
-      error: (error) => {
+      error: (error: any) => {
         reject(error)
       },
     })

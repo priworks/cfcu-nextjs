@@ -1,18 +1,18 @@
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import SearchBar from './SearchBar'
 import { clsx } from 'clsx'
 import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Link from 'next/link'
 import MenuCTA from './ui/MenuCTA'
-import { useWindowSize } from 'hooks/useWindowSize'
+import { useWindowSize } from '@/hooks/useWindowSize'
 import PageLink from './ui/PageLink'
 import { animate, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Menu = ({
   menuOpen,
@@ -89,13 +89,13 @@ const Menu = ({
 
   useIsomorphicLayoutEffect(() => {
     if (!closeInitiated) return
-    setMenuButtonOpen(false)
+    setMenuButtonOpen && setMenuButtonOpen(false)
     const ctx = gsap.context(() => {
       const tl = gsap
         .timeline({
           onComplete: () => {
             setMenuOpen(false)
-            setCloseInitiated(false)
+            setCloseInitiated && setCloseInitiated(false)
           },
         })
         .fromTo(
@@ -120,13 +120,13 @@ const Menu = ({
       ref={containerRef}
       key={'Menu container'}
       className={clsx(
-        'fixed top-0 left-0 w-full z-[12] bg-white h-screen min-h-[105lvh] [clip-path:inset(0%_0%_100%_0%)]',
+        'fixed top-0 left-0 w-full z-12 bg-white h-screen min-h-[105lvh] [clip-path:inset(0%_0%_100%_0%)]',
       )}
     >
       <div
         className={clsx(
           'min-h-[105lvh]  pt-[28px] overflow-y-auto h-full pb-[120px] bg-white',
-          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:mb-[48px] lg:min-h-screen',
+          'lg:pt-[48px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:mb-[48px] lg:min-h-screen',
         )}
       >
         <div
@@ -162,7 +162,7 @@ const Menu = ({
                     />
                   </div>
                   <PageLink
-                    onClick={() => setCloseInitiated(true)}
+                    onClick={() => setCloseInitiated && setCloseInitiated(true)}
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
@@ -180,7 +180,9 @@ const Menu = ({
                       <PageLink
                         data={link}
                         key={index}
-                        onClick={() => setCloseInitiated(true)}
+                        onClick={() =>
+                          setCloseInitiated && setCloseInitiated(true)
+                        }
                         className={clsx(
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
@@ -207,7 +209,7 @@ const Menu = ({
                   <Accordion.Header className={clsx('text-black')}>
                     <Accordion.Trigger
                       className={clsx(
-                        'flex justify-between w-full items-center py-[24px] border-t-[1px] group border-divider data-[state=open]:!border-lavender transition-colors duration-200',
+                        'flex justify-between w-full items-center py-[24px] border-t group border-divider data-[state=open]:!border-lavender transition-colors duration-200',
                       )}
                     >
                       <div
@@ -223,7 +225,9 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
-                          onClick={() => setCloseInitiated(true)}
+                          onClick={() =>
+                            setCloseInitiated && setCloseInitiated(true)
+                          }
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
@@ -240,7 +244,7 @@ const Menu = ({
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         className={clsx(
-                          'group-data-[state=open]:rotate-[45deg] transition-transform duration-300 ease-in-out-cubic',
+                          'group-data-[state=open]:rotate-45 transition-transform duration-300 ease-in-out-cubic',
                         )}
                       >
                         <path
@@ -265,7 +269,9 @@ const Menu = ({
                         <PageLink
                           data={link}
                           key={index}
-                          onClick={() => setCloseInitiated(true)}
+                          onClick={() =>
+                            setCloseInitiated && setCloseInitiated(true)
+                          }
                           className={clsx(
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
@@ -287,15 +293,15 @@ const Menu = ({
         >
           <div
             className={clsx(
-              'grid grid-cols-2 gap-x-[24px] mx-[24px] pt-[18.5px] border-t-[1px] border-t-dividers',
-              'lg:border-t-[0px] lg:mx-[0px] lg:pt-[0px]',
+              'grid grid-cols-2 gap-x-[24px] mx-[24px] pt-[18.5px] border-t border-t-dividers',
+              'lg:border-t-0 lg:mx-0 lg:pt-0',
             )}
           >
             {bottomLevelNavigation?.map((nav, index) => (
               <nav
                 key={index}
                 className={clsx(
-                  'lg:border-[1px] lg:border-dividers lg:p-[40px] secondaryAnimation',
+                  'lg:border lg:border-dividers lg:p-[40px] secondaryAnimation',
                 )}
               >
                 <div
@@ -310,7 +316,7 @@ const Menu = ({
                     src={urlForImage(nav.icon).url()}
                     alt={nav.icon.alt as string}
                     className={clsx(
-                      'flex-shrink-0 w-[18px] h-[18px]',
+                      'shrink-0 w-[18px] h-[18px]',
                       'lg:h-[24px] lg:w-[24px]',
                     )}
                   />
@@ -333,7 +339,9 @@ const Menu = ({
                     <PageLink
                       data={link}
                       key={index}
-                      onClick={() => setCloseInitiated(true)}
+                      onClick={() =>
+                        setCloseInitiated && setCloseInitiated(true)
+                      }
                       className={clsx(
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}

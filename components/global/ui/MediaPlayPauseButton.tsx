@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
-import PlayPause from 'components/global/ui/PlayPause'
-import type { Media } from 'types/sanity'
+import PlayPause from '@/components/global/ui/PlayPause'
+import type { Media } from '@/types/sanity'
 
 interface MediaPlayPauseButtonProps {
   media: Media

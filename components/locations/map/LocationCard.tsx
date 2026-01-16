@@ -2,17 +2,17 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import Button from 'components/global/ui/Button'
+import Button from '@/components/global/ui/Button'
 import { clsx } from 'clsx'
-import { ATMLocation, LocationPage } from 'types/sanity'
+import { ATMLocation, LocationPage } from '@/types/sanity'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { externalOnClick } from 'utils'
-import LocationButtonLink from 'components/locations/LocationButtonLink'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { externalOnClick } from '@/utils'
+import LocationButtonLink from '@/components/locations/LocationButtonLink'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 export default function LocationCard({
   data,
@@ -73,7 +73,7 @@ export default function LocationCard({
         </svg>
       </button>
       <Link href={`/${data?.slug.current}`}>
-        <div className={clsx('aspect-w-16 aspect-h-9')}>
+        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9 relative')}>
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(600)
@@ -82,7 +82,9 @@ export default function LocationCard({
             alt={data?.thumbnailImage?.alt as string}
             fill
             quality={100}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
             )}

@@ -1,34 +1,34 @@
 // pages/posts/[page].tsx
 
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { readToken } from 'lib/sanity.api'
+import { readToken } from '@/lib/sanity.api'
 import {
   getGlobalSettings,
   getClient,
   getAllPosts,
   getBlogHomepage,
   getAllTopics,
-} from 'lib/sanity.client'
+} from '@/lib/sanity.client'
 import {
   allPostsQuery,
   globalSettingsQuery,
   blogHomepageQuery,
   allTopicsQuery,
-} from 'lib/sanity.queries'
+} from '@/lib/sanity.queries'
 import {
   GlobalSettingsType,
   BlogHomepageType,
   PostPageType,
   TopicWithRelatedPosts,
-} from 'types/sanity'
+} from '@/types/sanity'
 import { QueryParams } from 'next-sanity'
-import type { SharedPageProps } from 'pages/_app'
-import { useLiveQuery } from 'next-sanity/preview'
-import { Layout } from 'components/layouts/Layout'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import type { SharedPageProps } from '@/pages/_app'
+import { useLiveQuery } from '@sanity/preview-kit'
+import { Layout } from '@/components/layouts/Layout'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import { useEffect } from 'react'
-import PostHomePage from 'components/pages/PostHomePage'
-import { Seo } from 'pages/_app'
+import PostHomePage from '@/components/pages/PostHomePage'
+import { Seo } from '@/pages/_app'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
@@ -63,7 +63,7 @@ export default function Page(props: PageProps) {
     blogHomepageQuery,
   )
   const [allTopics] = useLiveQuery<TopicWithRelatedPosts[]>(
-    props.allTopics,
+    props.allTopics || [],
     allTopicsQuery,
   )
 

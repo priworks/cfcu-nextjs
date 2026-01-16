@@ -1,14 +1,14 @@
 import { clsx } from 'clsx'
-import { getThemeClasses, Theme } from 'lib/themeConfig'
-import { GlobalSettingsType } from 'types/sanity'
+import { getThemeClasses, Theme } from '@/lib/themeConfig'
+import { GlobalSettingsType } from '@/types/sanity'
 import PageLink from './PageLink'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useEffect, useState } from 'react'
 
 import { useRef } from 'react'
 import Button from './Button'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 const MenuCTA = ({
   data,
   menuOpen,
@@ -67,7 +67,7 @@ const MenuCTA = ({
       }}
       className={clsx(
         `mt-[75px] pt-[42px] pb-[58px] px-[21px] font-codec-pro mx-[26px] flex flex-col items-center `,
-        'lg:mt-[0px] lg:mx-[0px] lg:px-[51px] lg:py-[74px]',
+        'lg:mt-0 lg:mx-0 lg:px-[51px] lg:py-[74px]',
       )}
     >
       <h3
@@ -101,7 +101,7 @@ const MenuCTA = ({
         className={clsx('overflow-hidden md:overflow-visible')}
       >
         <Button
-          cb={() => setCloseInitiated(true)}
+          cb={() => setCloseInitiated && setCloseInitiated(true)}
           label={data?.cta?.title}
           className={clsx('elementAnimation mt-[21px] overflow-hidden')}
         />

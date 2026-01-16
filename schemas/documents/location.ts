@@ -4,7 +4,7 @@ import {
   orderRankField,
   orderRankOrdering,
 } from '@sanity/orderable-document-list'
-import { modules } from 'schemas/schemaTypes/modules'
+import { modules } from '@/schemas/schemaTypes/modules'
 
 export default defineType({
   name: 'location',

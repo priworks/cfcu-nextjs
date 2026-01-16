@@ -16,7 +16,10 @@ export default function SanitizedContent({
 
   useEffect(() => {
     // Configure DOMPurify
-    const config = {
+    const config: {
+      ADD_TAGS: string[]
+      ADD_ATTR: string[]
+    } = {
       ADD_TAGS: [],
       ADD_ATTR: [],
     }

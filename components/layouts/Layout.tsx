@@ -1,6 +1,6 @@
 import { CustomHead } from './CustomHead'
 import { clsx } from 'clsx'
-import Footer from 'components/global/Footer'
+import Footer from '@/components/global/Footer'
 
 export function Layout({
   children,

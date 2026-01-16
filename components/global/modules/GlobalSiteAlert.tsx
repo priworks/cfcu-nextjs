@@ -1,11 +1,11 @@
-import { GlobalAlertType } from 'types/sanity'
+import { GlobalAlertType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 import { useState, useRef, useEffect, use } from 'react'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
@@ -42,7 +42,8 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
 
   useEffect(() => {
     if (globalAlertIsOpen) {
-      setGlobalAlertHeight(contentRef.current.scrollHeight)
+      contentRef?.current &&
+        setGlobalAlertHeight(contentRef.current.scrollHeight)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, setGlobalAlertHeight, alertIsOpen])
@@ -51,9 +52,9 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
     <section
       style={{ maxHeight: globalAlertHeight || 'unset' }}
       className={clsx(
-        ' bg-[#B40303] px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
+        ' bg-[#B40303] px-[24px] w-full z-10 flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
-        isClosed && '!max-h-[0px] !bg-transparent',
+        isClosed && 'max-h-0! bg-transparent!',
       )}
     >
       <div

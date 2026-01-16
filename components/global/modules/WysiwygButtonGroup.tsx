@@ -1,13 +1,11 @@
-import React from 'react'
-import PageLink from 'components/global/ui/PageLink'
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
+import Button from '@/components/global/ui/Button'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { externalOnClick } from 'utils'
+import { externalOnClick } from '@/utils'
 interface Props {
   value: {
-    links: Array<ButtonProps>
+    links: any[]
   }
   isWithoutPadding?: boolean
 }
@@ -34,8 +32,8 @@ const WysiwygButtonGroup = ({ value, isWithoutPadding }: Props) => {
   return (
     <div
       className={clsx(
-        'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-[16px]  lg:px-[0px] lg:w-paragraph-l-desktop flex-wrap',
-        isWithoutPadding && '!max-w-[unset] !mx-[unset] !px-[0px]',
+        'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-[16px]  lg:px-0 lg:w-paragraph-l-desktop flex-wrap',
+        isWithoutPadding && 'max-w-[unset]! mx-[unset]! px-0!',
       )}
     >
       {value?.links?.map((link, index) => (
@@ -97,14 +95,16 @@ const ButtonLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
+      externalLinkOneOff?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLinkOneOff.showPdfPageLeaveAlert)
     }
     if (externalLink?.link) {
       setHref(externalLink.link)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLink?.showPdfPageLeaveAlert)
+      externalLink?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLink.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

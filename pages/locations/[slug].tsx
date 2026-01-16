@@ -1,24 +1,22 @@
-import { readToken } from 'lib/sanity.api'
+import { readToken } from '@/lib/sanity.api'
 import {
   getGlobalSettings,
   getClient,
-  getRatePageBySlug,
-  getAllRatePageSlugs,
   getAllLocationSlugs,
   getLocationBySlug,
-} from 'lib/sanity.client'
+} from '@/lib/sanity.client'
 import { GetStaticProps } from 'next'
-import type { SharedPageProps, Seo } from 'pages/_app'
+import type { SharedPageProps, Seo } from '@/pages/_app'
 import { QueryParams } from 'next-sanity'
-import { useLiveQuery } from 'next-sanity/preview'
-import { Layout } from 'components/layouts/Layout'
-import { LocationPage, GlobalSettingsType } from 'types/sanity'
-import { locationBySlugQuery } from 'lib/sanity.queries'
+import { useLiveQuery } from '@sanity/preview-kit'
+import { Layout } from '@/components/layouts/Layout'
+import { LocationPage, GlobalSettingsType } from '@/types/sanity'
+import { locationBySlugQuery } from '@/lib/sanity.queries'
 import { useEffect } from 'react'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import { stegaClean } from '@sanity/client/stega'
 
-import LocationPageComponent from 'components/pages/LocationPage'
+import LocationPageComponent from '@/components/pages/LocationPage'
 interface PageProps extends SharedPageProps {
   locationPage: LocationPage
   globalSettings: GlobalSettingsType
@@ -104,7 +102,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-function removeLocationPrefix(slug) {
+function removeLocationPrefix(slug: any) {
   // Check if the slug starts with 'post/'
   if (slug.startsWith('locations/')) {
     // If it does, remove 'post/' and return the rest

@@ -3,12 +3,12 @@ import {
   PostPageType,
   TopicPageType,
   TopicWithRelatedPosts,
-} from 'types/sanity'
+} from '@/types/sanity'
 import Image from 'next/image'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import PostCard from '../global/ui/PostCard'
-import Pagination from 'components/posts/paginationPosts'
+import Pagination from '@/components/posts/paginationPosts'
 import Link from 'next/link'
 import FilterButton from '../global/ui/FilterButton'
 import { useState, useRef } from 'react'
@@ -16,7 +16,7 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import SplitTextDynamic from '../interaction/splitTextDynamic'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
@@ -92,7 +92,7 @@ const PostHomePage = ({
           'lg:px-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('absolute w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('absolute w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/logoPurple.png'}
             alt={'Community Financial Logo'}
@@ -170,7 +170,7 @@ const PostHomePage = ({
           >
             <FormattedTextField text={data?.description} />
           </p>
-          {isBlogHome && (
+          {isBlogHome && allTopics?.length && (
             <FilterButton
               title="Filter by Topic"
               items={allTopics}
@@ -181,7 +181,7 @@ const PostHomePage = ({
         {topic?.name && (
           <div
             className={clsx(
-              'pt-[33px] text-center border-t-[1px] border-t-[#F0F0F0]  mt-[32px] w-paragraph-m-desktop subItem opacity-0',
+              'pt-[33px] text-center border-t border-t-[#F0F0F0]  mt-[32px] w-paragraph-m-desktop subItem opacity-0',
               'lg:mt-[56px]',
             )}
           >
@@ -196,7 +196,7 @@ const PostHomePage = ({
         className={clsx(
           'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] px-[24px]',
           'lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto',
-          'xl:px-[0px]',
+          'xl:px-0',
           topic?.name ? 'mt-[32px] lg:mt-[32px]' : 'mt-[49px] lg:mt-[111px]',
         )}
       >

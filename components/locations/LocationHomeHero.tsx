@@ -1,15 +1,15 @@
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import MediaComponent from 'components/global/ui/Media'
-import { LocationHomepageType } from 'types/sanity'
+import MediaComponent from '@/components/global/ui/Media'
+import { LocationHomepageType } from '@/types/sanity'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef, useState } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import SplitTextDynamic from 'components/interaction/splitTextDynamic'
-import FormattedTextField from 'components/interaction/formattedTextField'
-import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
+import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const LocationHomeHero = ({
   data,
@@ -43,7 +43,9 @@ const LocationHomeHero = ({
           scrollTrigger: {
             trigger: backgroundRef.current,
             start: 'top-=16px top',
-            end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+            end: backgroundRef.current
+              ? `+=${backgroundRef.current.offsetHeight * 0.8}px`
+              : 'top bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -78,29 +80,33 @@ const LocationHomeHero = ({
               {data?.needsGradient && (
                 <div
                   className={clsx(
-                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'heroGradient absolute inset-0 z-2 rounded-[10px]',
                     'lg:rounded-[20px]',
                   )}
                 />
               )}
 
-              <MediaComponent media={data?.backgroundMedia} />
+              {data?.backgroundMedia && (
+                <MediaComponent media={data?.backgroundMedia} />
+              )}
             </div>
-            <MediaPlayPauseButton
-              media={data?.backgroundMedia}
-              isPlaying={isPlaying}
-              onToggle={() => setIsPlaying((prev) => !prev)}
-            />
+            {data?.backgroundMedia && (
+              <MediaPlayPauseButton
+                media={data?.backgroundMedia}
+                isPlaying={isPlaying}
+                onToggle={() => setIsPlaying((prev) => !prev)}
+              />
+            )}
           </div>
         )}
       </div>
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between gap-y-[111px]',
+          'flex relative z-2 px-[24px] pt-[24px] flex-col h-full justify-between gap-y-[111px]',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}

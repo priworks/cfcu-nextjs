@@ -25,7 +25,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'absolute group-hover/button:translate-x-[-0px] translate-x-[-35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'absolute group-hover/button:translate-x-0 translate-x-[-35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         <path

@@ -1,9 +1,9 @@
-import { CtaTopicRowType } from 'types/sanity'
+import { CtaTopicRowType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { getThemeClasses } from 'lib/themeConfig'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+import { getThemeClasses } from '@/lib/themeConfig'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
@@ -30,8 +30,14 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     if (!inView) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(containerRef.current)
-      const tl = gsap.timeline().fromTo(
-        q('.elementAnimation'),
+      const elements = q('.elementAnimation')
+
+      if (!elements?.length) {
+        return
+      }
+
+      gsap.timeline().fromTo(
+        elements,
         { opacity: 0, y: 20 },
         {
           opacity: 1,
@@ -61,26 +67,28 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         ref={containerRef}
         className={clsx(
           'px-[24px] py-[26px] ',
-          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-center',
+          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-0 lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:items-center',
           stegaClean(data?.imagePosition) === 'left'
             ? 'lg:flex-row'
             : 'lg:flex-row-reverse',
-          'xl:pl-[0px]',
+          'xl:pl-0',
         )}
       >
         <div
           className={clsx(
             'relative w-full',
-            'lg:flex-shrink-0 lg:w-[calc(50%-59px)]',
+            'lg:shrink-0 lg:w-[calc(50%-59px)]',
           )}
         >
-          <div className={clsx('aspect-w-4 aspect-h-3 relative')}>
+          <div className={clsx('aspect-[4/3] aspect-w-4 aspect-h-3 relative')}>
             <Image
               src={urlForImage(data?.image).width(1000).quality(90).url()}
               alt={data?.image.alt as string}
               width={1000}
               height={1000}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-all  duration-300 ease-in-out-cubic',
               )}
@@ -90,11 +98,11 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         <div
           className={clsx(
             'flex flex-col gap-y-[16px] mt-[30px]',
-            'lg:mt-[0px] lg:pt-[28px] lg:gap-y-[24px] lg:pb-[50px] ',
+            'lg:mt-0 lg:pt-[28px] lg:gap-y-[24px] lg:pb-[50px] ',
             stegaClean(data?.imagePosition) === 'left'
               ? 'lg:pr-[48px]'
               : 'lg:pl-[48px]',
-            'xl:pr-[0px] xl:pl-[0px]',
+            'xl:pr-0 xl:pl-0',
           )}
         >
           {data?.subtitle && (
@@ -158,7 +166,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               'lg:items-start',
             )}
           >
-            {data?.links?.length > 1 ? (
+            {(data?.links?.length ?? 0) > 1 ? (
               data?.links?.map((link, index) => (
                 <PageLink
                   key={index}

@@ -1,9 +1,9 @@
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
-import PageLink from 'components/global/ui/PageLink'
+import PageLink from '@/components/global/ui/PageLink'
 import type { ImageAsset } from 'sanity'
-import type { PageLinkType } from 'types/sanity'
+import type { PageLinkType } from '@/types/sanity'
 
 /**
  * LowerFooterIcon Component

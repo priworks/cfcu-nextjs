@@ -1,27 +1,27 @@
 import React from 'react'
-import { CtaInContentType } from 'types/sanity'
+import { CtaInContentType } from '@/types/sanity'
 import { clsx } from 'clsx'
-import { getThemeClasses } from 'lib/themeConfig'
+import { getThemeClasses } from '@/lib/themeConfig'
 import MediaComponent from '../ui/Media'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
 import { useRef, useState } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
-import FormattedTextField from 'components/interaction/formattedTextField'
-import MediaPlayPauseButton from 'components/global/ui/MediaPlayPauseButton'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import MediaPlayPauseButton from '@/components/global/ui/MediaPlayPauseButton'
 
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
   const innerContentRef = useRef(null)
-  const articleRef = useRef(null)
+  const articleRef = useRef<HTMLElement>(null)
   const [isPlaying, setIsPlaying] = useState(true)
 
   const { ref, inView } = useInView({
@@ -81,14 +81,17 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   }, [inView, width])
 
   useIsomorphicLayoutEffect(() => {
-    if (!inView || width < 1024) return
+    if (!inView || width < 1024 || !articleRef.current) return
+    const articleRefEl = articleRef?.current
     const ctx = gsap.context(() => {
       gsap
         .timeline({
           scrollTrigger: {
             trigger: articleRef.current,
             start: 'top-=400px top',
-            end: `+=${articleRef.current.offsetHeight * 0.8}px`,
+            end: articleRefEl
+              ? `+=${articleRefEl.offsetHeight * 0.8}px`
+              : 'top bottom',
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -108,7 +111,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       ref={ref}
       className={clsx(
         'title-s pt-[51px]',
-        'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:bg-white! lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
       style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >
@@ -137,13 +140,13 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               alt={data?.ctaCard?.subtitle?.svg?.alt as string}
               width={140}
               height={140}
-              className={clsx('animateArticle !h-[81px] !w-auto', 'lg:hidden')}
+              className={clsx('animateArticle h-[81px]! w-auto!', 'lg:hidden')}
             />
           )}
           <div
             className={clsx(
-              'aspect-w-6 aspect-h-4 relative mt-[26px]',
-              'lg:aspect-w-7 lg:mt-[0px]',
+              'aspect-[6/4] aspect-w-6 aspect-h-4 relative mt-[26px]',
+              'lg:aspect-[7/4] lg:aspect-w-7 lg:mt-0',
             )}
           >
             <MediaComponent
@@ -171,8 +174,8 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             'mt-[22px] px-[24px] pb-[59px]',
             'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px] lg:[clip-path:inset(0%_0%_100%_0%)]',
             stegaClean(data?.ctaCard?.contentPosition) === 'left'
-              ? 'lg:left-[0px]'
-              : 'lg:right-[0px]',
+              ? 'lg:left-0'
+              : 'lg:right-0',
           )}
           style={{ backgroundColor: theme.background, color: theme.heading }}
         >
@@ -192,7 +195,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 alt={data?.ctaCard?.subtitle?.svg?.alt as string}
                 width={185}
                 height={185}
-                className={clsx('animateArticle !h-[107px] !w-auto')}
+                className={clsx('animateArticle h-[107px]! w-auto!')}
               />
             )}
           </div>
@@ -231,7 +234,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               data={data?.ctaCard?.cta}
               className={clsx(
                 'mt-[21px] block',
-                'lg:mt-[24px] animateArticle opacity-0',
+                'lg:mt-[24px] animateArticle opacity-0 tracking-normal',
               )}
             >
               <Button label={data?.ctaCard?.cta?.title} />

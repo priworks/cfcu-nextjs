@@ -6,16 +6,16 @@ import dynamic from 'next/dynamic'
 import { clsx } from 'clsx'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Image from 'next/image'
-import { LocationPage, ATMLocation } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
+import { LocationPage, ATMLocation } from '@/types/sanity'
+import { urlForImage } from '@/lib/sanity.image'
 import Link from 'next/link'
-import Button from 'components/global/ui/Button'
+import Button from '@/components/global/ui/Button'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import LocationCard from './map/LocationCard'
 import ATMCard from './map/AtmCard'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 
 // Replace with your Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
@@ -123,7 +123,6 @@ export default function MapView({
         map.current.off('zoom', updatePosition)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocation, selectedATM])
 
   // Initialize map
@@ -278,14 +277,11 @@ export default function MapView({
 
       {mapLoaded && (
         <div
-          className={clsx(
-            'absolute top-[8px] left-[8px] z-[10]',
-            'lg:w-[450px]',
-          )}
+          className={clsx('absolute top-[8px] left-[8px] z-10', 'lg:w-[450px]')}
         >
           <DynamicSearchBox
-            accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-            map={map.current}
+            accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''}
+            map={map.current || undefined}
             mapboxgl={mapboxgl}
             value={inputValue}
             onChange={(d) => {
@@ -308,7 +304,7 @@ export default function MapView({
         onClick={() => setShowATMs((prev) => !prev)}
         className={clsx(
           'bottom-[72px] right-[8px]',
-          'absolute lg:bottom-[64px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px] hidden',
+          'absolute lg:bottom-[64px] z-10 bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px] hidden',
         )}
       >
         Toggle Co-op Network ATM
@@ -358,7 +354,7 @@ export default function MapView({
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          transform: translateY(-50%);
+          translate: 0 -50%;
         }
       `}</style>
 
@@ -368,13 +364,13 @@ export default function MapView({
             ref={popupGradient}
             onClick={() => setSelectedMobilePopup(null)}
             className={clsx(
-              'fixed top-0 left-0 w-full h-full bg-black/80 z-[100] opacity-0',
+              'fixed top-0 left-0 w-full h-full bg-black/80 z-100 opacity-0',
             )}
           />
           <div
             onClick={() => setSelectedMobilePopup(null)}
             className={clsx(
-              'fixed top-0 left-0 z-[101] w-full h-full flex items-center justify-center',
+              'fixed top-0 left-0 z-101 w-full h-full flex items-center justify-center',
             )}
           >
             <LocationCard
@@ -392,13 +388,13 @@ export default function MapView({
             ref={popupGradient}
             onClick={() => setSelectedMobileAtmPopup(null)}
             className={clsx(
-              'fixed top-0 left-0 w-full h-full bg-black/80 z-[100] opacity-0',
+              'fixed top-0 left-0 w-full h-full bg-black/80 z-100 opacity-0',
             )}
           />
           <div
             onClick={() => setSelectedMobileAtmPopup(null)}
             className={clsx(
-              'fixed top-0 left-0 z-[101] w-full h-full flex items-center justify-center',
+              'fixed top-0 left-0 z-101 w-full h-full flex items-center justify-center',
             )}
           >
             <ATMCard

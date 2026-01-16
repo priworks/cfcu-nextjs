@@ -1,20 +1,20 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import { clsx } from 'clsx'
-import Menu from './Menu'
+import Menu from '@/components/global/Menu'
 import { useState, useEffect } from 'react'
-import { AnimatePresence } from 'framer-motion'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useScrollPastPoint } from 'hooks/useScrollPastPoint'
-import { useWindowSize } from 'hooks/useWindowSize'
+// import { AnimatePresence } from 'framer-motion'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
+import { useScrollPastPoint } from '@/hooks/useScrollPastPoint'
+import { useWindowSize } from '@/hooks/useWindowSize'
 import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import FastExitButton from './modules/QuickExit'
-import SiteAlert from './modules/siteAlert'
-import GlobalSiteAlert from './modules/GlobalSiteAlert'
-import globalAlert from '@/schemas/documents/modules/globalAlert'
-import SanitizedEmbed from './modules/Embed'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FastExitButton from '@/components/global/modules/QuickExit'
+// import SiteAlert from './modules/siteAlert'
+import GlobalSiteAlert from '@/components/global/modules/GlobalSiteAlert'
+// import globalAlert from '@/schemas/documents/modules/globalAlert'
+import SanitizedEmbed from '@/components/global/modules/Embed'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -37,7 +37,7 @@ const Header = () => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const isPastPoint = useScrollPastPoint(alertHeight)
   const { width } = useWindowSize()
-  const headerRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const [entryRun, setEntryRun] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
@@ -70,7 +70,9 @@ const Header = () => {
   return (
     <>
       {globalSettings?.quickExit?.showFastExit && (
-        <FastExitButton url={globalSettings?.quickExit?.exitUrl} />
+        <FastExitButton
+          url={globalSettings?.quickExit?.exitUrl || 'https://weather.com/'}
+        />
       )}
       {globalSettings?.globalAlerts?.map((alert, index) => (
         <GlobalSiteAlert key={index} data={alert} />
@@ -83,22 +85,22 @@ const Header = () => {
         style={
           alertIsOpen || globalAlertIsOpen
             ? {
-                transform: `translateY(${alertHeightInternal + (width < 1024 ? 24 : 48)}px)`,
+                translate: `0 ${alertHeightInternal + (width < 1024 ? 24 : 48)}px`,
               }
             : {}
         }
         className={clsx(
-          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 translate-y-[24px] lg:translate-y-[48px] opacity-0',
-          'lg:right-[48px] lg:top-[0] ',
-          alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
+          'fixed top-0 right-[24px] z-13 transition-transform ease-in duration-300 translate-y-[24px] lg:translate-y-[48px] opacity-0',
+          'lg:right-[48px] lg:top-0 ',
+          alertIsOpen && 'lg:top-0  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
-            '!translate-y-[24px] lg:!translate-y-[48px]',
+            'translate-y-[24px]! lg:translate-y-[48px]!',
         )}
       >
         <div
           className={clsx(
             'w-fit',
-            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold  lg:border-[1px] lg:border-white/[0.08]',
+            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold  lg:border lg:border-white/8',
           )}
         >
           <div>
@@ -128,8 +130,8 @@ const Header = () => {
               }
             }}
             className={clsx(
-              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group border-[1px] border-white/[0.08]',
-              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px] lg:border-[0px]',
+              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group border border-white/8',
+              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px] lg:border-0',
               menuButtonOpen
                 ? 'bg-orange lg:bg-white lg:hover:bg-lightGrey lg:hover:text-black'
                 : 'bg-orange lg:hover:bg-white',
@@ -141,7 +143,7 @@ const Header = () => {
                   'flex flex-col transition-all duration-300 ease-in-out-cubic text-lavender',
                   menuButtonOpen
                     ? 'translate-y-[-24px] group-hover:text-black'
-                    : 'translate-y-[0px]',
+                    : 'translate-y-0',
                 )}
               >
                 <span
@@ -169,7 +171,7 @@ const Header = () => {
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   menuButtonOpen
-                    ? 'rotate-45 translate-y-[0px]'
+                    ? 'rotate-45 translate-y-0'
                     : 'rotate-0 translate-y-[5px]',
                 )}
               ></span>
@@ -183,7 +185,7 @@ const Header = () => {
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   menuButtonOpen
-                    ? '-rotate-45 translate-y-[0px]'
+                    ? '-rotate-45 translate-y-0'
                     : 'rotate-0 translate-y-[-5px]',
                 )}
               ></span>

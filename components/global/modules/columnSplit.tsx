@@ -1,19 +1,19 @@
-import { ColumnSplitType } from 'types/sanity'
+import { ColumnSplitType } from '@/types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import {
   WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
-} from 'lib/portabletTextComponents'
+} from '@/lib/portabletTextComponents'
 import { stegaClean } from '@sanity/client/stega'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (
     <section
       className={clsx(
         'px-[24px]  py-[66px]',
-        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       {data?.subtitle && (

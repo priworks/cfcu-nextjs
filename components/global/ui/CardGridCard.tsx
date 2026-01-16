@@ -1,11 +1,11 @@
-import { CtaCardGridHomeType } from 'types/sanity'
+import { CtaCardGridHomeType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import CardLink from '../ui/CardLink'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 export default function CardGridCard({
   data,
@@ -16,7 +16,9 @@ export default function CardGridCard({
     <CardLink data={data?.cardLink} className={clsx('group')}>
       <article className={clsx('w-[239px]', 'lg:w-full')}>
         <div
-          className={clsx('aspect-w-10 aspect-h-11 relative overflow-hidden')}
+          className={clsx(
+            'aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden',
+          )}
         >
           <Image
             src={
@@ -27,7 +29,9 @@ export default function CardGridCard({
             alt={data?.image?.alt as string}
             width={888}
             height={888}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
             )}
@@ -72,7 +76,11 @@ export default function CardGridCard({
     </CardLink>
   ) : (
     <article className={clsx('w-[239px]', 'lg:w-full')}>
-      <div className={clsx('aspect-w-10 aspect-h-11 relative overflow-hidden')}>
+      <div
+        className={clsx(
+          'aspect-[10/11] aspect-w-10 aspect-h-11 relative overflow-hidden',
+        )}
+      >
         <Image
           src={
             data?.image
@@ -82,7 +90,9 @@ export default function CardGridCard({
           alt={data?.image?.alt as string}
           width={888}
           height={888}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) =>
+            (event.target as HTMLImageElement).classList.remove('opacity-0')
+          }
           className={clsx(
             'object-cover w-full h-full lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
           )}

@@ -1,19 +1,19 @@
-import { AccordionType } from 'types/sanity'
+import { AccordionType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
 import {
   WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
-} from 'lib/portabletTextComponents'
-import FormattedTextField from 'components/interaction/formattedTextField'
+} from '@/lib/portabletTextComponents'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
     <section
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:grid lg:grid-cols-12 lg:gap-x-[24px] lg:px-[48px] lg:py-[89px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:grid lg:grid-cols-12 lg:gap-x-[24px] lg:px-[48px] lg:py-[89px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <article className={clsx('lg:col-span-5 lg:pr-[24px]', 'ml:col-span-4')}>
@@ -45,11 +45,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
         )}
       </article>
       <div
-        className={clsx(
-          'mt-[26px]',
-          'lg:col-span-7 lg:mt-[0px]',
-          'ml:col-span-8',
-        )}
+        className={clsx('mt-[26px]', 'lg:col-span-7 lg:mt-0', 'ml:col-span-8')}
       >
         <Accordion.Root type="single" collapsible className={clsx('w-full ')}>
           {data?.accordionItems?.map((item, index) => (
@@ -61,7 +57,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
               <Accordion.Header className={clsx('text-black')}>
                 <Accordion.Trigger
                   className={clsx(
-                    'flex justify-between gap-x-[16px] w-full py-[16px] border-t-[1px] border-t-lightGrey transition-colors duration-200 group-hover:border-t-lavender',
+                    'flex justify-between gap-x-[16px] w-full py-[16px] border-t border-t-lightGrey transition-colors duration-200 group-hover:border-t-lavender',
                     'lg:py-[32px]',
                     'group-data-[state=open]:border-t-orange',
                   )}
@@ -84,7 +80,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className={clsx(
-                      'group-data-[state=open]:rotate-[180deg] transition-all duration-300 ease-in-out-cubic',
+                      'group-data-[state=open]:rotate-180 transition-all duration-300 ease-in-out-cubic',
                     )}
                   >
                     <path

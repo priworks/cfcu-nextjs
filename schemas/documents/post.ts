@@ -1,6 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { Article } from '@phosphor-icons/react'
-import { modules } from 'schemas/schemaTypes/modules'
+import { modules } from '@/schemas/schemaTypes/modules'
 
 export default defineType({
   name: 'post',

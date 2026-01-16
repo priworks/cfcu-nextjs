@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { GlobalSettingsType } from 'types/sanity'
+import { GlobalSettingsType } from '@/types/sanity'
 import globalAlert from '@/schemas/documents/modules/globalAlert'
 type GlobalStore = {
   globalSettings: GlobalSettingsType

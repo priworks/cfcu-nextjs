@@ -17,7 +17,7 @@ const SearchBar = ({
   const router = useRouter()
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    setCloseInitiated(true)
+    setCloseInitiated && setCloseInitiated(true)
     setSearch('')
     router.push(`/search?q=${encodeURIComponent(search)}`)
   }
@@ -34,7 +34,7 @@ const SearchBar = ({
           onChange={(e) => setSearch(e.target.value)}
           placeholder={'Search'}
           className={clsx(
-            'w-[100%] pb-[17px] pt-[21px] bg-[#D9D9D9]/20 rounded-[4px] pl-[17px] text-black placeholder:text-black font-codec-bold text-[16px] leading-[14.4px] focus:outline-lavender',
+            'w-full pb-[17px] pt-[21px] bg-[#D9D9D9]/20 rounded-[4px] pl-[17px] text-black placeholder:text-black font-codec-bold text-[16px] leading-[14.4px] focus:outline-lavender',
             'lg:rounded-[8px] lg:pl-[26px] py-[24px]',
           )}
         />

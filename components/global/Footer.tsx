@@ -1,16 +1,16 @@
-import { GlobalSettingsType } from 'types/sanity'
+import { GlobalSettingsType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import LogoFull from '/public/icons/LogoFull.png'
-import { urlForImage } from 'lib/sanity.image'
+import LogoFull from '@/public/icons/LogoFull.png'
+import { urlForImage } from '@/lib/sanity.image'
 import PageLink from './ui/PageLink'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useClickToCopy } from 'hooks/useClickToCopy'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
+import { useClickToCopy } from '@/hooks/useClickToCopy'
 import { useRef } from 'react'
 import Link from 'next/link'
-import { externalOnClick } from 'utils'
-import FormattedTextField from 'components/interaction/formattedTextField'
-import LowerFooterIcon from 'components/global/LowerFooterIcon'
+import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
+import LowerFooterIcon from '@/components/global/LowerFooterIcon'
 import { PortableText } from '@portabletext/react'
 
 const Footer = () => {
@@ -24,14 +24,14 @@ const Footer = () => {
   return (
     <div
       className={clsx(
-        'bg-lavender border-t-[1px] border-t-white/10',
-        'lg:pt-[36px] lg:border-b-[0px]',
+        'bg-lavender border-t border-t-white/10',
+        'lg:pt-[36px] lg:border-b-0',
       )}
     >
       <footer
         className={clsx(
           'px-[24px] py-[66px]',
-          'lg:px-[48px] lg:pt-[102px] lg:pb-[46px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:px-[48px] lg:pt-[102px] lg:pb-[46px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
         )}
       >
         <div className={clsx('lg:grid lg:grid-cols-12 lg:gap-x-[24px]')}>
@@ -80,7 +80,7 @@ const Footer = () => {
           <div
             className={clsx(
               'mt-[66px] flex flex-col gap-y-[25px]',
-              'lg:col-span-3 lg:mt-[0px]',
+              'lg:col-span-3 lg:mt-0',
             )}
           >
             <h5
@@ -110,7 +110,7 @@ const Footer = () => {
           <div
             className={clsx(
               'mt-[48px] flex flex-col gap-y-[25px]',
-              'lg:mt-[0px] lg:col-span-2',
+              'lg:mt-0 lg:col-span-2',
             )}
           >
             <h5
@@ -141,7 +141,7 @@ const Footer = () => {
           <div
             className={clsx(
               'mt-[48px] flex flex-col gap-y-[22px] relative h-fit',
-              'lg:mt-[0px] lg:col-span-2',
+              'lg:mt-0 lg:col-span-2',
             )}
           >
             <h5
@@ -169,7 +169,7 @@ const Footer = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className={clsx(
-                  'lg:group-hover:translate-y-[0px] lg:group-hover:opacity-100 lg:opacity-0 group-hover:ease-in-cubic lg:translate-y-[6px] transition-all duration-200 ease-out-cubic',
+                  'lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:opacity-0 group-hover:ease-in-cubic lg:translate-y-[6px] transition-all duration-200 ease-out-cubic',
                 )}
               >
                 <path
@@ -183,7 +183,7 @@ const Footer = () => {
               className={clsx(
                 'absolute bottom-[-32px] text-white ',
                 isCopied
-                  ? 'opacity-100 translate-y-[0px] transition-all duration-200 ease-out-cubic'
+                  ? 'opacity-100 translate-y-0 transition-all duration-200 ease-out-cubic'
                   : 'opacity-0 translate-y-[6px] transition-all duration-200 ease-in-cubic',
               )}
             >
@@ -193,13 +193,13 @@ const Footer = () => {
         </div>
         <div
           className={clsx(
-            'lg:border-t-[1px] lg:border-t-white/20 lg:flex  lg:flex-row lg:mt-[129px] lg:justify-start lg:pt-[33px] lg:items-center lg:gap-x-[32px]',
+            'lg:border-t lg:border-t-white/20 lg:flex  lg:flex-row lg:mt-[129px] lg:justify-start lg:pt-[33px] lg:items-center lg:gap-x-[32px]',
           )}
         >
           <div
             className={clsx(
-              'flex gap-x-[24px] items-center mt-[50px] pt-[33px] border-t-[1px] border-t-white/20',
-              'lg:border-t-[0px] lg:gap-x-[36px] lg:w-fit lg:pt-[0px] lg:mt-[0px]',
+              'flex gap-x-[24px] items-center mt-[50px] pt-[33px] border-t border-t-white/20',
+              'lg:border-t-0 lg:gap-x-[36px] lg:w-fit lg:pt-0 lg:mt-0',
             )}
           >
             {data?.lowerFooterIcons.map((icon, index) => (
@@ -209,7 +209,7 @@ const Footer = () => {
           <div
             className={clsx(
               'font-codec-regular text-[14px] leading-[18.2px] text-white mt-[56px] max-w-[570px]',
-              'lg:mt-[0px]',
+              'lg:mt-0',
             )}
           >
             <PortableText value={data?.lowerFooterContent} />

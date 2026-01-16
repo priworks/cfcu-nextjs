@@ -1,12 +1,12 @@
-import { LogoGridType } from 'types/sanity'
+import { LogoGridType } from '@/types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
-import { externalOnClick } from 'utils'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -19,7 +19,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
       <div
         className={clsx(
           'px-[24px] py-[66px]',
-          'lg:px-[48px] lg:pt-[80px] lg:pb-[130px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:px-[48px] lg:pt-[80px] lg:pb-[130px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
           stegaClean(data?.backgroundColor) === 'lightGray' && 'bg-lightGrey',
           stegaClean(data?.backgroundColor) === 'white' && 'bg-white',
         )}
@@ -85,21 +85,25 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                   logo?.link ? (
                     <a
                       href={logo?.link}
-                      onClick={(e) => externalOnClick(e, logo?.link)}
+                      onClick={(e) =>
+                        logo?.link && externalOnClick(e, logo?.link)
+                      }
                       className={clsx('lg:block w-full')}
-                      key={(String(index) + logo?.logo?.alt) as string}
+                      key={(String(index) + (logo?.logo?.alt || '')) as string}
                     >
                       <Image
                         src={urlForImage(logo?.logo)
                           .width(1200)
                           .quality(100)
                           .url()}
-                        alt={logo?.logo.alt as string}
+                        alt={(logo?.logo.alt as string) || ''}
                         width={1000}
                         height={1000}
                         quality={100}
-                        onLoadingComplete={(image) =>
-                          image.classList.remove('opacity-0')
+                        onLoad={(event) =>
+                          (event.target as HTMLImageElement).classList.remove(
+                            'opacity-0',
+                          )
                         }
                         className={clsx(
                           'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
@@ -108,17 +112,19 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                     </a>
                   ) : (
                     <Image
-                      key={(String(index) + logo?.logo?.alt) as string}
+                      key={(String(index) + (logo?.logo?.alt || '')) as string}
                       src={urlForImage(logo?.logo)
-                        .width(12000)
+                        .width(1200)
                         .quality(100)
                         .url()}
-                      alt={logo?.logo.alt as string}
+                      alt={(logo?.logo.alt as string) || ''}
                       width={1000}
                       height={1000}
                       quality={100}
-                      onLoadingComplete={(image) =>
-                        image.classList.remove('opacity-0')
+                      onLoad={(event) =>
+                        (event.target as HTMLImageElement).classList.remove(
+                          'opacity-0',
+                        )
                       }
                       className={clsx(
                         'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',

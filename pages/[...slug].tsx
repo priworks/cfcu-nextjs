@@ -4,18 +4,18 @@ import {
   getSubPageBySlug,
   getPostBySlug,
   getGlobalSettings,
-} from 'lib/sanity.client'
-import { readToken } from 'lib/sanity.api'
+} from '@/lib/sanity.client'
+import { readToken } from '@/lib/sanity.api'
 import PostPage from '../components/pages/PostPage'
 import SubPage from '../components/pages/SubPage'
-import { SubPageType, PostPageType, GlobalSettingsType } from 'types/sanity'
-import type { SharedPageProps, Seo } from 'pages/_app'
+import { SubPageType, PostPageType, GlobalSettingsType } from '@/types/sanity'
+import type { SharedPageProps, Seo } from '@/pages/_app'
 import { QueryParams } from 'next-sanity'
-import { useLiveQuery } from 'next-sanity/preview'
-import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
+import { useLiveQuery } from '@sanity/preview-kit'
+import { postBySlugQuery, subPageBySlugQuery } from '@/lib/sanity.queries'
 import { useEffect } from 'react'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { Layout } from 'components/layouts/Layout'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
+import { Layout } from '@/components/layouts/Layout'
 import { stegaClean } from '@sanity/client/stega'
 
 //TODO; Fix the type isues in this file.

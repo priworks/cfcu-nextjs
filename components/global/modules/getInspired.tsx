@@ -1,20 +1,20 @@
-import { GetInspiredType } from 'types/sanity'
+import { GetInspiredType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 import Button from '../ui/Button'
-import { PostPageType } from 'types/sanity'
+import { PostPageType } from '@/types/sanity'
 import Link from 'next/link'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import PageLink from '../ui/PageLink'
 import { useRef } from 'react'
 import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useInView } from 'react-intersection-observer'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
   const posts = data?.useTopic
@@ -47,15 +47,16 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
     )
       return
 
+    const gridElement = gridRef.current
     const ctx = gsap.context(() => {
       gsap.set(leftGridItemsRef.current, { yPercent: 5 })
       gsap.set(rightGridItemsRef.current, { yPercent: -4 })
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: gridRef.current,
+            trigger: gridElement,
             start: 'top-=400px top',
-            end: `+=${gridRef.current.offsetHeight * 0.8}px`,
+            end: `+=${gridElement.offsetHeight * 0.8}px`,
             scrub: true,
           },
         })
@@ -72,7 +73,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
       ref={ref}
       className={clsx(
         'pt-[112px] px-[24px] pb-[86px]',
-        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[69px]',
+        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:pb-[69px]',
       )}
     >
       <div className={clsx('flex flex-col items-center')}>
@@ -105,7 +106,9 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative lg:pb-[32px]',
         )}
       >
-        <PostCard data={featuredArticle} isFeatured={true} />
+        {featuredArticle && (
+          <PostCard data={featuredArticle} isFeatured={true} />
+        )}
         <div
           ref={gridRef}
           className={clsx(
@@ -153,7 +156,9 @@ const PostCard = ({
             alt={data?.thumbnailImage?.alt as string}
             width={888}
             height={888}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-auto lg:group-hover:scale-[1.03]  tranisiton-all duration-300 ease-in-out-cubic opacity-0',
             )}
@@ -164,7 +169,7 @@ const PostCard = ({
             'flex flex-col',
             isFeatured
               ? 'gap-y-[8px] mt-[24px] lg:max-w-[582px]  lg:gap-y-[13px] lg:mt-[31px]'
-              : 'mt-[16px] max-w-[92%] gap-y-[10px]  lg:gap-y-[0px] lg:mt-[25px]',
+              : 'mt-[16px] max-w-[92%] gap-y-[10px]  lg:gap-y-0 lg:mt-[25px]',
           )}
         >
           <h4

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { clsx } from 'clsx'
 import Link from 'next/link'
-import Button from 'components/global/ui/Button'
-import { externalOnClick } from 'utils'
-import type { PageLinkType } from 'types/sanity'
+import Button from '@/components/global/ui/Button'
+import { externalOnClick } from '@/utils'
+import type { PageLinkType } from '@/types/sanity'
 
 const LocationButtonLink = ({
   title,
@@ -51,7 +51,8 @@ const LocationButtonLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
+      externalLinkOneOff?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLinkOneOff.showPdfPageLeaveAlert)
     }
 
     if (externalLink?.externalLink) {
@@ -59,7 +60,8 @@ const LocationButtonLink = ({
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLink?.showPdfPageLeaveAlert)
+      externalLink?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLink.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

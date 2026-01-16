@@ -365,6 +365,6 @@ module.exports = {
     }),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-animate'),
-    require('./plugins/clamp-plugin'),
+    require('./plugins/clamp-plugin.ts'),
   ],
 }

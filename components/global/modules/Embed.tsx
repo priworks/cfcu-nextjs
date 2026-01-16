@@ -6,9 +6,9 @@ import { stegaClean } from '@sanity/client/stega'
 import Script from 'next/script'
 
 import ErrorBoundary from './ErrorBoundary'
-import { EmbedType } from 'types/sanity'
+import { EmbedType } from '@/types/sanity'
 
-function extractScriptContent(content) {
+function extractScriptContent(content: any) {
   const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi
   let scriptContent = ''
   let remainingContent = content
@@ -16,7 +16,7 @@ function extractScriptContent(content) {
   const scripts = content.match(scriptRegex)
 
   if (scripts) {
-    scripts.forEach((script) => {
+    scripts.forEach((script: any) => {
       const match = script.match(/<script\b[^>]*>([\s\S]*?)<\/script>/)
       if (match && match[1]) {
         scriptContent += match[1] + '\n'

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { externalOnClick } from 'utils'
+import { externalOnClick } from '@/utils'
 import FormattedTextField from '@/components/interaction/formattedTextField'
 interface Props {
   title: string
@@ -65,14 +65,16 @@ const WysiwygPageLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
+      externalLinkOneOff?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLinkOneOff.showPdfPageLeaveAlert)
     }
     if (externalLink?.link) {
       setHref(externalLink.link)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLink?.showPdfPageLeaveAlert)
+      externalLink?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLink.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

@@ -5,7 +5,7 @@ import {
   homepageModulesFragment,
   wysiwygFragment,
   markDefsFragment,
-} from 'lib/sanity.modules'
+} from '@/lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   globalAlerts[]->{

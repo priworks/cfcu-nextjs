@@ -56,7 +56,7 @@ export async function copyToClipboard(text: string): Promise<boolean> {
   }
 }
 
-export function externalOnClick(e, href: string, showPdfPageLeaveAlert: boolean = false) {
+export function externalOnClick(e: any, href: string, showPdfPageLeaveAlert: boolean = false) {
   // If showPdfPageLeaveAlert is false, skip all alerts
 
       if (showPdfPageLeaveAlert) {

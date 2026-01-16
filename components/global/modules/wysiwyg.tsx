@@ -1,13 +1,13 @@
-import { WysiwygType } from 'types/sanity'
+import { WysiwygType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponents } from '@/lib/portabletTextComponents'
 
 const Wysiwyg = ({ data }: { data: WysiwygType }) => {
   return (
     <section
       className={clsx(
-        'px-[0px] py-[44px] flex flex-col gap-y-[24px] break-words',
+        'px-0 py-[44px] flex flex-col gap-y-[24px] wrap-break-word',
         'lg:py-[105px] lg:px-[48px] lg:gap-y-[24px]',
       )}
     >

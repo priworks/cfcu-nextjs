@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { usePaneRouter } from 'sanity/desk'
+import { usePaneRouter } from 'sanity/structure'
 
 export const AutoPreviewPane = () => {
   const {

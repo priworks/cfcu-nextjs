@@ -21,7 +21,7 @@ import SanitizedEmbed from './Embed'
 import ErrorBoundary from './ErrorBoundary'
 import RateTable from './RateTable'
 
-const ModuleFactory = ({ modules }) => {
+const ModuleFactory = ({ modules }: { modules: any[] }) => {
   if (!modules || modules?.length === 0) return null
 
   const siteAlerts = modules.filter((module) => module?._type === 'siteAlert')
@@ -40,7 +40,11 @@ const ModuleFactory = ({ modules }) => {
 
 export default ModuleFactory
 
-export const renderModule = (module, moduleIndex = 0, modulesLegnth = 0) => {
+export const renderModule = (
+  module: any,
+  moduleIndex = 0,
+  modulesLegnth = 0,
+) => {
   switch (module?._type) {
     case 'ctaInContent':
       return <CTAInContent data={module} />

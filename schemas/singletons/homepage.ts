@@ -1,6 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { HouseLine } from '@phosphor-icons/react'
-import { homepageModules } from 'schemas/schemaTypes/homepageModules'
+import { homepageModules } from '@/schemas/schemaTypes/homepageModules'
 
 export default defineType({
   name: 'homepage',

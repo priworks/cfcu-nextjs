@@ -1,7 +1,8 @@
+import type { NextConfig } from 'next'
 import { createClient } from 'next-sanity'
 
 /** @type {import('next').NextConfig} */
-const config = {
+const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -9,15 +10,16 @@ const config = {
       { hostname: 'source.unsplash.com' },
     ],
     dangerouslyAllowSVG: true,
+    qualities: [100, 75],
   },
   typescript: {
     // Set this to false if you want production builds to abort if there's type errors
     ignoreBuildErrors: process.env.VERCEL_ENV === 'production',
   },
-  eslint: {
-    /// Set this to false if you want production builds to abort if there's lint errors
-    ignoreDuringBuilds: process.env.VERCEL_ENV === 'production',
-  },
+  // eslint: {
+  //   /// Set this to false if you want production builds to abort if there's lint errors
+  //   ignoreDuringBuilds: process.env.VERCEL_ENV === 'production',
+  // },
   async redirects() {
     const client = createClient({
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -30,7 +32,7 @@ const config = {
     ...,
   }`)
     const sanitySortedRedirects = sanityRedirects[0]?.redirects
-      .filter((redirect) => {
+      .filter((redirect: any) => {
         // Filter out /go.php?bid= redirects (handled by middleware)
         const isGoPhpBidRedirect = redirect.source.startsWith('/go.php?bid=')
 
@@ -43,7 +45,7 @@ const config = {
 
         return true
       })
-      .map((redirect) => {
+      .map((redirect: any) => {
         let source = redirect.source
 
         // Strip query params from other redirects
@@ -67,8 +69,8 @@ const config = {
         destination: '/posts/topic/:slug',
         permanent: true,
       },
-      ...sanitySortedRedirects || [],
+      ...(sanitySortedRedirects || []),
     ]
   },
 }
-export default config
+export default nextConfig

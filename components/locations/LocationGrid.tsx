@@ -1,23 +1,23 @@
 import React from 'react'
-import type { LocationPage } from 'types/sanity'
+import type { LocationPage } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Link from 'next/link'
-import Button from 'components/global/ui/Button'
+import Button from '@/components/global/ui/Button'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
-import { externalOnClick } from 'utils'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import LocationButtonLink from 'components/locations/LocationButtonLink'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { externalOnClick } from '@/utils'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import LocationButtonLink from '@/components/locations/LocationButtonLink'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
     <section
       className={clsx(
         'flex flex-col w-full px-[24px] mt-[48px] gap-y-[48px] pb-[75px]',
-        'lg:grid lg:grid-cols-3 lg:max-w-[1800px] xl:px-[0px] lg:gap-x-[30px] lg:mx-auto lg:gap-y-[77px]  lg:mt-[125px] lg:mb-[136px] lg:px-[48px]',
+        'lg:grid lg:grid-cols-3 lg:max-w-[1800px] xl:px-0 lg:gap-x-[30px] lg:mx-auto lg:gap-y-[77px]  lg:mt-[125px] lg:mb-[136px] lg:px-[48px]',
       )}
     >
       {data?.map((location, index) => (
@@ -31,7 +31,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
   return (
     <article>
       <Link href={data?.slug.current}>
-        <div className={clsx('aspect-w-16 aspect-h-9')}>
+        <div className={clsx('aspect-[16/9] aspect-w-16 aspect-h-9 relative')}>
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(1200)
@@ -42,7 +42,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
             )}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
           />
         </div>
       </Link>

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { copyToClipboard } from 'utils'
+import { copyToClipboard } from '@/utils'
 
 export function useClickToCopy(text: string, resetDelay = 3000) {
   const [isCopied, setIsCopied] = useState(false)

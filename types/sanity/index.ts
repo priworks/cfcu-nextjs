@@ -509,7 +509,7 @@ export interface HomepageType {
       }>
     }>
   }
-  jsonLd?: any
+  jsonLd?: any 
   ctaText: CtaTextType
 }
 

@@ -8,9 +8,9 @@ import { useEffect } from 'react'
 interface PaginationProps {
   totalPages: number
   currentPage: number
-  generateButtonUrl: (page: number) => string
-  nextUrl: string
-  prevUrl: string
+  generateButtonUrl?: (page: number) => string
+  nextUrl?: string
+  prevUrl?: string
 }
 
 const Pagination = ({
@@ -34,25 +34,27 @@ const Pagination = ({
         'flex justify-between items-center gap-x-[32px] max-w-[1800px] mx-auto mb-[84px]',
       )}
     >
-      <Link
-        href={prevUrl}
-        className={clsx(
-          currentPage == 1 && 'opacity-50 pointer-events-none',
-          'hidden md:block',
-        )}
-      >
-        <ReversedButton
-          label="Prev"
-          className={clsx('!bg-lavender !text-white')}
-        />
-      </Link>
+      {prevUrl && (
+        <Link
+          href={prevUrl}
+          className={clsx(
+            currentPage == 1 && 'opacity-50 pointer-events-none',
+            'hidden md:block',
+          )}
+        >
+          <ReversedButton
+            label="Prev"
+            className={clsx('!bg-lavender text-white!')}
+          />
+        </Link>
+      )}
       {/* <div className={clsx('flex items-center gap-x-[16px]')}>
         {Array.from({ length: totalPages }, (_, index) => (
           <Link href={generateButtonUrl(index + 1)} key={index}>
             <button
               className={clsx(
                 'w-[67px] h-[67px] bg-lightGrey font-codec-extra-bold text-lavender rounded-full',
-                currentPage == index + 1 && '!bg-lavender !text-white',
+                currentPage == index + 1 && '!bg-lavender text-white!',
               )}
             >
               {index + 1}
@@ -75,7 +77,7 @@ const Pagination = ({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={clsx(
-                'absolute top-[14px] right-[16px] z-[2] pointer-events-none',
+                'absolute top-[14px] right-[16px] z-2 pointer-events-none',
               )}
             >
               <path
@@ -103,25 +105,29 @@ const Pagination = ({
         </div>
         <span className={clsx('inline-block mr-[17px]')}>of {totalPages}</span>
 
-        <Link
-          href={generateButtonUrl(selectedPage)}
-          className={clsx(
-            currentPage == selectedPage && 'opacity-50 pointer-events-none',
-          )}
-        >
-          <Button label="Go" className={clsx('!bg-lavender !text-white')} />
-        </Link>
+        {generateButtonUrl && (
+          <Link
+            href={generateButtonUrl(selectedPage)}
+            className={clsx(
+              currentPage == selectedPage && 'opacity-50 pointer-events-none',
+            )}
+          >
+            <Button label="Go" className={clsx('!bg-lavender text-white!')} />
+          </Link>
+        )}
       </div>
 
-      <Link
-        href={nextUrl}
-        className={clsx(
-          currentPage == totalPages && 'opacity-50 pointer-events-none',
-          'hidden md:block',
-        )}
-      >
-        <Button label="next" className={clsx('!bg-lavender !text-white')} />
-      </Link>
+      {nextUrl && (
+        <Link
+          href={nextUrl}
+          className={clsx(
+            currentPage == totalPages && 'opacity-50 pointer-events-none',
+            'hidden md:block',
+          )}
+        >
+          <Button label="next" className={clsx('!bg-lavender text-white!')} />
+        </Link>
+      )}
     </div>
   )
 }

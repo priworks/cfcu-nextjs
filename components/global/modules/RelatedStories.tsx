@@ -1,4 +1,4 @@
-import { RelatedStoriesType } from 'types/sanity'
+import { RelatedStoriesType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import Button from '../ui/Button'
@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react'
 import 'swiper/css'
 import Link from 'next/link'
 import Image from 'next/image'
-import { PostPageType } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
+import { PostPageType } from '@/types/sanity'
+import { urlForImage } from '@/lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import PostCard from '../ui/PostCard'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
   const posts = data?.useTopic ? data?.topic?.relatedPosts : data?.posts
@@ -27,13 +27,13 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
       <div
         className={clsx(
           'pt-[66px] pb-[136px]',
-          'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-0 lg:mx-auto',
         )}
       >
         <article
           className={clsx(
             'px-[24px] flex items-center flex-col',
-            'lg:px-[48px] xl:px-[0px]',
+            'lg:px-[48px] xl:px-0',
           )}
         >
           {data?.subTitle && (
@@ -59,8 +59,8 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
           {data.description && (
             <p
               className={clsx(
-                'text-[18px] leading-[25.2px] flex flex-col gap-y-[24px] text-center font-codec-news break-words mt-[13px] text-black/75',
-                'lg:w-paragraph-l-desktop lg:mt-[0px] lg:max-w-[980px]',
+                'text-[18px] leading-[25.2px] flex flex-col gap-y-[24px] text-center font-codec-news wrap-break-word mt-[13px] text-black/75',
+                'lg:w-paragraph-l-desktop lg:mt-0 lg:max-w-[980px]',
               )}
             >
               <FormattedTextField text={data?.description} />
@@ -87,7 +87,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             slidesPerView={'auto'}
           >
             {posts?.map((post, index) => (
-              <SwiperSlide key={index} className={clsx('!w-fit')}>
+              <SwiperSlide key={index} className={clsx('w-fit!')}>
                 {<PostCard data={post} key={index} fixSize={true} />}
               </SwiperSlide>
             ))}
@@ -96,7 +96,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
         <div
           className={clsx(
             'hidden',
-            'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-[0px]',
+            'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-0',
           )}
         >
           {posts?.map((post, index) => (

@@ -1,9 +1,9 @@
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Link from 'next/link'
 import { PostPageType } from '@/types/sanity'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const PostCard = ({
   data,
@@ -30,8 +30,8 @@ const PostCard = ({
       >
         <div
           className={clsx(
-            'overflow-hidden w-full',
-            fixSize && 'aspect-w-1 aspect-h-1',
+            'overflow-hidden w-full relative',
+            fixSize && 'aspect-[1/1] aspect-w-1 aspect-h-1',
           )}
         >
           <Image
@@ -42,10 +42,12 @@ const PostCard = ({
             alt={data?.thumbnailImage?.alt as string}
             width={1000}
             height={1000}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
-              fixSize && '!h-full',
+              fixSize && 'h-full!',
             )}
           />
         </div>

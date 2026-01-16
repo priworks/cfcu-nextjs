@@ -1,5 +1,5 @@
 import { validatePreviewUrl } from '@sanity/preview-url-secret'
-import { apiVersion, dataset, projectId } from 'lib/sanity.api'
+import { apiVersion, dataset, projectId } from '@/lib/sanity.api'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from 'next-sanity'
 

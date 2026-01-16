@@ -1,11 +1,11 @@
-import { GlobalAlertType } from 'types/sanity'
+import { GlobalAlertType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import { useState, useRef, useEffect, use } from 'react'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
@@ -33,8 +33,8 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
 
   useEffect(() => {
     if (alertIsOpen) {
-      setAlertHeight(alertHeight + contentRef.current.scrollHeight)
-      setAlertHeight(contentRef.current.scrollHeight)
+      setAlertHeight(alertHeight + (contentRef?.current?.scrollHeight || 0))
+      contentRef?.current && setAlertHeight(contentRef.current.scrollHeight)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, setAlertHeight, setAlertHeight])
@@ -43,9 +43,9 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
     <section
       style={{ maxHeight: alertHeight || 'unset' }}
       className={clsx(
-        ' bg-black px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
+        ' bg-black px-[24px] w-full z-10 flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
-        isClosed && '!max-h-[0px] !bg-transparent',
+        isClosed && 'max-h-0! bg-transparent!',
       )}
     >
       <div

@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { PostPageType } from 'types/sanity'
+import { PostPageType } from '@/types/sanity'
 import Image from 'next/image'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Link from 'next/link'
-import { formatDate } from 'utils'
+import { formatDate } from '@/utils'
 import SplitTextDynamic from '../interaction/splitTextDynamic'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { externalOnClick } from 'utils'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const Hero = ({ post }: { post: PostPageType }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -54,13 +54,13 @@ const Hero = ({ post }: { post: PostPageType }) => {
       ref={heroRef}
       className={clsx(
         'px-[24px] pt-[24px] pb-[16px]',
-        'lg:px-[48px] lg:pt-[48px] lg:pb-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:px-[48px] lg:pt-[48px] lg:pb-0 lg:max-w-[1800px] xl:px-0 lg:mx-auto',
       )}
     >
       <Link
         href={'/'}
         className={clsx(
-          'block w-fit focus:!shadow-none',
+          'block w-fit focus:shadow-none!',
           'lg:absolute lg:left-[48px]',
         )}
       >
@@ -207,7 +207,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                       key={index}
                       href={'/' + topic?.slug?.current + '/1'}
                       className={clsx(
-                        'underline hover:!no-underline w-fit block',
+                        'underline hover:no-underline! w-fit block',
                       )}
                     >
                       <FormattedTextField text={topic?.name} />
@@ -216,7 +216,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 </div>
               </div>
             )}
-            {post?.shareLinks?.length > 0 && (
+            {post?.shareLinks && post?.shareLinks?.length > 0 && (
               <div className={clsx('flex flex-col gap-y-[8px]')}>
                 <h4
                   className={clsx(
@@ -254,7 +254,9 @@ const Hero = ({ post }: { post: PostPageType }) => {
             )}
           </div>
         </article>
-        <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>
+        <div
+          className={clsx('aspect-[8/7] aspect-w-8 aspect-h-7 w-full relative')}
+        >
           <Image
             src={urlForImage(post?.thumbnailImage)
               .width(1000)
@@ -262,7 +264,9 @@ const Hero = ({ post }: { post: PostPageType }) => {
               .url()}
             alt=""
             fill
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              (event.target as HTMLImageElement).classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-300 ease-linear',
             )}

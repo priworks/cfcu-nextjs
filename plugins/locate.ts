@@ -16,7 +16,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     // Listen to the query and fetch the draft and published document
     const doc$ = context.documentStore.listenQuery(
       `*[_id == $id && defined(slug.current)][0]{slug,title}`,
-      params,
+      { id: params.id, type: params.type },
       { perspective: 'drafts' },
     ) as Observable<{
       slug: { current: string }
@@ -24,7 +24,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     } | null>
 
     return doc$.pipe(
-      map((doc) => {
+      map((doc: any) => {
         return {
           locations: [
             {
@@ -45,7 +45,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     // Fetch all posts that reference the viewed author, if the post has a slug defined
     const doc$ = context.documentStore.listenQuery(
       `*[_type == "post" && references($id) && defined(slug.current)]{slug,title}`,
-      params,
+      { id: params.id, type: params.type },
       { perspective: 'drafts' },
     ) as Observable<
       {

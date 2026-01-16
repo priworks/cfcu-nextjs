@@ -1,4 +1,4 @@
-import { QuickExitType } from 'types/sanity'
+import { QuickExitType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import { use, useEffect, useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -12,11 +12,11 @@ export default function FastExitButton({ url }: { url: string }) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const chatWidget = document.querySelector('.sm-visitor-app')
-      if (!chatWidget) return
+      if (!chatWidget || !buttonRef.current) return
       if (width > 768) {
-        buttonRef.current.style.transform = 'translateY(-75px)'
+        buttonRef.current.style.translate = '0 -75px'
       } else {
-        buttonRef.current.style.transform = 'translateY(-56px)'
+        buttonRef.current.style.translate = '0 -56px'
       }
     }
   }, [width])
@@ -26,7 +26,7 @@ export default function FastExitButton({ url }: { url: string }) {
       ref={buttonRef}
       onClick={handleFastExit}
       className={clsx(
-        'font-codec-extra-bold text-white bg-alertRed flex gap-x-[6px] rounded-full py-[10.5px] px-[20px] fixed  items-center z-[5] bottom-[24px] right-[10px] group transition-transform duration-200 ease-in-out-cubic',
+        'font-codec-extra-bold text-white bg-alertRed flex gap-x-[6px] rounded-full py-[10.5px] px-[20px] fixed  items-center z-5 bottom-[24px] right-[10px] group transition-transform duration-200 ease-in-out-cubic',
         'lg:bottom-[31px] md:right-[29px]',
       )}
     >

@@ -5,9 +5,14 @@ import {
   getAllLocations,
   getAllSubpages,
   getAllPostsWithoutPagination,
-} from 'lib/sanity.client'
-import { parseBody, type ParsedBody } from 'next-sanity/webhook'
-export { config } from 'next-sanity/webhook'
+} from '@/lib/sanity.client'
+import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook'
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
 
 const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!
 const algoliaApiKey = process.env.ALGOLIA_API_KEY!
@@ -157,6 +162,14 @@ function transformWebhookData(_id: string, value: any) {
   }
 }
 
+async function readBody(readable: NextApiRequest): Promise<string> {
+  const chunks = []
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk)
+  }
+  return Buffer.concat(chunks).toString('utf8')
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -174,25 +187,32 @@ export default async function handler(
       return res.status(200).json(response)
     }
     //if not valid signature
-    const { body, isValidSignature } = await parseBody(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET,
-    )
-    if (!isValidSignature) {
+    const signature = req.headers[SIGNATURE_HEADER_NAME] as string
+    const body = await readBody(req)
+
+    if (
+      !(await isValidSignature(
+        body,
+        signature,
+        process.env.SANITY_REVALIDATE_SECRET || '',
+      ))
+    ) {
       const message = 'Invalid signature'
       return res.status(401).send(message)
     }
 
+    const payload = JSON.parse(body)
+
     // Incremental updates based on webhook payload
-    if (!body) {
+    if (!payload) {
       console.warn('No JSON payload provided')
       return res.status(400).json({ error: 'No payload provided' })
     }
 
     // console.log('Parsed Payload:', JSON.stringify(payload))
     const operation = req.headers['sanity-operation']
-    const { _id } = body
-    console.log(body)
+    const { _id } = payload
+    console.log(payload)
     console.log(req.headers)
     if (!operation || !_id) {
       return res.status(400).json({
@@ -212,18 +232,18 @@ export default async function handler(
       })
     } else {
       // For create/update operations, we need the value
-      if (!body) {
+      if (!payload) {
         return res.status(400).json({
           error: 'Invalid payload, missing value for create/update operation',
         })
       }
 
       // Transform the data based on document type
-      const algoliaRecord = transformWebhookData(_id, body)
+      const algoliaRecord = transformWebhookData(_id, payload)
 
       if (!algoliaRecord) {
         return res.status(200).json({
-          error: `Unsupported document type: ${body._type}`,
+          error: `Unsupported document type: ${payload._type}`,
         })
       }
 
@@ -233,9 +253,9 @@ export default async function handler(
         body: algoliaRecord,
       })
 
-      console.log(`Indexed/Updated ${body._type} with ID: ${_id}`)
+      console.log(`Indexed/Updated ${payload._type} with ID: ${_id}`)
       return res.status(200).json({
-        message: `Successfully processed ${body._type} with ID: ${_id}!`,
+        message: `Successfully processed ${payload._type} with ID: ${_id}!`,
       })
     }
   } catch (error: any) {

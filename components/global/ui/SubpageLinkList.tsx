@@ -1,9 +1,9 @@
-import { SubPageType } from 'types/sanity'
+import { SubPageType } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Link from 'next/link'
-import { useWindowSize } from 'hooks/useWindowSize'
+import { useWindowSize } from '@/hooks/useWindowSize'
 import * as Accordion from '@radix-ui/react-accordion'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
   const { width } = useWindowSize()
@@ -11,7 +11,7 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
     <>
       <nav
         className={clsx(
-          'pt-[39px] pb-[37px]  gap-x-[32px] px-[48px] justify-center items-center text-[18px] leading-[27px] font-codec-bold text-lavender border-b-[1px] border-b-black/10 hidden',
+          'pt-[39px] pb-[37px]  gap-x-[32px] px-[48px] justify-center items-center text-[18px] leading-[27px] font-codec-bold text-lavender border-b border-b-black/10 hidden',
           'lg:flex',
         )}
       >
@@ -31,10 +31,7 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
       <Accordion.Root
         type="single"
         collapsible
-        className={clsx(
-          'w-full border-b-[1px] border-b-black/10 ',
-          'lg:hidden',
-        )}
+        className={clsx('w-full border-b border-b-black/10 ', 'lg:hidden')}
       >
         <Accordion.Item value="subPageLinks group">
           <Accordion.Header className={clsx('text-black')}>
@@ -56,7 +53,7 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
                 ></span>
                 <span
                   className={clsx(
-                    'sblock w-[13px] h-[3px] bg-lavender absolute left-[0px] top-[0px] origin-center group-data-[state=closed]:rotate-[90deg] transition-transform duration-300 ease-in-out-cubic',
+                    'sblock w-[13px] h-[3px] bg-lavender absolute left-0 top-0 origin-center group-data-[state=closed]:rotate-90 transition-transform duration-300 ease-in-out-cubic',
                   )}
                 ></span>
               </div>

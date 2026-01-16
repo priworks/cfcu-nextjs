@@ -1,12 +1,24 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useClient } from 'sanity'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+} from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
 import { GripVertical } from 'lucide-react'
 
-export function CustomDocumentView(props) {
+interface ChildDocument {
+  _id: string
+  _type: string
+  title: string
+  parent: any
+  order: number
+}
+
+export function CustomDocumentView(props: any) {
   console.log('CustomDocumentView props:', props)
   const { displayed } = props.document
-  const [childDocuments, setChildDocuments] = useState([])
+  const [childDocuments, setChildDocuments] = useState<ChildDocument[]>([])
   const [enabled, setEnabled] = useState(false)
   const [isPending, setIsPending] = useState(false) // Update 1: Added pending state
   const client = useClient({ apiVersion: '2021-03-25' })
@@ -46,7 +58,7 @@ export function CustomDocumentView(props) {
     }
   }, [fetchChildDocuments])
 
-  const onDragEnd = async (result) => {
+  const onDragEnd = async (result: any) => {
     if (!result.destination) {
       return
     }
@@ -98,7 +110,7 @@ export function CustomDocumentView(props) {
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         {enabled ? (
           <Droppable droppableId="list">
-            {(provided) => (
+            {(provided: any) => (
               <ul
                 className="list-none pl-0"
                 {...provided.droppableProps}
@@ -111,12 +123,12 @@ export function CustomDocumentView(props) {
                     index={index}
                     isDragDisabled={isPending} // Update 3: Disable dragging when pending
                   >
-                    {(provided, snapshot) => (
+                    {(provided: any, snapshot: any) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className={`mb-2 p-2 border-gray-300 border-[1px] rounded cursor-move ${
+                        className={`mb-2 p-2 border-gray-300 border rounded cursor-move ${
                           snapshot.isDragging ? 'shadow-lg' : ''
                         } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`} // Update 3: Add styles for pending state
                       >

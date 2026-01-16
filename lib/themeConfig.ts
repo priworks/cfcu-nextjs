@@ -1,4 +1,4 @@
-import { ThemeLabel } from 'types/sanity'
+import { ThemeLabel } from '@/types/sanity'
 import { stegaClean } from '@sanity/client/stega'
 
 export const themeConfig = {

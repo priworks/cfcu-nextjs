@@ -1,12 +1,12 @@
-import { LocationPage } from 'types/sanity'
+import { LocationPage } from '@/types/sanity'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import Button from '../global/ui/Button'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
-import defaultSubPage from 'public/images/defaultSubPage.png'
-import LocationHours from 'components/locations/LocationHours'
-import PageLink from 'components/global/ui/PageLink'
+import defaultSubPage from '@/public/images/defaultSubPage.png'
+import LocationHours from '@/components/locations/LocationHours'
+import PageLink from '@/components/global/ui/PageLink'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef, useState } from 'react'
 import SplitTextDynamic from '../interaction/splitTextDynamic'
@@ -16,10 +16,10 @@ import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
 import React from 'react'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { PortableTextBlock } from '@portabletext/types'
-import { externalOnClick } from 'utils'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+// import { PortableTextBlock } from '@portabletext/types'
+import { externalOnClick } from '@/utils'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
@@ -77,7 +77,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
           'bg-lavender lg:px-[48px] lg:py-[201px]  items-end',
         )}
       >
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+        <Link href={'/'} className={clsx('block w-fit focus:shadow-none!')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
@@ -85,7 +85,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
             height={108}
             priority
             className={clsx(
-              'w-[212px] relative z-[2]',
+              'w-[212px] relative z-2',
               'lg:w-[244.71px] lg:absolute lg:top-[48px] lg:left-[48px] ',
             )}
           />
@@ -100,17 +100,17 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
         <div
           className={clsx(
             'gap-y-[35px] flex flex-col-reverse mt-[48px] pb-[60px]',
-            'lg:grid lg:grid-cols-2 lg:gap-x-[24px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-end',
+            'lg:grid lg:grid-cols-2 lg:gap-x-[24px] lg:max-w-[1800px] xl:px-0 lg:mx-auto lg:items-end',
           )}
         >
-          <article className={clsx('relative z-[2]')}>
+          <article className={clsx('relative z-2')}>
             <Link
               href={'/locations'}
               className={clsx('block opacity-0 backButton group ')}
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200',
+                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:opacity-80! transition-opacity duration-200',
                 )}
               >
                 <svg
@@ -216,7 +216,11 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               </PageLink>
             )}
           </article>
-          <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>
+          <div
+            className={clsx(
+              'aspect-[8/7] aspect-w-8 aspect-h-7 w-full relative',
+            )}
+          >
             <Image
               src={urlForImage(data?.thumbnailImage)
                 .width(1200)
@@ -226,7 +230,9 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               quality={100}
               fill
               priority
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                (event.target as HTMLImageElement).classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
               )}
@@ -291,9 +297,11 @@ function DetailCard({
           </a>
         ) : isAddress ? (
           <a
-            href={getGoogleMapsLink(coordinates)}
+            href={coordinates && getGoogleMapsLink(coordinates)}
             target={'_blank'}
-            onClick={(e) => externalOnClick(e, getGoogleMapsLink(coordinates))}
+            onClick={(e) =>
+              coordinates && externalOnClick(e, getGoogleMapsLink(coordinates))
+            }
           >
             <div>
               <PortableText

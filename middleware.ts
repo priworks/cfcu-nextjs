@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 
-let goPhpRedirectsCache = null
+let goPhpRedirectsCache: any = null
 let lastFetch = 0
 const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
@@ -25,9 +25,12 @@ async function getGoPhpRedirects() {
       ...,
     }`)
 
-    const goPhpRedirects = {}
+    const goPhpRedirects: Record<
+      string,
+      { destination: string; permanent: boolean }
+    > = {}
 
-    sanityRedirects[0].redirects.forEach((redirect) => {
+    sanityRedirects[0].redirects.forEach((redirect: any) => {
       if (redirect.source.startsWith('/go.php?bid=')) {
         const bidMatch = redirect.source.match(/bid=(\d+)/)
         if (bidMatch) {
@@ -50,7 +53,7 @@ async function getGoPhpRedirects() {
   }
 }
 
-export async function middleware(request) {
+export async function middleware(request: any) {
   const url = request.nextUrl.clone()
 
   if (url.pathname === '/go.php') {

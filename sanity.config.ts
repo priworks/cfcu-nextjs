@@ -3,21 +3,15 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import {
-  apiVersion,
-  dataset,
-  DRAFT_MODE_ROUTE,
-  projectId,
-} from 'lib/sanity.api'
-import { locate } from 'plugins/locate'
-import { previewDocumentNode } from 'plugins/previewPane'
-import { settingsPlugin, settingsStructure } from 'plugins/settings'
+import { dataset, projectId } from '@/lib/sanity.api'
+
+import { previewDocumentNode } from '@/plugins/previewPane'
+import { settingsPlugin, settingsStructure } from '@/plugins/settings'
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
-import { presentationTool } from 'sanity/presentation'
+import { structureTool } from 'sanity/structure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import settingsType from 'schemas/settings'
-import { schema } from 'schemas'
+import settingsType from '@/schemas/settings'
+import { schema } from '@/schemas'
 import { media } from 'sanity-plugin-media'
 import Logo from './components/Sanity/Logo'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
@@ -32,7 +26,7 @@ export default defineConfig({
   title,
   schema,
   plugins: [
-    deskTool({
+    structureTool({
       structure: settingsStructure(settingsType),
       defaultDocumentNode: previewDocumentNode(),
     }),

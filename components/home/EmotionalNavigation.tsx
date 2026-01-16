@@ -1,18 +1,16 @@
-import { HomepageType } from 'types/sanity'
+import { HomepageType } from '@/types/sanity'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@/lib/sanity.image'
 import { clsx } from 'clsx'
 import * as Accordion from '@radix-ui/react-accordion'
-import { getThemeClasses } from 'lib/themeConfig'
-import Link from 'next/link'
-import PageLink from 'components/global/ui/PageLink'
+import { getThemeClasses } from '@/lib/themeConfig'
+import PageLink from '@/components/global/ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
-import { motion, useTransform, useScroll } from 'framer-motion'
 import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import { useWindowSize } from 'hooks/useWindowSize'
-import FormattedTextField from 'components/interaction/formattedTextField'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import FormattedTextField from '@/components/interaction/formattedTextField'
 
 const EmotionalNavigation = ({
   data,
@@ -181,8 +179,8 @@ const CardMobile = ({
         >
           <span
             className={clsx(
-              'w-[14px] h-[4px] rotate-[90deg]  absolute bg-lavender block transition-transform duration-300 ease-in-out-cubic',
-              'group-data-[state=open]:rotate-[0deg]',
+              'w-[14px] h-[4px] rotate-90  absolute bg-lavender block transition-transform duration-300 ease-in-out-cubic',
+              'group-data-[state=open]:rotate-0',
             )}
           ></span>
           <span className={clsx('w-[14px] h-[4px] bg-lavender block')}></span>
@@ -240,7 +238,7 @@ const CardDesktop = ({
     <article
       style={{ backgroundColor: colors?.background, color: colors?.heading }}
       className={clsx(
-        'px-[53px] pt-[77px] ml:clamp-w-[547px]  ml:clamp-h-[620px] flex-shrink-0 h-[620px] w-[547px]',
+        'px-[53px] pt-[77px] ml:clamp-w-[547px]  ml:clamp-h-[620px] shrink-0 h-[620px] w-[547px]',
       )}
     >
       <h4
