@@ -32,8 +32,8 @@ const SplitTextDynamic = ({
   isHeading = false,
   setLineAmount = () => {},
 }: Props) => {
-  const headingRef = useRef(null)
-  const tlRef = useRef(null)
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const tlRef = useRef<gsap.core.Timeline | null>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -45,11 +45,12 @@ const SplitTextDynamic = ({
       })
       setLineAmount(split.lines.length)
       gsap.set(headingRef.current, { opacity: 1 })
-      split.lines.forEach((line: HTMLDivElement) => {
+      split.lines.forEach((line) => {
+        const lineElement = line as HTMLDivElement
         const wrapperDiv = document.createElement('div')
         wrapperDiv.classList.add(...wrapperHeights)
-        line.parentNode.insertBefore(wrapperDiv, line)
-        wrapperDiv.appendChild(line)
+        lineElement.parentNode?.insertBefore(wrapperDiv, lineElement)
+        wrapperDiv.appendChild(lineElement)
       })
       gsap.set(split.lines, { yPercent: 100 })
       tlRef.current = gsap
@@ -57,7 +58,8 @@ const SplitTextDynamic = ({
           paused: true,
           delay,
           onComplete: () => {
-            headingRef.current.classList.remove('opacity-0')
+            headingRef.current &&
+              headingRef.current.classList.remove('opacity-0')
             split.revert()
           },
         })
@@ -82,7 +84,7 @@ const SplitTextDynamic = ({
 
   useEffect(() => {
     if (paused) return
-    tlRef.current.play()
+    tlRef.current?.play()
   }, [paused])
   return (
     <span

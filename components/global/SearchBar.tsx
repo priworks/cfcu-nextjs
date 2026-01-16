@@ -17,7 +17,7 @@ const SearchBar = ({
   const router = useRouter()
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    setCloseInitiated(true)
+    setCloseInitiated && setCloseInitiated(true)
     setSearch('')
     router.push(`/search?q=${encodeURIComponent(search)}`)
   }

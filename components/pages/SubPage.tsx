@@ -30,7 +30,9 @@ const SubPage = ({
       ))}
       <SubPageHero data={data?.pageHero} parent={data?.parent} />
       <div className="flex flex-col">
-        {childrenPages.length > 0 && <SubpageLinkList data={childrenPages} />}
+        {childrenPages && childrenPages.length > 0 && (
+          <SubpageLinkList data={childrenPages} />
+        )}
       </div>
       {data?.modules && <ModuleFactory modules={data?.modules || []} />}
     </main>

@@ -1,12 +1,24 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useClient } from 'sanity'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+} from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
 import { GripVertical } from 'lucide-react'
 
-export function CustomDocumentView(props) {
+interface ChildDocument {
+  _id: string
+  _type: string
+  title: string
+  parent: any
+  order: number
+}
+
+export function CustomDocumentView(props: any) {
   console.log('CustomDocumentView props:', props)
   const { displayed } = props.document
-  const [childDocuments, setChildDocuments] = useState([])
+  const [childDocuments, setChildDocuments] = useState<ChildDocument[]>([])
   const [enabled, setEnabled] = useState(false)
   const [isPending, setIsPending] = useState(false) // Update 1: Added pending state
   const client = useClient({ apiVersion: '2021-03-25' })
@@ -46,7 +58,7 @@ export function CustomDocumentView(props) {
     }
   }, [fetchChildDocuments])
 
-  const onDragEnd = async (result) => {
+  const onDragEnd = async (result: any) => {
     if (!result.destination) {
       return
     }

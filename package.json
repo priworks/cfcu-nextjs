@@ -17,6 +17,7 @@
     "singleQuote": true
   },
   "dependencies": {
+    "@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration": "^2.0.11",
     "@focus-reactive/sanity-plugin-inline-svg-input": "^1.2.0",
     "@mapbox/search-js-react": "^1.5.1",
     "@phosphor-icons/react": "^2.1.10",

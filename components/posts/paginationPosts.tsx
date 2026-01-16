@@ -8,9 +8,9 @@ import { useEffect } from 'react'
 interface PaginationProps {
   totalPages: number
   currentPage: number
-  generateButtonUrl: (page: number) => string
-  nextUrl: string
-  prevUrl: string
+  generateButtonUrl?: (page: number) => string
+  nextUrl?: string
+  prevUrl?: string
 }
 
 const Pagination = ({
@@ -34,18 +34,20 @@ const Pagination = ({
         'flex justify-between items-center gap-x-[32px] max-w-[1800px] mx-auto mb-[84px]',
       )}
     >
-      <Link
-        href={prevUrl}
-        className={clsx(
-          currentPage == 1 && 'opacity-50 pointer-events-none',
-          'hidden md:block',
-        )}
-      >
-        <ReversedButton
-          label="Prev"
-          className={clsx('!bg-lavender text-white!')}
-        />
-      </Link>
+      {prevUrl && (
+        <Link
+          href={prevUrl}
+          className={clsx(
+            currentPage == 1 && 'opacity-50 pointer-events-none',
+            'hidden md:block',
+          )}
+        >
+          <ReversedButton
+            label="Prev"
+            className={clsx('!bg-lavender text-white!')}
+          />
+        </Link>
+      )}
       {/* <div className={clsx('flex items-center gap-x-[16px]')}>
         {Array.from({ length: totalPages }, (_, index) => (
           <Link href={generateButtonUrl(index + 1)} key={index}>
@@ -103,25 +105,29 @@ const Pagination = ({
         </div>
         <span className={clsx('inline-block mr-[17px]')}>of {totalPages}</span>
 
-        <Link
-          href={generateButtonUrl(selectedPage)}
-          className={clsx(
-            currentPage == selectedPage && 'opacity-50 pointer-events-none',
-          )}
-        >
-          <Button label="Go" className={clsx('!bg-lavender text-white!')} />
-        </Link>
+        {generateButtonUrl && (
+          <Link
+            href={generateButtonUrl(selectedPage)}
+            className={clsx(
+              currentPage == selectedPage && 'opacity-50 pointer-events-none',
+            )}
+          >
+            <Button label="Go" className={clsx('!bg-lavender text-white!')} />
+          </Link>
+        )}
       </div>
 
-      <Link
-        href={nextUrl}
-        className={clsx(
-          currentPage == totalPages && 'opacity-50 pointer-events-none',
-          'hidden md:block',
-        )}
-      >
-        <Button label="next" className={clsx('!bg-lavender text-white!')} />
-      </Link>
+      {nextUrl && (
+        <Link
+          href={nextUrl}
+          className={clsx(
+            currentPage == totalPages && 'opacity-50 pointer-events-none',
+            'hidden md:block',
+          )}
+        >
+          <Button label="next" className={clsx('!bg-lavender text-white!')} />
+        </Link>
+      )}
     </div>
   )
 }

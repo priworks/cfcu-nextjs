@@ -14,7 +14,7 @@ export default function ATMCard({
   setSelectedMobileAtmPopup,
 }: {
   data: ATMLocation;
-  setSelectedLocation: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
+  setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>;
   setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
   setSelectedMobileAtmPopup: React.Dispatch<React.SetStateAction<ATMLocation | null>>;
 }) {

@@ -216,7 +216,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 </div>
               </div>
             )}
-            {post?.shareLinks?.length > 0 && (
+            {post?.shareLinks && post?.shareLinks?.length > 0 && (
               <div className={clsx('flex flex-col gap-y-[8px]')}>
                 <h4
                   className={clsx(

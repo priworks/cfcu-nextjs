@@ -52,7 +52,7 @@ const CardLink = ({
       onClick={(e) =>
         externalOnClick(
           e,
-          data?.externalLink?.externalLink,
+          data?.externalLink?.externalLink || '',
           data?.externalLink?.showPdfPageLeaveAlert,
         )
       }

@@ -278,14 +278,11 @@ export default function MapView({
 
       {mapLoaded && (
         <div
-          className={clsx(
-            'absolute top-[8px] left-[8px] z-10',
-            'lg:w-[450px]',
-          )}
+          className={clsx('absolute top-[8px] left-[8px] z-10', 'lg:w-[450px]')}
         >
           <DynamicSearchBox
-            accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-            map={map.current}
+            accessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''}
+            map={map.current || undefined}
             mapboxgl={mapboxgl}
             value={inputValue}
             onChange={(d) => {
@@ -358,7 +355,7 @@ export default function MapView({
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          transform: translateY(-50%);
+          translate: 0 -50%;
         }
       `}</style>
 

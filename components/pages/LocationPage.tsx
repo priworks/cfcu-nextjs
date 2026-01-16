@@ -297,9 +297,11 @@ function DetailCard({
           </a>
         ) : isAddress ? (
           <a
-            href={getGoogleMapsLink(coordinates)}
+            href={coordinates && getGoogleMapsLink(coordinates)}
             target={'_blank'}
-            onClick={(e) => externalOnClick(e, getGoogleMapsLink(coordinates))}
+            onClick={(e) =>
+              coordinates && externalOnClick(e, getGoogleMapsLink(coordinates))
+            }
           >
             <div>
               <PortableText

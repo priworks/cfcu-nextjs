@@ -52,7 +52,8 @@ const PageLink = ({
           setTarget('_blank')
         }
       } else {
-        setHref(data?.externalLink?.externalLink)
+        data?.externalLink?.externalLink &&
+          setHref(data.externalLink.externalLink)
         if (data?.externalLink?.openInNewTab) {
           setTarget('_blank')
         }
@@ -73,7 +74,7 @@ const PageLink = ({
       onClick={(e) =>
         externalOnClick(
           e,
-          data?.externalLinkOneOff?.link,
+          data?.externalLinkOneOff?.link || '',
           data?.externalLinkOneOff?.showPdfPageLeaveAlert,
         )
       }
@@ -88,7 +89,7 @@ const PageLink = ({
       onClick={(e) =>
         externalOnClick(
           e,
-          data?.externalLink?.externalLink,
+          data?.externalLink?.externalLink || '',
           data?.externalLink?.showPdfPageLeaveAlert,
         )
       }

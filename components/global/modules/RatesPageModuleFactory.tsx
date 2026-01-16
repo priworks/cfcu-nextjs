@@ -17,11 +17,11 @@ import LogoGrid from './ImageGrid'
 import QuickExit from './QuickExit'
 import RateTable from './RateTable'
 
-const ModuleFactory = ({ modules }) => {
+const ModuleFactory = ({ modules }: { modules: any[] }) => {
   const siteAlerts = modules.filter((module) => module._type === 'siteAlert')
   const otherModules = modules.filter((module) => module._type !== 'siteAlert')
 
-  const renderModule = (module) => {
+  const renderModule = (module: any) => {
     switch (module._type) {
       case 'ctaInContent':
         return <CTAInContent data={module} />

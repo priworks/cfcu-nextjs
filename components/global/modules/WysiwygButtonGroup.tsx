@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { externalOnClick } from '@/utils'
 interface Props {
   value: {
-    links: Array<ButtonProps>
+    links: any[]
   }
   isWithoutPadding?: boolean
 }
@@ -95,14 +95,16 @@ const ButtonLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
+      externalLinkOneOff?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLinkOneOff.showPdfPageLeaveAlert)
     }
     if (externalLink?.link) {
       setHref(externalLink.link)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
-      setShowAlert(externalLink?.showPdfPageLeaveAlert)
+      externalLink?.showPdfPageLeaveAlert &&
+        setShowAlert(externalLink.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

@@ -170,7 +170,7 @@ const PostHomePage = ({
           >
             <FormattedTextField text={data?.description} />
           </p>
-          {isBlogHome && (
+          {isBlogHome && allTopics?.length && (
             <FilterButton
               title="Filter by Topic"
               items={allTopics}

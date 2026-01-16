@@ -85,7 +85,7 @@ const Header = () => {
         style={
           alertIsOpen || globalAlertIsOpen
             ? {
-                transform: `translateY(${alertHeightInternal + (width < 1024 ? 24 : 48)}px)`,
+                translate: `0 ${alertHeightInternal + (width < 1024 ? 24 : 48)}px`,
               }
             : {}
         }

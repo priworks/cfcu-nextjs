@@ -14,9 +14,9 @@ export default function FastExitButton({ url }: { url: string }) {
       const chatWidget = document.querySelector('.sm-visitor-app')
       if (!chatWidget || !buttonRef.current) return
       if (width > 768) {
-        buttonRef.current.style.transform = 'translateY(-75px)'
+        buttonRef.current.style.translate = '0 -75px'
       } else {
-        buttonRef.current.style.transform = 'translateY(-56px)'
+        buttonRef.current.style.translate = '0 -56px'
       }
     }
   }, [width])

@@ -17,8 +17,8 @@ const MenuCTA = ({
 }: {
   data: GlobalSettingsType['navigation']['navigationCta']
   menuOpen: boolean
-  setMenuOpen: React.Dispatch
-  setCloseInitiated?: React.Dispatch
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setCloseInitiated?: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const [mounted, setMounted] = useState(false)
   const theme = getThemeClasses(data.theme.label) as any
@@ -101,7 +101,7 @@ const MenuCTA = ({
         className={clsx('overflow-hidden md:overflow-visible')}
       >
         <Button
-          cb={() => setCloseInitiated(true)}
+          cb={() => setCloseInitiated && setCloseInitiated(true)}
           label={data?.cta?.title}
           className={clsx('elementAnimation mt-[21px] overflow-hidden')}
         />
